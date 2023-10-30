@@ -1,11 +1,27 @@
 .App {
-  --background-color-gray: #8D8E97;
-  --background-color-medium-gray: #DADADA;
-  --background-color-extra-light: #F3F3F3;
+  max-width: 1170px;
+  padding: 0 15px;
+  margin: auto;
+  position: relative;
+
+  --text-primary-color: #313037;
+  --text-primary-second-color: #5B5A62;
+  --text-secondary-color: #A8A8A8;
+  --contextual-red-color: #FC857F;
+  --blue-color: #D7E4FD;
+  --green-color: #CAEFF0;
+  --orange-color: #FEE9E2;
+  --purple-color: #F4EEFD;
+
 
   &.dark {
-    --background-color-gray: #313037;
-    --background-color-medium-gray: #DADADA;
-    --background-color-extra-light: #313037;
+    --text-primary-color: #AFB2B6;
+    --text-primary-second-color: #E7E7E7;
+    --text-secondary-color: #F7F7F7;
+    --contextual-red-color: #FC857F;
+    --blue-color: #D7E4FD;
+    --green-color: #CAEFF0;
+    --orange-color: #FEE9E2;
+    --purple-color: #F4EEFD;
   }
 }
