@@ -1,30 +1,33 @@
-import { Link, Rating } from "@mui/material";
+import { Rating } from "@mui/material";
 import styled from "styled-components";
+import { Link as RouteLink } from 'react-router-dom';
 
 type PropsCard = {
   title: string;
   subtitle: string;
-  isbn13: string;
+  isbn13: number;
   price: string;
   image: string;
   url: string;
 }
 
-export const Card: React.FC<PropsCard> = (props: PropsCard) => {
+export const Card: React.FC<PropsCard> = (props: PropsCard) => {  
   return (
     <CardWrapper>
-      <CardTitle href={props.url}>
-        <CardImage>
-          <CardImg src={props.image} />
-        </CardImage>
-        {props.title}
-      </CardTitle>
+      <RouteLink to={`/preview-book/${props.isbn13}`} key={props.isbn13}>
+        <CardTitle>
+          <CardImage>
+            <CardImg src={props.image} />
+          </CardImage>
+          {props.title}
+        </CardTitle>
+      </RouteLink>
       <CardSubtitle>
         {props.subtitle}
       </CardSubtitle>
       <InfoLine>
         <PriceSpan>{props.price}</PriceSpan>
-        <Rating />
+        <Rating name="read-only" value={Math.floor((Math.random() * 5) + 1)} precision={0.5} readOnly />
       </InfoLine>
     </CardWrapper>
   )
@@ -51,7 +54,7 @@ const CardImg = styled.img`
   object-fit: scale-down;
 `;
 
-const CardTitle = styled(Link)`
+const CardTitle = styled.span`
   max-width: 300px;
   text-align: center;
   display: flex;

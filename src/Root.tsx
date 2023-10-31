@@ -2,7 +2,8 @@ import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import { Header } from '#features/header/header';
 import { Footer } from '#ui/footer/footer';
-import { MainNewBooks } from './pages/main-new-books';
+import { MainNewBooksPage } from './pages/main-new-books';
+import { BookPreviewPage } from './pages/book-preview';
 
 function Root() {
 
@@ -10,7 +11,8 @@ function Root() {
     <div className="App">
       <Header />
       <Routes>
-        <Route path='/' element={<MainNewBooks />} />
+        <Route path='/' element={<MainNewBooksPage />} />
+        <Route path='/preview-book/:bookIsbn' element={<BookPreviewPage />} /> 
       </Routes>
       <Footer />
     </div>

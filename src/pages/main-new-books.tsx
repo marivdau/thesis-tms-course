@@ -5,8 +5,9 @@ import { useAppDispatch, useAppSelector } from "../hooks";
 import { getNewBooks } from "#features/new-books/new-books.slice";
 import styled from "styled-components";
 import { Pagination } from "@mui/material";
+import { Subscribe } from "#features/subscribe/subscribe";
 
-export const MainNewBooks: React.FC = () => {
+export const MainNewBooksPage: React.FC = () => {
   const dispatch = useAppDispatch();
   const { newBooks } = useAppSelector(({ newBooks }) => newBooks)
   useEffect(() => {
@@ -25,12 +26,13 @@ export const MainNewBooks: React.FC = () => {
             title={item.title} 
             subtitle={item.subtitle} 
             price={item.price} 
-            isbn13={item.isbn13} 
+            isbn13={item.isbn13}             
           />)}
       </CardsDiv>
       <PaginationDiv>
         <Pagination />
       </PaginationDiv>
+      <Subscribe />
     </MainNewBooksWrapper>
   )
 }

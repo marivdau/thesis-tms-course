@@ -4,3 +4,10 @@ export const newBooksRequest: typeof fetch = (
 ) => {
   return fetch(input, init)
 }
+
+export const bookPreviewRequest: typeof fetch = (
+  input: RequestInfo | URL,
+  init?: RequestInit
+) => {
+  return fetch(input, init)
+}

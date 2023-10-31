@@ -1,10 +1,10 @@
-import { newBooksRequest } from "../../api/api";
+import { bookPreviewRequest } from "../../api/api";
 import { baseUrl } from "../../api/constants";
-import { NewBooksResponse } from "./types";
+import { BookPreviewResponse } from "./types";
 
 export const api = {
-  getNewBooks: (): Promise<NewBooksResponse> => {
-    return newBooksRequest(baseUrl + 'new', {
+  getBookPreview: (payload: number): Promise<BookPreviewResponse> => {
+    return bookPreviewRequest(baseUrl + `books/${payload}`, {
       method: 'GET',
       headers: {},
     }).then((response) => {

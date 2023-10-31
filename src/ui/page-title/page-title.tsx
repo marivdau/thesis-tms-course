@@ -13,7 +13,11 @@ export const PageTitle: React.FC<Props> = ({ children }) => {
 }
 
 const PageTitleWrapper = styled.h1`
-  height: 40px;
+  all: unset;
+  font-size: 56px;
+  line-height: 64px;
+  font-weight: 700;
   text-transform: uppercase;
-  color: var(--text-primary-color);;
+  color: var(--text-primary-color);
+  padding: 20px 0 50px;
 `;

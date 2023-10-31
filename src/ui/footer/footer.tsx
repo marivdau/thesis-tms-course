@@ -6,6 +6,7 @@ export const Footer = () => {
     <FooterWrapper>
       <DateNameSpan>
         <Copyright />
+        {new Date().getFullYear()}{' '}
         Bookstore
       </DateNameSpan>
       <RightsSpan>All right reserved</RightsSpan>
