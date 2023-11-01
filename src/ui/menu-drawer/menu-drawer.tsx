@@ -51,7 +51,9 @@ export default function TemporaryDrawer() {
         <Divider />
       </ListDiv>
       <ButtonDiv>
-        <Button variant="contained" color="primary" fullWidth={true}>Sign-In</Button>
+        <Button variant="contained" color="primary" fullWidth={true} href='/sign-in'>
+          Sign In
+        </Button>
       </ButtonDiv>
     </Box>
   );
