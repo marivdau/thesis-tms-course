@@ -20,7 +20,7 @@ export const Header = () => {
       </SearchDiv>
       <HeaderMenuDiv>
         <IconsDiv>
-          <Button>
+          <Button href='/favourites'>
             <Favourites />
           </Button>
         </IconsDiv>

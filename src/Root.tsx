@@ -9,6 +9,7 @@ import { SignUpPage } from './pages/sign-up';
 import { ResetPasswordMainPage } from './pages/reset-password-main';
 import { ResetPasswordSentEmailPage } from './pages/reset-password-sent-reset';
 import { NewPassword } from './pages/new-password';
+import { FavouritesPage } from './pages/favourites';
 
 function Root() {
   return (
@@ -17,6 +18,7 @@ function Root() {
       <Routes>
         <Route path='/' element={<MainNewBooksPage />} />
         <Route path='/preview-book/:bookIsbn' element={<BookPreviewPage />} /> 
+        <Route path='/favourites' element={<FavouritesPage />} />
         <Route path='/sign-in' element={<SignInPage />} />
         <Route path='/sign-up' element={<SignUpPage />} />
         <Route path='/reset-password' element={<ResetPasswordMainPage />} />
