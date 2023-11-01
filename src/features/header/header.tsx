@@ -3,26 +3,34 @@ import logo from '../../images/boosktore-logo.png';
 import TextField from '@mui/material/TextField';
 import Favourites from '@mui/icons-material/Favorite';
 import Cart from '@mui/icons-material/ShoppingCart';
-import Person from '@mui/icons-material/Person';
+import { Button } from '@mui/material';
+import TemporaryDrawer from '#ui/menu-drawer/menu-drawer';
+import { Link } from 'react-router-dom';
 
 export const Header = () => {
   return (
     <HeaderWrapper>
       <LogoDiv>
-        <LogoImg src={logo} alt="logo" />
+        <Link to={'/'}>
+          <LogoImg src={logo} alt="logo" />
+        </Link>
       </LogoDiv>
       <SearchDiv>
         <TextField id="outlined-basic" label="Search" variant="outlined" />
       </SearchDiv>
       <HeaderMenuDiv>
         <IconsDiv>
-          <Favourites />
+          <Button>
+            <Favourites />
+          </Button>
         </IconsDiv>
         <IconsDiv>
-          <Cart />
+          <Button>
+            <Cart />        
+          </Button>
         </IconsDiv>
-        <IconsDiv>
-          <Person />
+        <IconsDiv>          
+          <TemporaryDrawer/>
         </IconsDiv>
       </HeaderMenuDiv>
     </HeaderWrapper>
@@ -59,5 +67,5 @@ const HeaderMenuDiv = styled.div`
 `;
 
 const IconsDiv = styled.div`
-  margin-right: 30px;
+  margin-right: 20px;
 `;

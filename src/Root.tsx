@@ -6,7 +6,6 @@ import { MainNewBooksPage } from './pages/main-new-books';
 import { BookPreviewPage } from './pages/book-preview';
 
 function Root() {
-
   return (
     <div className="App">
       <Header />
