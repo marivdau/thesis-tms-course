@@ -1,6 +1,7 @@
 import { Button, Rating } from "@mui/material";
 import styled from "styled-components";
 import Favourites from '@mui/icons-material/Favorite';
+import { randomRaiting } from "../../service/random-rating";
 
 type PropsCard = {
   title: string;
@@ -9,47 +10,47 @@ type PropsCard = {
   price: string;
   image: string;
   url: string;
-//   error: string;  
-//   title: string;
-//   subtitle: string;
-//   authors: string;
-//   publisher: string;
-//   isbn10: string;
-//   isbn13: number;
-//   pages: string;
-//   year: string;
-//   rating: number | null;
-//   desc: string;
-//   price: string;
-//   image: string;
-//   url: string;
-//   pdf: {
-//     [key: string]: string;
-//   }
+  //   error: string;  
+  //   title: string;
+  //   subtitle: string;
+  //   authors: string;
+  //   publisher: string;
+  //   isbn10: string;
+  //   isbn13: number;
+  //   pages: string;
+  //   year: string;
+  //   rating: number | null;
+  //   desc: string;
+  //   price: string;
+  //   image: string;
+  //   url: string;
+  //   pdf: {
+  //     [key: string]: string;
+  //   }
 }
 
-export const FavouriteCard: React.FC<PropsCard> = (props: PropsCard) => {  
+export const FavouriteCard: React.FC<PropsCard> = (props: PropsCard) => {
   return (
-    <CardWrapper>        
+    <CardWrapper>
       <CardImageDiv>
         <CardImg src={props.image} />
       </CardImageDiv>
       <InfoLineDiv>
         <CardTitle>
           {props.title}
-        </CardTitle>        
+        </CardTitle>
         <CardSubtitle>
           {'by '}{'author'}, {' '} {'year'}
         </CardSubtitle>
         <PriceRaitingDiv>
           <PriceSpan>{props.price}</PriceSpan>
-          <Rating name="read-only" value={Math.floor((Math.random() * 5) + 1)} precision={0.5} readOnly />
-        </PriceRaitingDiv>       
+          <Rating name="read-only" value={randomRaiting()} precision={0.5} readOnly />
+        </PriceRaitingDiv>
       </InfoLineDiv>
       <FavIconDiv>
         <Button variant="text">
           <Favourites />
-        </Button>        
+        </Button>
       </FavIconDiv>
     </CardWrapper>
   )

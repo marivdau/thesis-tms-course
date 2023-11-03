@@ -16,16 +16,16 @@ export const Header = () => {
         </Link>
       </LogoDiv>
       <SearchDiv>
-        <TextField id="outlined-basic" label="Search" variant="outlined" />
+        <TextField id="outlined-basic" label="Search" variant="outlined" fullWidth={true} />
       </SearchDiv>
       <HeaderMenuDiv>
         <IconsDiv>
-          <Button href='/favourites'>
+          <Button component={Link} to="/favourites">
             <Favourites />
           </Button>
         </IconsDiv>
         <IconsDiv>
-          <Button>
+          <Button component={Link} to="/cart">
             <Cart />        
           </Button>
         </IconsDiv>
@@ -58,7 +58,9 @@ const LogoImg = styled.img`
   height: 100%;
 `;
 
-const SearchDiv = styled.div``;
+const SearchDiv = styled.div`
+  width: 600px;
+`;
 
 const HeaderMenuDiv = styled.div`
   display: flex;

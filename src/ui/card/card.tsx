@@ -1,6 +1,7 @@
 import { Rating } from "@mui/material";
 import styled from "styled-components";
 import { Link as RouteLink } from 'react-router-dom';
+import { randomRaiting } from "../../service/random-rating";
 
 type PropsCard = {
   title: string;
@@ -11,7 +12,7 @@ type PropsCard = {
   url: string;
 }
 
-export const Card: React.FC<PropsCard> = (props: PropsCard) => {  
+export const Card: React.FC<PropsCard> = (props: PropsCard) => {
   return (
     <CardWrapper>
       <RouteLink to={`/preview-book/${props.isbn13}`} key={props.isbn13}>
@@ -27,7 +28,7 @@ export const Card: React.FC<PropsCard> = (props: PropsCard) => {
       </CardSubtitle>
       <InfoLine>
         <PriceSpan>{props.price}</PriceSpan>
-        <Rating name="read-only" value={Math.floor((Math.random() * 5) + 1)} precision={0.5} readOnly />
+        <Rating name="read-only" value={randomRaiting()} precision={0.5} readOnly />
       </InfoLine>
     </CardWrapper>
   )

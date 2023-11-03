@@ -9,6 +9,7 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import { styled } from 'styled-components';
 import Person from '@mui/icons-material/Person';
+import { Link } from 'react-router-dom';
 
 type Anchor = 'right';
 
@@ -40,18 +41,26 @@ export default function TemporaryDrawer() {
     >
       <ListDiv>
         <List>
-          {['favourites', 'Cart',].map((text) => (
-            <ListItem key={text}>
-              <ListItemButton sx={{ textAlign: 'center' }}>
-                <ListItemText primary={text} sx={{ textTransform: 'uppercase' }} />
-              </ListItemButton>
-            </ListItem>
-          ))}
+          <ListItem key='favourites'>
+            <ListItemButton sx={{ textAlign: 'center' }} component={Link} to="/favourites">
+              <ListItemText primary='favourites' sx={{ textTransform: 'uppercase' }} />
+            </ListItemButton>
+          </ListItem>
+          <ListItem key='cart'>
+            <ListItemButton sx={{ textAlign: 'center' }} component={Link} to="/cart">
+              <ListItemText primary='Cart' sx={{ textTransform: 'uppercase' }} />
+            </ListItemButton>
+          </ListItem>
+          <ListItem key='account'>
+            <ListItemButton sx={{ textAlign: 'center' }} component={Link} to="/account">
+              <ListItemText primary='account' sx={{ textTransform: 'uppercase' }} />
+            </ListItemButton>
+          </ListItem>
         </List>
         <Divider />
       </ListDiv>
       <ButtonDiv>
-        <Button variant="contained" color="primary" fullWidth={true} href='/sign-in'>
+        <Button variant="contained" color="primary" fullWidth={true} component={Link} to='/sign-in'>
           Sign In
         </Button>
       </ButtonDiv>

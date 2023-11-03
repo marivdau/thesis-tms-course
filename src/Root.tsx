@@ -10,6 +10,8 @@ import { ResetPasswordMainPage } from './pages/reset-password-main';
 import { ResetPasswordSentEmailPage } from './pages/reset-password-sent-reset';
 import { NewPassword } from './pages/new-password';
 import { FavouritesPage } from './pages/favourites';
+import { Cart } from './pages/cart';
+import { Account } from './pages/account';
 
 function Root() {
   return (
@@ -19,11 +21,13 @@ function Root() {
         <Route path='/' element={<MainNewBooksPage />} />
         <Route path='/preview-book/:bookIsbn' element={<BookPreviewPage />} /> 
         <Route path='/favourites' element={<FavouritesPage />} />
+        <Route path='/cart' element={<Cart />} />
+        <Route path='/account' element={<Account />} />
         <Route path='/sign-in' element={<SignInPage />} />
         <Route path='/sign-up' element={<SignUpPage />} />
         <Route path='/reset-password' element={<ResetPasswordMainPage />} />
         <Route path='/reset-password-email-sent' element={<ResetPasswordSentEmailPage />} />
-        <Route path='new-password' element={<NewPassword />} />
+        <Route path='/new-password' element={<NewPassword />} />
       </Routes>
       <Footer />
     </div>

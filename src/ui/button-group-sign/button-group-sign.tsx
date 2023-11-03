@@ -1,12 +1,13 @@
 import { Button, ButtonGroup } from "@mui/material"
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const ButtonGroupSignInUp = () => {
   return (
     <ButtonsGroupDiv>
       <ButtonGroup fullWidth={true}>
-        <Button href="/sign-in" variant={window.location.pathname ==='/sign-in' ? 'contained' : 'outlined'} >Sign-In</Button>
-        <Button href="/sign-up" variant={window.location.pathname ==='/sign-up' ? 'contained' : 'outlined'} >Sign-Up</Button>
+        <Button component={Link} to="/sign-in" variant={window.location.pathname ==='/sign-in' ? 'contained' : 'outlined'} >Sign-In</Button>
+        <Button component={Link} to="/sign-up" variant={window.location.pathname ==='/sign-up' ? 'contained' : 'outlined'} >Sign-Up</Button>
       </ButtonGroup>
     </ButtonsGroupDiv>
   )
