@@ -10,6 +10,7 @@ import ListItemText from '@mui/material/ListItemText';
 import { styled } from 'styled-components';
 import Person from '@mui/icons-material/Person';
 import { Link } from 'react-router-dom';
+import { Tooltip } from '@mui/material';
 
 type Anchor = 'right';
 
@@ -71,9 +72,11 @@ export default function TemporaryDrawer() {
     <div>
       {(['right'] as const).map((anchor) => (
         <React.Fragment key={anchor}>
-          <Button onClick={toggleDrawer(anchor, true)}>
-            <Person />
-          </Button>
+          <Tooltip title='Account'>
+            <Button onClick={toggleDrawer(anchor, true)}>
+              <Person />
+            </Button>
+          </Tooltip>
           <Drawer
             anchor={anchor}
             open={state[anchor]}

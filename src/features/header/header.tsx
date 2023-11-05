@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 import logo from '../../images/boosktore-logo.png';
-import TextField from '@mui/material/TextField';
 import Favourites from '@mui/icons-material/Favorite';
 import Cart from '@mui/icons-material/ShoppingCart';
-import { Button } from '@mui/material';
+import { Button, Tooltip } from '@mui/material';
 import TemporaryDrawer from '#ui/menu-drawer/menu-drawer';
 import { Link } from 'react-router-dom';
+import { SearchComponent } from '#features/search/search';
 
 export const Header = () => {
   return (
@@ -16,21 +16,25 @@ export const Header = () => {
         </Link>
       </LogoDiv>
       <SearchDiv>
-        <TextField id="outlined-basic" label="Search" variant="outlined" fullWidth={true} />
+        <SearchComponent />        
       </SearchDiv>
       <HeaderMenuDiv>
         <IconsDiv>
-          <Button component={Link} to="/favourites">
-            <Favourites />
-          </Button>
+          <Tooltip title='Favourites'>
+            <Button component={Link} to="/favourites">
+              <Favourites />
+            </Button>
+          </Tooltip>          
         </IconsDiv>
         <IconsDiv>
-          <Button component={Link} to="/cart">
-            <Cart />        
-          </Button>
+          <Tooltip title='Cart'>
+            <Button component={Link} to="/cart">
+              <Cart />        
+            </Button>
+          </Tooltip>
         </IconsDiv>
-        <IconsDiv>          
-          <TemporaryDrawer/>
+        <IconsDiv>  
+          <TemporaryDrawer/>      
         </IconsDiv>
       </HeaderMenuDiv>
     </HeaderWrapper>
