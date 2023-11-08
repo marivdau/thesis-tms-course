@@ -24,6 +24,9 @@ export const SearchComponent: React.FC<Props> = () => {
         value={searchedText}
         onChange={(event) => {
           setSearchedText(event.currentTarget.value);
+          if(event.currentTarget.value === '') {
+            return dispatch(reset());
+          }
           dispatch(search(event.currentTarget.value));
         }}
         InputProps={
