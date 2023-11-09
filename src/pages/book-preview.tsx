@@ -47,26 +47,27 @@ export const BookPreviewPage: React.FC = () => {
             <BookInfoSpanDiv>
               <BookInfoSpans>
                 <BookInfoSpansLabel>Author</BookInfoSpansLabel>
-                {bookPreview.authors}
+                <BookInfoSpansText>{bookPreview.authors}</BookInfoSpansText>
               </BookInfoSpans>
               <BookInfoSpans>
                 <BookInfoSpansLabel>Publisher</BookInfoSpansLabel>
-                {bookPreview.publisher}</BookInfoSpans>
+                <BookInfoSpansText>{bookPreview.publisher}</BookInfoSpansText>
+                </BookInfoSpans>
               <BookInfoSpans>
                 <BookInfoSpansLabel>ISBN10</BookInfoSpansLabel>
-                {bookPreview.isbn10}
+                <BookInfoSpansText>{bookPreview.isbn10}</BookInfoSpansText>
               </BookInfoSpans>
               <BookInfoSpans>
                 <BookInfoSpansLabel>ISBN13</BookInfoSpansLabel>
-                {bookPreview.isbn13}
+                <BookInfoSpansText>{bookPreview.isbn13}</BookInfoSpansText>
               </BookInfoSpans>
               <BookInfoSpans>
                 <BookInfoSpansLabel>Pages</BookInfoSpansLabel>
-                {bookPreview.pages}
+                <BookInfoSpansText>{bookPreview.pages}</BookInfoSpansText>
               </BookInfoSpans>
               <BookInfoSpans>
                 <BookInfoSpansLabel>Year</BookInfoSpansLabel>
-                {bookPreview.year}
+                <BookInfoSpansText>{bookPreview.year}</BookInfoSpansText>
               </BookInfoSpans>
             </BookInfoSpanDiv>
             <ButtonsDiv>
@@ -156,6 +157,12 @@ const BookInfoSpans = styled.div`
 
 const BookInfoSpansLabel = styled.span`
   color: var(--text-secondary-color);
+  margin-right: 50px;
+`;
+
+const BookInfoSpansText = styled.p`
+  all: unset;
+  text-align: end;
 `;
 
 const BookInfoDiv = styled.div`

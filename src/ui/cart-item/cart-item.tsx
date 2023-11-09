@@ -4,6 +4,9 @@ import Clear from '@mui/icons-material/Clear';
 import Add from '@mui/icons-material/Add';
 import Remove from '@mui/icons-material/Remove';
 import { useState } from "react";
+import { Link } from "react-router-dom";
+import { removeDollarSignConvertToNumber } from "../../service/remove-dollar-sign";
+import AttachMoney from '@mui/icons-material/AttachMoney';
 
 
 type PropsCart = {
@@ -42,9 +45,12 @@ export const CartItem: React.FC<PropsCart> = (props: PropsCart) => {
         </CartImageDiv>
 
         <InfoLineDiv>
-          <CartTitle>
-            {props.title}
-          </CartTitle>        
+          <Link to={`/preview-book/${props.isbn13}`}>
+            <CartTitle>
+              {props.title}
+            </CartTitle>  
+          </Link>
+       
           <CartSubtitle>
             {'by '}{'author'}, {' '} {'year'}
           </CartSubtitle>
@@ -74,7 +80,10 @@ export const CartItem: React.FC<PropsCart> = (props: PropsCart) => {
         </InfoLineDiv>
 
         <PriceRaitingDiv>
-          <PriceSpan>{props.price}</PriceSpan>
+          <PriceSpan>
+            <AttachMoney fontSize="large" />
+            {removeDollarSignConvertToNumber(props.price)}
+          </PriceSpan>
         </PriceRaitingDiv>    
         <FavIconDiv>
           <Button variant="text">
@@ -146,6 +155,9 @@ const PriceSpan = styled.span`
   font-weight: 700;
   line-height: 60px;
   margin-right: 100px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 `;
 
 const FavIconDiv = styled.div``;

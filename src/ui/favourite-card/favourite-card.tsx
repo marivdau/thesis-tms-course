@@ -2,6 +2,7 @@ import { Button, Rating } from "@mui/material";
 import styled from "styled-components";
 import Favourites from '@mui/icons-material/Favorite';
 import { randomRaiting } from "../../service/random-rating";
+import { Link } from "react-router-dom";
 
 type PropsCard = {
   title: string;
@@ -36,9 +37,11 @@ export const FavouriteCard: React.FC<PropsCard> = (props: PropsCard) => {
         <CardImg src={props.image} />
       </CardImageDiv>
       <InfoLineDiv>
-        <CardTitle>
-          {props.title}
-        </CardTitle>
+        <Link to={`/preview-book/${props.isbn13}`} >
+          <CardTitle>
+            {props.title}
+          </CardTitle>
+        </Link>        
         <CardSubtitle>
           {'by '}{'author'}, {' '} {'year'}
         </CardSubtitle>
