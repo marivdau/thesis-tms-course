@@ -3,100 +3,92 @@ import styled from "styled-components";
 import Clear from '@mui/icons-material/Clear';
 import Add from '@mui/icons-material/Add';
 import Remove from '@mui/icons-material/Remove';
-import { useState } from "react";
 import { Link } from "react-router-dom";
-import { removeDollarSignConvertToNumber } from "../../service/remove-dollar-sign";
 import AttachMoney from '@mui/icons-material/AttachMoney';
+import { useAppDispatch } from "../../hooks";
+import { decreaseItemQuantity, deleteItem, increaseItemQuantity } from "#features/order/order.slice";
+import { removeDollarSignConvertToNumber } from "../../service/remove-dollar-sign";
 
 
-type PropsCart = {
+export type PropsCart = {
+  quantity: number;
+  error: string;  
   title: string;
   subtitle: string;
+  authors: string;
+  publisher: string;
+  isbn10: string;
   isbn13: number;
+  language: string;
+  pages: string;
+  year: string;
+  rating: string | number | null;
+  desc: string;
   price: string;
   image: string;
   url: string;
-//   error: string;  
-//   title: string;
-//   subtitle: string;
-//   authors: string;
-//   publisher: string;
-//   isbn10: string;
-//   isbn13: number;
-//   pages: string;
-//   year: string;
-//   rating: number | null;
-//   desc: string;
-//   price: string;
-//   image: string;
-//   url: string;
-//   pdf: {
-//     [key: string]: string;
-//   }
-}
+  pdf: {
+    [key: string]: string;
+  }
+} 
 
-export const CartItem: React.FC<PropsCart> = (props: PropsCart) => {  
-  const [bookQuantity, setBookQuantity] = useState(1);
+export const CartItem: React.FC<PropsCart> = (props: PropsCart) => {
+  const dispatch = useAppDispatch();
+
   return (
-    <>
-      <CartWrapper>        
+    <CartWrapper key={props.isbn13}>
+      <Cart>
         <CartImageDiv>
           <CartImg src={props.image} />
-        </CartImageDiv>
+        </CartImageDiv> 
 
         <InfoLineDiv>
-          <Link to={`/preview-book/${props.isbn13}`}>
+          <Link to={`/preview-book/${props.isbn13}`} >
             <CartTitle>
               {props.title}
-            </CartTitle>  
+            </CartTitle>
           </Link>
-       
+
           <CartSubtitle>
-            {'by '}{'author'}, {' '} {'year'}
+            {'by '}{props.authors}, {' '} {props.year}
           </CartSubtitle>
           <CartItemQuantity>
-            <Button 
-              variant="text" 
-              onClick={() => {
-                  if(bookQuantity === 1) {
-                  setBookQuantity(bookQuantity);
-                } else {
-                  setBookQuantity(bookQuantity - 1);
-                }
-              }                
-            }>
+            <Button              
+              variant="text"
+              onClick={() => dispatch(decreaseItemQuantity(props.isbn13))}>
               <Remove />
             </Button>
             <Typography variant="h6">
-              {bookQuantity}
+              {props.quantity}
             </Typography>
-            <Button 
+            <Button
               variant="text"
-              onClick={() => setBookQuantity(bookQuantity + 1)         
-            }>
+              onClick={() => dispatch(increaseItemQuantity(props.isbn13))}>
               <Add />
             </Button>
-          </CartItemQuantity>            
+          </CartItemQuantity>
         </InfoLineDiv>
 
         <PriceRaitingDiv>
           <PriceSpan>
             <AttachMoney fontSize="large" />
-            {removeDollarSignConvertToNumber(props.price)}
+            {(props.quantity * removeDollarSignConvertToNumber(props.price)).toFixed(2)}
           </PriceSpan>
-        </PriceRaitingDiv>    
+        </PriceRaitingDiv>
         <FavIconDiv>
-          <Button variant="text">
+          <Button variant="text" onClick={() => dispatch(deleteItem(props.isbn13))}>
             <Clear />
-          </Button>        
+          </Button>
         </FavIconDiv>
-      </CartWrapper>
+      </Cart>
       <Divider />
-    </>
+    </CartWrapper>
   )
 }
 
-const CartWrapper = styled.div`
+const CartWrapper = styled.div``;
+
+const Cart = styled.div`
   width: 100%;
   padding: 30px;
   display: flex;

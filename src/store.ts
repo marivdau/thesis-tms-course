@@ -4,6 +4,7 @@ import { rootSaga } from './sagas';
 import { newBooksReducer } from '#features/new-books/new-books.slice';
 import { bookPreviewReducer } from '#features/book-preview/book-preview.slice';
 import { searchReducer } from '#features/search/search.slice';
+import { orderReducer } from '#features/order/order.slice';
 
 let sagaMiddleware = createSagaMiddleware();
 const middleware = [sagaMiddleware];
@@ -15,6 +16,7 @@ export const store = configureStore({
     newBooks: newBooksReducer,
     bookPreview: bookPreviewReducer,
     search: searchReducer,
+    order: orderReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(middleware),

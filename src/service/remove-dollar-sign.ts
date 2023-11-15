@@ -1,3 +1,3 @@
 export function removeDollarSignConvertToNumber(price: string) {
-  return +price.substring(1);
+  return +price?.substring(1);
 }

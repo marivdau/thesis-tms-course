@@ -13,8 +13,10 @@ import { useParams } from "react-router-dom";
 import { Subscribe } from "#features/subscribe/subscribe";
 import { Socials } from "#ui/socials/socials";
 import { SimilarBooks } from "#ui/similar-books/similar-books";
+import { addItem } from "#features/order/order.slice";
 
 export const BookPreviewPage: React.FC = () => {
+  const [isClicked, setIsClicked] = useState(false);
   const { bookIsbn } = useParams();
 
   const dispatch = useAppDispatch();
@@ -72,7 +74,19 @@ export const BookPreviewPage: React.FC = () => {
             </BookInfoSpanDiv>
             <ButtonsDiv>
               <AddToCardButtonDiv>
-                <Button variant="contained" fullWidth={true} color="primary" >Add to cart</Button>
+                <Button 
+                  variant="contained" 
+                  fullWidth={true} 
+                  color="primary" 
+                  disabled={isClicked === true}
+                  onClick={() => {
+                    dispatch(addItem(bookPreview)); 
+                    setIsClicked(!isClicked);
+                    }
+                  }
+                >
+                  Add to cart
+                </Button>
               </AddToCardButtonDiv>
               <PreviewBookButtonDiv>
                 <Button fullWidth={true}>Preview Book</Button>

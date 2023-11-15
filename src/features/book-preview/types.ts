@@ -1,4 +1,8 @@
 export type BookPreviewResponse = {
+  quantity?: number;
+  vat?: number;
+  total?: number | null;
+
   error: string;  
   title: string;
   subtitle: string;
