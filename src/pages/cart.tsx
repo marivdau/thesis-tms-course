@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { PageTitle } from "#ui/page-title/page-title";
 import { CartItem } from "#ui/cart-item/cart-item";
-import { Button, Divider } from "@mui/material";
+import { Button } from "@mui/material";
 import AttachMoney from '@mui/icons-material/AttachMoney';
 import { clearCart } from "#features/order/order.slice";
 import { useAppDispatch, useAppSelector } from "../hooks";
@@ -9,7 +9,7 @@ import { removeDollarSignConvertToNumber } from "../service/remove-dollar-sign";
 
 export const Cart: React.FC = () => {
   const dispatch = useAppDispatch();
-  const { basket } = useAppSelector(({order}) => order);
+  const { basket } = useAppSelector(({ order }) => order);
 
   const bookSumAmount: any = basket.reduce(
     (sum: number, basketItem) => (
@@ -25,22 +25,14 @@ export const Cart: React.FC = () => {
           <CartItem 
             key={index}
             quantity={quantity}
-            error={item.error}
             image={item.image} 
             url={item.url} 
-            title={item.title} 
-            subtitle={item.subtitle} 
+            title={item.title}
             authors={item.authors}
-            publisher={item.publisher}
-            language={item.language}
-            isbn10={item.isbn10}
-            pages={item.pages}
             year={item.year}
-            rating={item.rating}
-            desc={item.desc}
             price={item.price} 
-            isbn13={item.isbn13}   
-            pdf={item.pdf}         
+            isbn13={item.isbn13}
+            subtitle={item.subtitle}       
           />
         )}
       <OrderDiv>

@@ -11,25 +11,15 @@ import { removeDollarSignConvertToNumber } from "../../service/remove-dollar-sig
 
 
 export type PropsCart = {
-  quantity: number;
-  error: string;  
+  quantity: number;  
   title: string;
   subtitle: string;
   authors: string;
-  publisher: string;
-  isbn10: string;
   isbn13: number;
-  language: string;
-  pages: string;
   year: string;
-  rating: string | number | null;
-  desc: string;
   price: string;
   image: string;
   url: string;
-  pdf: {
-    [key: string]: string;
-  }
 } 
 
 export const CartItem: React.FC<PropsCart> = (props: PropsCart) => {

@@ -14,11 +14,14 @@ import { Subscribe } from "#features/subscribe/subscribe";
 import { Socials } from "#ui/socials/socials";
 import { SimilarBooks } from "#ui/similar-books/similar-books";
 import { addItem } from "#features/order/order.slice";
+import Bookmark from '@mui/icons-material/Bookmark';
+import { markItem } from "#features/bookmark/bookmark.slice";
 
 export const BookPreviewPage: React.FC = () => {
   const [isClicked, setIsClicked] = useState(false);
-  const { bookIsbn } = useParams();
+  const [isMarked, setIsMarked] = useState(false);
 
+  const { bookIsbn } = useParams();
   const dispatch = useAppDispatch();
   const { bookPreview } = useAppSelector(({ bookPreview }) => bookPreview);
   useEffect(() => {
@@ -39,6 +42,18 @@ export const BookPreviewPage: React.FC = () => {
       <BookInfoDiv>
         <BookInfoDivFirstLine>
           <BookImageDiv>
+            <BookmarkDiv>
+              <Button 
+                variant={isMarked ? 'contained' : 'text'} 
+                onClick={() => {
+                    dispatch(markItem(bookPreview)); 
+                    setIsMarked(!isMarked)
+                  }
+                }
+              >
+                <Bookmark />
+              </Button>
+            </BookmarkDiv>
             <BookImage src={bookPreview.image} />
           </BookImageDiv>
           <BookDetailsDiv>
@@ -129,10 +144,16 @@ const BookInfoDivFirstLine = styled.div`
 `;
 
 const BookImageDiv = styled.div`
+  position: relative;
   background-color: var(--orange-color);
   width: 500px;
   height: 400px;
   margin-right: 100px;
+`;
+
+const BookmarkDiv = styled.div`
+  position: absolute;
+  right: 0;
 `;
 
 const BookImage = styled.img`

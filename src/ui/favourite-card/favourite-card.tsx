@@ -3,6 +3,8 @@ import styled from "styled-components";
 import Favourites from '@mui/icons-material/Favorite';
 import { randomRaiting } from "../../service/random-rating";
 import { Link } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../../hooks";
+import { unMarkItem } from "#features/bookmark/bookmark.slice";
 
 type PropsCard = {
   title: string;
@@ -11,26 +13,11 @@ type PropsCard = {
   price: string;
   image: string;
   url: string;
-  //   error: string;  
-  //   title: string;
-  //   subtitle: string;
-  //   authors: string;
-  //   publisher: string;
-  //   isbn10: string;
-  //   isbn13: number;
-  //   pages: string;
-  //   year: string;
-  //   rating: number | null;
-  //   desc: string;
-  //   price: string;
-  //   image: string;
-  //   url: string;
-  //   pdf: {
-  //     [key: string]: string;
-  //   }
 }
 
 export const FavouriteCard: React.FC<PropsCard> = (props: PropsCard) => {
+  const dispatch = useAppDispatch();
+
   return (
     <CardWrapper>
       <CardImageDiv>
@@ -51,7 +38,7 @@ export const FavouriteCard: React.FC<PropsCard> = (props: PropsCard) => {
         </PriceRaitingDiv>
       </InfoLineDiv>
       <FavIconDiv>
-        <Button variant="text">
+        <Button variant="text" onClick={() => dispatch(unMarkItem(props))}>
           <Favourites />
         </Button>
       </FavIconDiv>
