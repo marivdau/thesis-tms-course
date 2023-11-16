@@ -10,7 +10,7 @@ type State = {
 }
 
 const favouritesSlice = createSlice({
-  name: 'orderSlice',
+  name: 'favouritesSlice',
   initialState: {
     favourites: [],
   } as State,
