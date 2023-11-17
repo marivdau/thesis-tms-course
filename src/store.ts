@@ -8,6 +8,10 @@ import { orderReducer } from '#features/order/order.slice';
 import { favouritesReducer } from '#features/bookmark/bookmark.slice';
 import { subscribeReducer } from '#features/subscribe/subscribe.slice';
 import { allBooksReducer } from '#features/all-books/all-books.slice';
+import { authorizationReducer } from '#features/auth/authorization.slice';
+import { signUpFormReducer } from '#features/sign-up-form/sign-up-form.slice';
+import { registrationReducer } from '#features/auth/registration.slice';
+import { forgotPasswordReducer } from '#features/auth/forgot-password.slice';
 
 let sagaMiddleware = createSagaMiddleware();
 const middleware = [sagaMiddleware];
@@ -23,6 +27,10 @@ export const store = configureStore({
     favourites: favouritesReducer,
     subscribtion: subscribeReducer,
     allBooks: allBooksReducer,
+    authorization: authorizationReducer,
+    signUpForm: signUpFormReducer,
+    registration: registrationReducer,
+    forgotPassword: forgotPasswordReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(middleware),

@@ -8,7 +8,7 @@ export const ResetPasswordSentEmailPage: React.FC = () => {
         <Typography variant="h5" sx={{ textTransform: 'uppercase' }}>reset password</Typography>
       </TypographyDiv>
       <EmailTextDiv>
-        <Typography>You will receive an email example@gmail.com with a link to reset your password!</Typography>
+        <Typography>You will receive an email with a link to reset your password!</Typography>
       </EmailTextDiv>
       <ButtonDiv>
         <Button variant="contained" href="/" fullWidth={true}>Go home</Button>
