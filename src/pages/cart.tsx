@@ -1,13 +1,14 @@
 import styled from "styled-components";
 import { PageTitle } from "#ui/page-title/page-title";
 import { CartItem } from "#ui/cart-item/cart-item";
-import { Button } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import AttachMoney from '@mui/icons-material/AttachMoney';
 import { clearCart } from "#features/order/order.slice";
 import { useAppDispatch, useAppSelector } from "../hooks";
 import { removeDollarSignConvertToNumber } from "../service/remove-dollar-sign";
 import { BackLink } from "#features/back-link/back-link";
 import Confetti from 'react-confetti';
+import { Link } from "react-router-dom";
 import { useState } from "react";
 
 export const Cart: React.FC = () => {
@@ -33,20 +34,27 @@ export const Cart: React.FC = () => {
       />
       <PageTitle children='Your cart' />
       <BackLink />
-      {basket?.map(({ item, quantity }, index: number) =>
-        <CartItem
-          key={index}
-          quantity={quantity}
-          image={item.image}
-          url={item.url}
-          title={item.title}
-          authors={item.authors}
-          year={item.year}
-          price={item.price}
-          isbn13={item.isbn13}
-          subtitle={item.subtitle}
-        />
-      )}
+      {basket.length > 0 ?
+        basket?.map(({ item, quantity }, index: number) =>
+          <CartItem
+            key={index}
+            quantity={quantity}
+            image={item.image}
+            url={item.url}
+            title={item.title}
+            authors={item.authors}
+            year={item.year}
+            price={item.price}
+            isbn13={item.isbn13}
+            subtitle={item.subtitle}
+          />
+        ) :
+        <NothingInTheCartDiv>
+          <Typography variant="h4">There is nothing in your cart.{' '}
+            <Link to={'/all'}>Let's buy something!</Link>
+          </Typography>
+        </NothingInTheCartDiv>
+      }
       <OrderDiv>
         <OrderDetailesDiv>
           <SumTotalDiv>
@@ -94,8 +102,7 @@ export const Cart: React.FC = () => {
               onClick={() => {
                 dispatch(clearCart());
                 setShowMeConfetti(false)
-              }
-              }
+              }}
             >
               Empty cart
             </Button>
@@ -174,4 +181,9 @@ const ButtonsDiv = styled.div`
 
 const ButtonDiv = styled.div`
   margin-bottom: 20px;
+`;
+
+const NothingInTheCartDiv = styled.div`
+  margin: 30px;
+  color: var(--text-primary-second-color);
 `;

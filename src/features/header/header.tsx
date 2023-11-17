@@ -2,13 +2,20 @@ import styled from 'styled-components';
 import logo from '../../images/boosktore-logo.png';
 import Favourites from '@mui/icons-material/Favorite';
 import Cart from '@mui/icons-material/ShoppingCart';
-import { Button, Tooltip } from '@mui/material';
+import { Badge, Button, Tooltip } from '@mui/material';
 import TemporaryDrawer from '#ui/menu-drawer/menu-drawer';
 import { Link } from 'react-router-dom';
 import { SearchComponent } from '#features/search/search';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
+import { useAppSelector } from '../../hooks';
 
 export const Header = () => {
+  const { favourites } = useAppSelector(({ favourites }) => favourites);
+  const { basket } = useAppSelector(({ order }) => order);
+
+  const favouritesAmount: number = favourites.length;
+  const cartAmount: number = basket.length;
+
   return (
     <HeaderWrapper>
       <LogoDiv>
@@ -29,15 +36,20 @@ export const Header = () => {
         </IconsDiv>
         <IconsDiv>
           <Tooltip title='Favourites'>
+
             <Button component={Link} to="/favourites">
-              <Favourites />
+              <Badge badgeContent={favouritesAmount} color="primary">
+                <Favourites />
+              </Badge>
             </Button>
           </Tooltip>
         </IconsDiv>
         <IconsDiv>
           <Tooltip title='Cart'>
             <Button component={Link} to="/cart">
-              <Cart />
+              <Badge badgeContent={cartAmount} color="primary">
+                <Cart />
+              </Badge>
             </Button>
           </Tooltip>
         </IconsDiv>

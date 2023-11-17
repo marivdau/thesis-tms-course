@@ -14,7 +14,7 @@ export const AllBooksPage: React.FC = () => {
 
   const { allBooks } = useAppSelector(({ allBooks }) => allBooks)
   useEffect(() => {
-      dispatch(getAllBooks(page));
+    dispatch(getAllBooks(page));
   }, [dispatch, page]);
 
   return (
@@ -39,7 +39,10 @@ export const AllBooksPage: React.FC = () => {
           color="secondary"
           variant="outlined"
           page={page}
-          onChange={(event, value) => setPage(value)}
+          onChange={(event, value) => { 
+            setPage(value); 
+            window.scroll(0, 0);
+          }}
           count={Math.ceil(+allBooks.total)}
         />
       </PaginationDiv>
