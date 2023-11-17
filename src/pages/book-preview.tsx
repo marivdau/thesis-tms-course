@@ -105,9 +105,6 @@ export const BookPreviewPage: React.FC = () => {
                   Add to cart
                 </Button>
               </AddToCardButtonDiv>
-              <PreviewBookButtonDiv>
-                <Button fullWidth={true}>Preview Book</Button>
-              </PreviewBookButtonDiv>
             </ButtonsDiv>
           </BookDetailsDiv>
         </BookInfoDivFirstLine>
@@ -217,11 +214,6 @@ const ButtonsDiv = styled.div`
 
 const AddToCardButtonDiv = styled.div`
   margin-bottom: 30px;
-  width: 400px;
-`;
-
-const PreviewBookButtonDiv = styled.div`
-  margin-bottom: 20px;
   width: 400px;
 `;
 

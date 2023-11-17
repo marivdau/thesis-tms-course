@@ -7,6 +7,8 @@ import { clearCart } from "#features/order/order.slice";
 import { useAppDispatch, useAppSelector } from "../hooks";
 import { removeDollarSignConvertToNumber } from "../service/remove-dollar-sign";
 import { BackLink } from "#features/back-link/back-link";
+import Confetti from 'react-confetti';
+import { useState } from "react";
 
 export const Cart: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -19,8 +21,16 @@ export const Cart: React.FC = () => {
   const vatAmount: any = (bookSumAmount * 0.23).toFixed(2);
   const totalSum: any = (+bookSumAmount + +vatAmount).toFixed(2);
 
+  const [showMeConfetti, setShowMeConfetti] = useState(false);
+
   return (
     <CartWrapper>
+      <Confetti
+        style={{display: showMeConfetti ? 'flex' : 'none'}}
+        width={1200}
+        height={900}
+        numberOfPieces={200}
+      />
       <PageTitle children='Your cart' />
       <BackLink />
       {basket?.map(({ item, quantity }, index: number) =>
@@ -69,12 +79,23 @@ export const Cart: React.FC = () => {
         </OrderDetailesDiv>
         <ButtonsDiv>
           <ButtonDiv>
-            <Button variant="contained" fullWidth={true}>
+            <Button 
+              variant="contained" 
+              fullWidth={true} 
+              onClick={() => setShowMeConfetti(!showMeConfetti)}
+            >
               Check out
             </Button>
           </ButtonDiv>
           <ButtonDiv>
-            <Button variant="outlined" fullWidth={true} onClick={() => dispatch(clearCart())}>
+            <Button 
+              variant="outlined" 
+              fullWidth={true}
+              onClick={() => {
+                dispatch(clearCart()); 
+                setShowMeConfetti(false)}
+              }
+            >
               Empty cart
             </Button>
           </ButtonDiv>
