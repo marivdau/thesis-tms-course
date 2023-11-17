@@ -6,6 +6,7 @@ import AttachMoney from '@mui/icons-material/AttachMoney';
 import { clearCart } from "#features/order/order.slice";
 import { useAppDispatch, useAppSelector } from "../hooks";
 import { removeDollarSignConvertToNumber } from "../service/remove-dollar-sign";
+import { BackLink } from "#features/back-link/back-link";
 
 export const Cart: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -21,6 +22,7 @@ export const Cart: React.FC = () => {
   return (
     <CartWrapper>
       <PageTitle children='Your cart' />
+      <BackLink />
       {basket?.map(({ item, quantity }, index: number) =>
         <CartItem
           key={index}

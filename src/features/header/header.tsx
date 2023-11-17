@@ -62,6 +62,7 @@ const HeaderWrapper = styled.div`
 const LogoDiv = styled.div`
   width: 200px;
   height: 70px;
+  margin-right: 50px;
 `;
 
 const LogoImg = styled.img`

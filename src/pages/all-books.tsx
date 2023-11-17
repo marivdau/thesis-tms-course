@@ -7,6 +7,7 @@ import { Pagination } from "@mui/material";
 import { Subscribe } from "#features/subscribe/subscribe";
 import { getAllBooks } from "#features/all-books/all-books.slice";
 import { useParams } from "react-router-dom";
+import { BackLink } from "#features/back-link/back-link";
 
 export const AllBooksPage: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -26,6 +27,7 @@ export const AllBooksPage: React.FC = () => {
   return (
     <MainNewBooksWrapper>
       <PageTitle children="all books" />
+      <BackLink />
       <CardsDiv>
         {allBooks.books?.map(item =>
           <Card

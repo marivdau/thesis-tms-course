@@ -4,6 +4,7 @@ import { PageTitle } from "#ui/page-title/page-title";
 import { SimilarBooks } from "#ui/similar-books/similar-books";
 import { Typography } from "@mui/material";
 import { FavouriteCard } from "#ui/favourite-card/favourite-card";
+import { BackLink } from "#features/back-link/back-link";
 
 export const FavouritesPage: React.FC = () => {
   const { favourites } = useAppSelector(({ favourites }) => favourites)
@@ -11,6 +12,7 @@ export const FavouritesPage: React.FC = () => {
   return (
     <FavouritesWrapper>
       <PageTitle children='Favourites' />
+      <BackLink />
       <FavoritesDiv>
         {favourites?.map((item, index) =>
           <FavouriteCard

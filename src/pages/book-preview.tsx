@@ -16,6 +16,7 @@ import { SimilarBooks } from "#ui/similar-books/similar-books";
 import { addItem } from "#features/order/order.slice";
 import Bookmark from '@mui/icons-material/Bookmark';
 import { markItem } from "#features/bookmark/bookmark.slice";
+import { BackLink } from "#features/back-link/back-link";
 
 export const BookPreviewPage: React.FC = () => {
   const [isClicked, setIsClicked] = useState(false);
@@ -39,6 +40,7 @@ export const BookPreviewPage: React.FC = () => {
   return (
     <BooksPreviewWrapper>
       <PageTitle>{bookPreview.title}</PageTitle>
+      <BackLink />
       <BookInfoDiv>
         <BookInfoDivFirstLine>
           <BookImageDiv>
