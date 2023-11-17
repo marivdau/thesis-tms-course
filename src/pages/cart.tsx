@@ -16,25 +16,25 @@ export const Cart: React.FC = () => {
       sum + removeDollarSignConvertToNumber(basketItem.item.price) * basketItem.quantity
     ), 0).toFixed(2);
   const vatAmount: any = (bookSumAmount * 0.23).toFixed(2);
-  const totalSum: any  = (+bookSumAmount + +vatAmount).toFixed(2);
+  const totalSum: any = (+bookSumAmount + +vatAmount).toFixed(2);
 
   return (
     <CartWrapper>
-      <PageTitle children='Your cart' />      
-        {basket?.map(({ item, quantity }, index: number) => 
-          <CartItem 
-            key={index}
-            quantity={quantity}
-            image={item.image} 
-            url={item.url} 
-            title={item.title}
-            authors={item.authors}
-            year={item.year}
-            price={item.price} 
-            isbn13={item.isbn13}
-            subtitle={item.subtitle}       
-          />
-        )}
+      <PageTitle children='Your cart' />
+      {basket?.map(({ item, quantity }, index: number) =>
+        <CartItem
+          key={index}
+          quantity={quantity}
+          image={item.image}
+          url={item.url}
+          title={item.title}
+          authors={item.authors}
+          year={item.year}
+          price={item.price}
+          isbn13={item.isbn13}
+          subtitle={item.subtitle}
+        />
+      )}
       <OrderDiv>
         <OrderDetailesDiv>
           <SumTotalDiv>
@@ -67,12 +67,12 @@ export const Cart: React.FC = () => {
         </OrderDetailesDiv>
         <ButtonsDiv>
           <ButtonDiv>
-            <Button variant="contained" fullWidth={true}>          
+            <Button variant="contained" fullWidth={true}>
               Check out
             </Button>
           </ButtonDiv>
           <ButtonDiv>
-            <Button variant="outlined" fullWidth={true} onClick={() => dispatch(clearCart())}>          
+            <Button variant="outlined" fullWidth={true} onClick={() => dispatch(clearCart())}>
               Empty cart
             </Button>
           </ButtonDiv>

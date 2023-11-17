@@ -4,7 +4,7 @@ import styled from "styled-components"
 export const NewPassword: React.FC = () => {
   return (
     <NewPasswordWrapper>
-      <TypographyDiv>  
+      <TypographyDiv>
         <Typography variant="h5" sx={{ textTransform: 'uppercase' }}>new password</Typography>
       </TypographyDiv>
 

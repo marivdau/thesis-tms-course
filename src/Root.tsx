@@ -12,6 +12,7 @@ import { NewPassword } from './pages/new-password';
 import { FavouritesPage } from './pages/favourites';
 import { Cart } from './pages/cart';
 import { Account } from './pages/account';
+import { AllBooksPage } from './pages/all-books';
 
 function Root() {
   return (
@@ -19,7 +20,8 @@ function Root() {
       <Header />
       <Routes>
         <Route path='/' element={<MainNewBooksPage />} />
-        <Route path='/preview-book/:bookIsbn' element={<BookPreviewPage />} /> 
+        <Route path='/all' element={<AllBooksPage />} />
+        <Route path='/preview-book/:bookIsbn' element={<BookPreviewPage />} />
         <Route path='/favourites' element={<FavouritesPage />} />
         <Route path='/cart' element={<Cart />} />
         <Route path='/account' element={<Account />} />

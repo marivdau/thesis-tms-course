@@ -3,7 +3,7 @@ export type BookPreviewResponse = {
   vat?: number;
   total?: number | null;
 
-  error: string;  
+  error: string;
   title: string;
   subtitle: string;
   authors: string;

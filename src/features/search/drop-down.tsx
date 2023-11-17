@@ -16,7 +16,7 @@ export const DropDown: React.FC<DropDownProps> = ({
   const [dropdown, setDropdown] = useState(true);
 
   return (
-    <DropDownWrapper style={{display: dropdown ? 'block' : 'none'}}>
+    <DropDownWrapper style={{ display: dropdown ? 'block' : 'none' }}>
       {!!search.length &&
         search.map((element) => (
           <div key={element.isbn13}>
@@ -24,17 +24,17 @@ export const DropDown: React.FC<DropDownProps> = ({
               <SearchedImage>
                 <img src={element.image} alt="#" />
               </SearchedImage>
-              <RouteLink 
-                to={`/preview-book/${element.isbn13}`} 
+              <RouteLink
+                to={`/preview-book/${element.isbn13}`}
                 onClick={() => setDropdown(!dropdown)}
               >
-                <Typography>{element.title}</Typography>     
-              </RouteLink>     
+                <Typography>{element.title}</Typography>
+              </RouteLink>
             </DropDownElement>
-            <Divider />   
+            <Divider />
           </div>
         ))}
-      {!search.length && searchedString && <Typography>Sorry, there is no books match your request</Typography>}     
+      {!search.length && searchedString && <Typography>Sorry, there is no books match your request</Typography>}
     </DropDownWrapper>
   );
 };

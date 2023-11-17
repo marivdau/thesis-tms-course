@@ -6,7 +6,7 @@ export const searchsApi = {
   search: (search: string): Promise<SearchResponce> => {
     return searchRequest(
       baseUrl +
-        `search/${search}/?page=42`,
+      `search/${search}/?page=42`,
       {
         method: 'GET',
         headers: {},

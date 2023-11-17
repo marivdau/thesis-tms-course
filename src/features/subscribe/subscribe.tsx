@@ -14,31 +14,37 @@ export const Subscribe = () => {
     <SubscribeWrapper>
       <SubscribeTextDiv>
         <Typography variant="h4" sx={{ textTransform: 'uppercase' }}>
-          Subscribe to Newsletter
-         </Typography>
+          {visible ? 'Subscribe to Newsletter' : 'You are subscribed now!'}
+        </Typography>
         <Typography variant="subtitle2">
-          Be the first to know about new IT books, upcoming releases, exclusive offers and more.
+          {visible ?
+            'Be the first to know about new IT books, upcoming releases, exclusive offers and more.' :
+            'Check your email for the futher information'}
         </Typography>
       </SubscribeTextDiv>
       <SubscribeInputDiv>
-        <TextField 
-          id="outlined-basic" 
-          label="Your email" 
-          variant="outlined" 
-          fullWidth 
+        <TextField
+          id="outlined-basic"
+          label="Your email"
+          variant="outlined"
+          fullWidth
           sx={{
             display: visible ? 'block' : 'none',
           }}
           onChange={({ currentTarget }) => setEmail(currentTarget.value)} />
-        <Button 
-          variant="contained" 
-          color="secondary" 
-          endIcon={<Send />} 
+        <Button
+          variant="contained"
+          color="secondary"
+          endIcon={<Send />}
+          sx={{
+            display: visible ? 'flex' : 'none',
+          }}
           onClick={() => {
-            dispatch(subscribeToNewsLetters({ email })); 
-            setVisible(!visible)}
+            dispatch(subscribeToNewsLetters({ email }));
+            setVisible(!visible)
+          }
           }>
-          { visible ? 'Subscribe' : 'You subscribed!' }
+          Subscribe
         </Button>
       </SubscribeInputDiv>
     </SubscribeWrapper>

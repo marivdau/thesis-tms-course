@@ -18,3 +18,10 @@ export const searchRequest: typeof fetch = (
 ) => {
   return fetch(input, init)
 }
+
+export const allBooksRequest: typeof fetch = (
+  input: RequestInfo | URL,
+  init?: RequestInit
+) => {
+  return fetch(input, init)
+}

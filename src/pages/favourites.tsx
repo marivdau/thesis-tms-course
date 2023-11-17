@@ -12,15 +12,15 @@ export const FavouritesPage: React.FC = () => {
     <FavouritesWrapper>
       <PageTitle children='Favourites' />
       <FavoritesDiv>
-        {favourites?.map((item, index) => 
-          <FavouriteCard 
-            key={index} 
-            image={item.item.image} 
-            url={item.item.url} 
-            title={item.item.title} 
-            subtitle={item.item.subtitle} 
-            price={item.item.price} 
-            isbn13={item.item.isbn13}             
+        {favourites?.map((item, index) =>
+          <FavouriteCard
+            key={index}
+            image={item.item.image}
+            url={item.item.url}
+            title={item.item.title}
+            subtitle={item.item.subtitle}
+            price={item.item.price}
+            isbn13={item.item.isbn13}
           />)}
       </FavoritesDiv>
 

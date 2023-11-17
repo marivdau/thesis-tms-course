@@ -28,7 +28,7 @@ export const FavouriteCard: React.FC<PropsCard> = (props: PropsCard) => {
           <CardTitle>
             {props.title}
           </CardTitle>
-        </Link>        
+        </Link>
         <CardSubtitle>
           {'by '}{'author'}, {' '} {'year'}
         </CardSubtitle>

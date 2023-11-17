@@ -4,10 +4,10 @@ import styled from "styled-components"
 export const ResetPasswordMainPage: React.FC = () => {
   return (
     <ResetPasswrodWrapper>
-      <TypographyDiv>  
+      <TypographyDiv>
         <Typography variant="h5" sx={{ textTransform: 'uppercase' }}>reset password</Typography>
       </TypographyDiv>
-      <EmailInputDiv>  
+      <EmailInputDiv>
         <TextField label='Your email' variant="outlined" fullWidth={true} />
       </EmailInputDiv>
       <ButtonDiv>

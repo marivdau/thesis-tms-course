@@ -17,29 +17,31 @@ export const SearchComponent: React.FC<Props> = () => {
 
   return (
     <RelativeContainer>
-      <TextField        
-        label="Search" 
+      <TextField
+        label="Search"
         variant="outlined"
         fullWidth={true}
         value={searchedText}
         onChange={(event) => {
           setSearchedText(event.currentTarget.value);
-          if(event.currentTarget.value === '') {
+          if (event.currentTarget.value === '') {
             return dispatch(reset());
           }
           dispatch(search(event.currentTarget.value));
         }}
         InputProps={
-          {endAdornment: <InputAdornment position="end">
-            <Tooltip title='Clear'>
-              <Cancel             
-                onClick={() => {
-                  setSearchedText('');
-                  dispatch(reset());
-                }}              
-              />
-            </Tooltip>            
-          </InputAdornment>}
+          {
+            endAdornment: <InputAdornment position="end">
+              <Tooltip title='Clear'>
+                <Cancel
+                  onClick={() => {
+                    setSearchedText('');
+                    dispatch(reset());
+                  }}
+                />
+              </Tooltip>
+            </InputAdornment>
+          }
         }
       />
       {
@@ -47,7 +49,7 @@ export const SearchComponent: React.FC<Props> = () => {
           search={searchedBooks.books}
           searchedString={searchedText}
         ></DropDown>
-      }          
+      }
     </RelativeContainer>
   );
 };

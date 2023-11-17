@@ -36,7 +36,7 @@ export const Account: React.FC = () => {
               Password
             </Typography>
             <TextField fullWidth={true} />
-          </PasswordInfo>          
+          </PasswordInfo>
         </PasswordDiv>
         <PasswordNewDiv>
           <PasswordInfo>
@@ -50,7 +50,7 @@ export const Account: React.FC = () => {
               Confirm new password
             </Typography>
             <TextField fullWidth={true} />
-          </PasswordInfo>          
+          </PasswordInfo>
         </PasswordNewDiv>
         <ButtonsDiv>
           <ButtonSaveDiv>
@@ -58,7 +58,7 @@ export const Account: React.FC = () => {
               Save changes
             </Button>
           </ButtonSaveDiv>
-          <ButtonCancelDiv>            
+          <ButtonCancelDiv>
             <Button variant="outlined" fullWidth={true}>
               Cancel
             </Button>

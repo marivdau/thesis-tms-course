@@ -18,8 +18,8 @@ const favouritesSlice = createSlice({
   reducers: {
     markItem(state, action) {
       state.favourites.push({
-        item: action.payload, 
-      })      
+        item: action.payload,
+      })
     },
     unMarkItem(state, action) {
       const index = state.favourites.findIndex(item => item.item.isbn13 === action.payload);

@@ -1,24 +1,33 @@
 import { Card } from "#ui/card/card"
 import { PageTitle } from "#ui/page-title/page-title"
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../hooks";
-import { getNewBooks } from "#features/new-books/new-books.slice";
 import styled from "styled-components";
 import { Pagination } from "@mui/material";
 import { Subscribe } from "#features/subscribe/subscribe";
+import { getAllBooks } from "#features/all-books/all-books.slice";
+import { useParams } from "react-router-dom";
 
-export const MainNewBooksPage: React.FC = () => {
+export const AllBooksPage: React.FC = () => {
   const dispatch = useAppDispatch();
-  const { newBooks } = useAppSelector(({ newBooks }) => newBooks)
+  const [page, setPage] = useState(1);
+
+  const { pagePagination } = useParams();
+
+  const { allBooks } = useAppSelector(({ allBooks }) => allBooks)
   useEffect(() => {
-    dispatch(getNewBooks());
-  }, [dispatch]);
+    if (pagePagination === undefined) {
+      dispatch(getAllBooks(1));
+    } else {
+      dispatch(getAllBooks(+pagePagination));
+    }
+  }, [dispatch, pagePagination]);
 
   return (
     <MainNewBooksWrapper>
-      <PageTitle children="new releases books" />
+      <PageTitle children="all books" />
       <CardsDiv>
-        {newBooks.books?.map(item =>
+        {allBooks.books?.map(item =>
           <Card
             key={item.isbn13}
             image={item.image}
@@ -30,7 +39,14 @@ export const MainNewBooksPage: React.FC = () => {
           />)}
       </CardsDiv>
       <PaginationDiv>
-        <Pagination />
+        <Pagination
+          size="large"
+          color="secondary"
+          variant="outlined"
+          page={page}
+          onChange={(event, value) => setPage(value)}
+          count={+allBooks.total}
+        />
       </PaginationDiv>
       <Subscribe />
     </MainNewBooksWrapper>

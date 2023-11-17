@@ -1,24 +1,23 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { BookPreviewResponse } from "./types";
+import { AllBooksResponse } from "./types";
 
-const bookPreviewSlice = createSlice({
-  name: 'bookPreviewSlice',
+const allBooksSlice = createSlice({
+  name: 'allBooksSlice',
   initialState: {
-    bookPreview: {} as BookPreviewResponse,
+    allBooks: {} as AllBooksResponse,
     isLoading: false,
     error: null as Error | null,
-    isbn13: null,
   },
   reducers: {
-    getBookPreview(state, action: { payload: number }) {
+    getAllBooks(state, action: { payload: number }) {
       state.isLoading = true;
     },
-    getBookPreviewSuccess(state, action: { payload: { data: BookPreviewResponse } }) {
+    getAllBooksSuccess(state, action: { payload: { data: AllBooksResponse } }) {
       state.isLoading = false;
       const data = action.payload.data;
-      state.bookPreview = data;
+      state.allBooks = data;
     },
-    getBookPreviewFailure(state, error: { payload: unknown }) {
+    getAllBooksFailure(state, error: { payload: unknown }) {
       if (
         typeof error.payload === 'object' &&
         error.payload &&
@@ -33,6 +32,6 @@ const bookPreviewSlice = createSlice({
 });
 
 export const {
-  actions: { getBookPreview, getBookPreviewSuccess, getBookPreviewFailure },
-  reducer: bookPreviewReducer,
-} = bookPreviewSlice;
+  actions: { getAllBooks, getAllBooksSuccess, getAllBooksFailure },
+  reducer: allBooksReducer,
+} = allBooksSlice;

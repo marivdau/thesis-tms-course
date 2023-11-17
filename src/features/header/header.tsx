@@ -6,6 +6,7 @@ import { Button, Tooltip } from '@mui/material';
 import TemporaryDrawer from '#ui/menu-drawer/menu-drawer';
 import { Link } from 'react-router-dom';
 import { SearchComponent } from '#features/search/search';
+import MenuBookIcon from '@mui/icons-material/MenuBook';
 
 export const Header = () => {
   return (
@@ -16,25 +17,32 @@ export const Header = () => {
         </Link>
       </LogoDiv>
       <SearchDiv>
-        <SearchComponent />        
+        <SearchComponent />
       </SearchDiv>
       <HeaderMenuDiv>
+        <IconsDiv>
+          <Tooltip title='All books'>
+            <Button component={Link} to="/all">
+              <MenuBookIcon />
+            </Button>
+          </Tooltip>
+        </IconsDiv>
         <IconsDiv>
           <Tooltip title='Favourites'>
             <Button component={Link} to="/favourites">
               <Favourites />
             </Button>
-          </Tooltip>          
+          </Tooltip>
         </IconsDiv>
         <IconsDiv>
           <Tooltip title='Cart'>
             <Button component={Link} to="/cart">
-              <Cart />        
+              <Cart />
             </Button>
           </Tooltip>
         </IconsDiv>
-        <IconsDiv>  
-          <TemporaryDrawer/>      
+        <IconsDiv>
+          <TemporaryDrawer />
         </IconsDiv>
       </HeaderMenuDiv>
     </HeaderWrapper>

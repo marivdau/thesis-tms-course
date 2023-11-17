@@ -4,10 +4,10 @@ import styled from "styled-components"
 export const ResetPasswordSentEmailPage: React.FC = () => {
   return (
     <ResetPasswrodWrapper>
-      <TypographyDiv>  
+      <TypographyDiv>
         <Typography variant="h5" sx={{ textTransform: 'uppercase' }}>reset password</Typography>
       </TypographyDiv>
-      <EmailTextDiv>  
+      <EmailTextDiv>
         <Typography>You will receive an email example@gmail.com with a link to reset your password!</Typography>
       </EmailTextDiv>
       <ButtonDiv>

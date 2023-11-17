@@ -11,7 +11,7 @@ import { removeDollarSignConvertToNumber } from "../../service/remove-dollar-sig
 
 
 export type PropsCart = {
-  quantity: number;  
+  quantity: number;
   title: string;
   subtitle: string;
   authors: string;
@@ -20,7 +20,7 @@ export type PropsCart = {
   price: string;
   image: string;
   url: string;
-} 
+}
 
 export const CartItem: React.FC<PropsCart> = (props: PropsCart) => {
   const dispatch = useAppDispatch();
@@ -30,7 +30,7 @@ export const CartItem: React.FC<PropsCart> = (props: PropsCart) => {
       <Cart>
         <CartImageDiv>
           <CartImg src={props.image} />
-        </CartImageDiv> 
+        </CartImageDiv>
 
         <InfoLineDiv>
           <Link to={`/preview-book/${props.isbn13}`} >
@@ -43,7 +43,7 @@ export const CartItem: React.FC<PropsCart> = (props: PropsCart) => {
             {'by '}{props.authors}, {' '} {props.year}
           </CartSubtitle>
           <CartItemQuantity>
-            <Button              
+            <Button
               variant="text"
               onClick={() => dispatch(decreaseItemQuantity(props.isbn13))}>
               <Remove />

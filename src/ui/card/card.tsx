@@ -15,7 +15,7 @@ type PropsCard = {
 export const Card: React.FC<PropsCard> = (props: PropsCard) => {
   return (
     <CardWrapper>
-      <RouteLink to={`/preview-book/${props.isbn13}`} key={props.isbn13}>
+      <RouteLink to={`/preview-book/${props.isbn13}`} key={props.isbn13} onClick={() => window.scroll(0, 0)}>
         <CardTitle>
           <CardImage>
             <CardImg src={props.image} />

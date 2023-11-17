@@ -43,12 +43,12 @@ export const BookPreviewPage: React.FC = () => {
         <BookInfoDivFirstLine>
           <BookImageDiv>
             <BookmarkDiv>
-              <Button 
-                variant={isMarked ? 'contained' : 'text'} 
+              <Button
+                variant={isMarked ? 'contained' : 'text'}
                 onClick={() => {
-                    dispatch(markItem(bookPreview)); 
-                    setIsMarked(!isMarked)
-                  }
+                  dispatch(markItem(bookPreview));
+                  setIsMarked(!isMarked)
+                }
                 }
               >
                 <Bookmark />
@@ -69,7 +69,7 @@ export const BookPreviewPage: React.FC = () => {
               <BookInfoSpans>
                 <BookInfoSpansLabel>Publisher</BookInfoSpansLabel>
                 <BookInfoSpansText>{bookPreview.publisher}</BookInfoSpansText>
-                </BookInfoSpans>
+              </BookInfoSpans>
               <BookInfoSpans>
                 <BookInfoSpansLabel>ISBN10</BookInfoSpansLabel>
                 <BookInfoSpansText>{bookPreview.isbn10}</BookInfoSpansText>
@@ -89,15 +89,15 @@ export const BookPreviewPage: React.FC = () => {
             </BookInfoSpanDiv>
             <ButtonsDiv>
               <AddToCardButtonDiv>
-                <Button 
-                  variant="contained" 
-                  fullWidth={true} 
-                  color="primary" 
+                <Button
+                  variant="contained"
+                  fullWidth={true}
+                  color="primary"
                   disabled={isClicked === true}
                   onClick={() => {
-                    dispatch(addItem(bookPreview)); 
+                    dispatch(addItem(bookPreview));
                     setIsClicked(!isClicked);
-                    }
+                  }
                   }
                 >
                   Add to cart

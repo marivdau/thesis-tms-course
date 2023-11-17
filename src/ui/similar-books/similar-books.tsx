@@ -14,17 +14,17 @@ export const SimilarBooks = () => {
   return (
     <SimilarBooksWrapper>
       <ScrollingCarousel>
-        {newBooks.books?.map(item => 
-          <Card 
-            key={item.isbn13} 
-            image={item.image} 
-            url={item.url} 
-            title={item.title} 
-            subtitle={item.subtitle} 
-            price={item.price} 
-            isbn13={item.isbn13}             
+        {newBooks.books?.map(item =>
+          <Card
+            key={item.isbn13}
+            image={item.image}
+            url={item.url}
+            title={item.title}
+            subtitle={item.subtitle}
+            price={item.price}
+            isbn13={item.isbn13}
           />)}
-	    </ScrollingCarousel>      
+      </ScrollingCarousel>
     </SimilarBooksWrapper>
   )
 }
