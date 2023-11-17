@@ -1,4 +1,4 @@
-import { AccountForm } from "#features/all-books/account-form";
+import { AccountForm } from "#features/account/account-form";
 import { BackLink } from "#features/back-link/back-link";
 import { PageTitle } from "#ui/page-title/page-title";
 import styled from "styled-components"

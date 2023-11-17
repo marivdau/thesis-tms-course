@@ -6,23 +6,16 @@ import styled from "styled-components";
 import { Pagination } from "@mui/material";
 import { Subscribe } from "#features/subscribe/subscribe";
 import { getAllBooks } from "#features/all-books/all-books.slice";
-import { useParams } from "react-router-dom";
 import { BackLink } from "#features/back-link/back-link";
 
 export const AllBooksPage: React.FC = () => {
   const dispatch = useAppDispatch();
   const [page, setPage] = useState(1);
 
-  const { pagePagination } = useParams();
-
   const { allBooks } = useAppSelector(({ allBooks }) => allBooks)
   useEffect(() => {
-    if (pagePagination === undefined) {
-      dispatch(getAllBooks(1));
-    } else {
-      dispatch(getAllBooks(+pagePagination));
-    }
-  }, [dispatch, pagePagination]);
+      dispatch(getAllBooks(page));
+  }, [dispatch, page]);
 
   return (
     <MainNewBooksWrapper>
@@ -47,7 +40,7 @@ export const AllBooksPage: React.FC = () => {
           variant="outlined"
           page={page}
           onChange={(event, value) => setPage(value)}
-          count={+allBooks.total}
+          count={Math.ceil(+allBooks.total)}
         />
       </PaginationDiv>
       <Subscribe />

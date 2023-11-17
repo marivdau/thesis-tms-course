@@ -26,7 +26,7 @@ export const Cart: React.FC = () => {
   return (
     <CartWrapper>
       <Confetti
-        style={{display: showMeConfetti ? 'flex' : 'none'}}
+        style={{ display: showMeConfetti ? 'flex' : 'none' }}
         width={1200}
         height={900}
         numberOfPieces={200}
@@ -79,21 +79,22 @@ export const Cart: React.FC = () => {
         </OrderDetailesDiv>
         <ButtonsDiv>
           <ButtonDiv>
-            <Button 
-              variant="contained" 
-              fullWidth={true} 
+            <Button
+              variant="contained"
+              fullWidth={true}
               onClick={() => setShowMeConfetti(!showMeConfetti)}
             >
               Check out
             </Button>
           </ButtonDiv>
           <ButtonDiv>
-            <Button 
-              variant="outlined" 
+            <Button
+              variant="outlined"
               fullWidth={true}
               onClick={() => {
-                dispatch(clearCart()); 
-                setShowMeConfetti(false)}
+                dispatch(clearCart());
+                setShowMeConfetti(false)
+              }
               }
             >
               Empty cart

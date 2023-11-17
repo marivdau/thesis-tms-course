@@ -7,9 +7,10 @@ const allBooksSlice = createSlice({
     allBooks: {} as AllBooksResponse,
     isLoading: false,
     error: null as Error | null,
+    page: 1,
   },
   reducers: {
-    getAllBooks(state, action: { payload: number }) {
+    getAllBooks(state, action) {
       state.isLoading = true;
     },
     getAllBooksSuccess(state, action: { payload: { data: AllBooksResponse } }) {
