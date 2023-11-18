@@ -1,13 +1,19 @@
-import { Button, TextField } from "@mui/material"
+import { Button, IconButton, InputAdornment, OutlinedInput, TextField } from "@mui/material"
 import { useState } from "react";
 import { Link, Navigate } from "react-router-dom";
 import styled from "styled-components"
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { authorization } from "#features/auth/authorization.slice";
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
 export const SignInForm: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const [showPassword, setShowPassword] = useState(false);
+  const handleClickShowPassword = () => setShowPassword((show) => !show);
+
   const dispatch = useAppDispatch();
 
   const token = useAppSelector(
@@ -16,32 +22,43 @@ export const SignInForm: React.FC = () => {
   if (token) {
     return <Navigate to={'/'} />;
   }
-  
+
   return (
     <SignInFormWrapper>
       <EmailInputDiv>
-        <TextField 
-          label='Your email *' 
-          variant="outlined" 
-          fullWidth={true} 
+        <TextField
+          placeholder="Your email *"
+          variant="outlined"
+          fullWidth={true}
           value={email}
-          onChange={({ currentTarget }) => setEmail(currentTarget.value)} 
+          onChange={({ currentTarget }) => setEmail(currentTarget.value)}
         />
       </EmailInputDiv>
       <PasswordInputDiv>
-        <TextField 
-          label='Your password *' 
-          variant="outlined" 
+        <OutlinedInput
+          placeholder="Your password *"
           fullWidth={true}
+          type={showPassword ? 'text' : 'password'}
           value={password}
-          onChange={({ currentTarget }) => setPassword(currentTarget.value)} 
+          onChange={({ currentTarget }) => setPassword(currentTarget.value)}
+          endAdornment={
+            <InputAdornment position="end">
+              <IconButton
+                aria-label="toggle password visibility"
+                onClick={handleClickShowPassword}
+                edge="end"
+              >
+                {showPassword ? <VisibilityOff /> : <Visibility />}
+              </IconButton>
+            </InputAdornment>
+          }
         />
         <Link to={'/reset-password'}>Forgot password?</Link>
       </PasswordInputDiv>
 
       <ButtonDiv>
-        <Button 
-          variant="contained" 
+        <Button
+          variant="contained"
           fullWidth={true}
           onClick={() => dispatch(authorization({ email, password }))}
         >

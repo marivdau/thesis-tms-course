@@ -1,11 +1,17 @@
-import { Button, TextField, Typography } from "@mui/material"
+import { Button, IconButton, InputAdornment, OutlinedInput, TextField, Typography } from "@mui/material"
 import styled from "styled-components"
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { setConfirmedPassword, setEmail, setName, setPassword } from "./sign-up-form.slice";
 import { register } from "#features/auth/registration.slice";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
 export const SignUpForm: React.FC = () => {
+  const [showPassword, setShowPassword] = useState(false);
+  const handleClickShowPassword = () => setShowPassword((show) => !show);
+
   const dispatch = useAppDispatch();
   const name = useAppSelector((state) => state.signUpForm.name);
   const email = useAppSelector((state) => state.signUpForm.email);
@@ -30,7 +36,7 @@ export const SignUpForm: React.FC = () => {
         <SignInFormWrapper>
           <NameInputDiv>
             <TextField
-              label='Your name *'
+              placeholder="Your name *"
               variant="outlined"
               fullWidth={true}
               value={name}
@@ -39,7 +45,7 @@ export const SignUpForm: React.FC = () => {
           </NameInputDiv>
           <EmailInputDiv>
             <TextField
-              label='Your email *'
+              placeholder="Your email *"
               variant="outlined"
               fullWidth={true}
               value={email}
@@ -49,24 +55,46 @@ export const SignUpForm: React.FC = () => {
             />
           </EmailInputDiv>
           <PasswordInputDiv>
-            <TextField
-              label='Your password *'
-              variant="outlined"
+            <OutlinedInput
+              placeholder="Your password *"
               fullWidth={true}
               value={password}
               onChange={({ currentTarget }) =>
                 dispatch(setPassword(currentTarget.value))
               }
+              type={showPassword ? 'text' : 'password'}
+              endAdornment={
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="toggle password visibility"
+                    onClick={handleClickShowPassword}
+                    edge="end"
+                  >
+                    {showPassword ? <VisibilityOff /> : <Visibility />}
+                  </IconButton>
+                </InputAdornment>
+              }
             />
           </PasswordInputDiv>
           <PasswordInputDiv>
-            <TextField
-              label='Confirm password *'
-              variant="outlined"
+            <OutlinedInput
+              placeholder="Confirm password *"
               fullWidth={true}
               value={confirmedPassword}
               onChange={({ currentTarget }) =>
                 dispatch(setConfirmedPassword(currentTarget.value))
+              }
+              type={showPassword ? 'text' : 'password'}
+              endAdornment={
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="toggle password visibility"
+                    onClick={handleClickShowPassword}
+                    edge="end"
+                  >
+                    {showPassword ? <VisibilityOff /> : <Visibility />}
+                  </IconButton>
+                </InputAdornment>
               }
             />
           </PasswordInputDiv>

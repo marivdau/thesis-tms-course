@@ -1,7 +1,17 @@
-import { Button, TextField, Typography } from "@mui/material"
+import { Button, IconButton, InputAdornment, OutlinedInput, TextField, Typography } from "@mui/material"
 import styled from "styled-components"
+import { useAppSelector } from "../../hooks"
+import { useState } from "react";
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
 export const AccountForm: React.FC = () => {
+  const [showPassword, setShowPassword] = useState(false);
+  const handleClickShowPassword = () => setShowPassword((show) => !show);
+
+  const name = useAppSelector((state) => state.registration.info.username);
+  const email = useAppSelector((state) => state.registration.info.email);
+
   return (
     <AccountFormWrapper>
       <Typography variant="h5" sx={{ textTransform: 'uppercase' }}>
@@ -12,13 +22,13 @@ export const AccountForm: React.FC = () => {
           <Typography variant="subtitle1" sx={{ textTransform: 'uppercase' }}>
             Name
           </Typography>
-          <TextField fullWidth={true} />
+          <TextField fullWidth={true} value={name || ''} />
         </NameInfo>
         <EmailInfo>
           <Typography variant="subtitle1" sx={{ textTransform: 'uppercase' }}>
             Email
           </Typography>
-          <TextField fullWidth={true} />
+          <TextField fullWidth={true} value={email} />
         </EmailInfo>
       </UserInfo>
 
@@ -30,7 +40,21 @@ export const AccountForm: React.FC = () => {
           <Typography variant="subtitle1" sx={{ textTransform: 'uppercase' }}>
             Password
           </Typography>
-          <TextField fullWidth={true} />
+          <OutlinedInput
+            fullWidth={true}
+            type={showPassword ? 'text' : 'password'}
+            endAdornment={
+              <InputAdornment position="end">
+                <IconButton
+                  aria-label="toggle password visibility"
+                  onClick={handleClickShowPassword}
+                  edge="end"
+                >
+                  {showPassword ? <VisibilityOff /> : <Visibility />}
+                </IconButton>
+              </InputAdornment>
+            }
+          />
         </PasswordInfo>
       </PasswordDiv>
       <PasswordNewDiv>
@@ -38,13 +62,41 @@ export const AccountForm: React.FC = () => {
           <Typography variant="subtitle1" sx={{ textTransform: 'uppercase' }}>
             New password
           </Typography>
-          <TextField fullWidth={true} />
+          <OutlinedInput
+            fullWidth={true}
+            type={showPassword ? 'text' : 'password'}
+            endAdornment={
+              <InputAdornment position="end">
+                <IconButton
+                  aria-label="toggle password visibility"
+                  onClick={handleClickShowPassword}
+                  edge="end"
+                >
+                  {showPassword ? <VisibilityOff /> : <Visibility />}
+                </IconButton>
+              </InputAdornment>
+            }
+          />
         </PasswordInfo>
         <PasswordInfo>
           <Typography variant="subtitle1" sx={{ textTransform: 'uppercase' }}>
             Confirm new password
           </Typography>
-          <TextField fullWidth={true} />
+          <OutlinedInput
+            fullWidth={true}
+            type={showPassword ? 'text' : 'password'}
+            endAdornment={
+              <InputAdornment position="end">
+                <IconButton
+                  aria-label="toggle password visibility"
+                  onClick={handleClickShowPassword}
+                  edge="end"
+                >
+                  {showPassword ? <VisibilityOff /> : <Visibility />}
+                </IconButton>
+              </InputAdornment>
+            }
+          />
         </PasswordInfo>
       </PasswordNewDiv>
       <ButtonsDiv>
@@ -92,7 +144,7 @@ const PasswordDiv = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin-bottom: 20px;
+  margin: 10px 0;
 `;
 
 const PasswordInfo = styled.div`
