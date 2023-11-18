@@ -5,6 +5,8 @@ type State = {
   email: string;
   password: string;
   confirmedPassword: string;
+  newPassword: string;
+  confirmedNewPassword: string,
 };
 const signUpFormSlice = createSlice({
   name: 'signUpForm',
@@ -13,24 +15,26 @@ const signUpFormSlice = createSlice({
     email: '',
     password: '',
     confirmedPassword: '',
+    newPassword: '',
+    confirmedNewPassword: '',
   },
   reducers: {
     setName(state, action: { payload: State['name'] }) {
       state.name = action.payload;
     },
-    setEmail(state, action: {payload: State['email']}) {
-        state.email = action.payload;
+    setEmail(state, action: { payload: State['email'] }) {
+      state.email = action.payload;
     },
-    setPassword(state, action: {payload: State['password']}) {
-        state.password = action.payload;
+    setPassword(state, action: { payload: State['password'] }) {
+      state.password = action.payload;
     },
-    setConfirmedPassword(state, action: {payload: State['confirmedPassword']}) {
-        state.confirmedPassword = action.payload;
+    setConfirmedPassword(state, action: { payload: State['confirmedPassword'] }) {
+      state.confirmedPassword = action.payload;
     },
   },
 });
 
 export const {
-  actions: { setName, setEmail, setPassword, setConfirmedPassword },
+  actions: { setName, setEmail, setPassword, setConfirmedPassword, },
   reducer: signUpFormReducer,
 } = signUpFormSlice;

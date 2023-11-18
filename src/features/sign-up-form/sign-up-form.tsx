@@ -10,7 +10,10 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
 export const SignUpForm: React.FC = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const [showConfPassword, setShowConfPassword] = useState(false);
+
   const handleClickShowPassword = () => setShowPassword((show) => !show);
+  const handleClickShowConfPassword = () => setShowConfPassword((show) => !show);
 
   const dispatch = useAppDispatch();
   const name = useAppSelector((state) => state.signUpForm.name);
@@ -84,15 +87,15 @@ export const SignUpForm: React.FC = () => {
               onChange={({ currentTarget }) =>
                 dispatch(setConfirmedPassword(currentTarget.value))
               }
-              type={showPassword ? 'text' : 'password'}
+              type={showConfPassword ? 'text' : 'password'}
               endAdornment={
                 <InputAdornment position="end">
                   <IconButton
                     aria-label="toggle password visibility"
-                    onClick={handleClickShowPassword}
+                    onClick={handleClickShowConfPassword}
                     edge="end"
                   >
-                    {showPassword ? <VisibilityOff /> : <Visibility />}
+                    {showConfPassword ? <VisibilityOff /> : <Visibility />}
                   </IconButton>
                 </InputAdornment>
               }
