@@ -8,7 +8,7 @@ import { useAppDispatch, useAppSelector } from "../hooks";
 import { removeDollarSignConvertToNumber } from "../service/remove-dollar-sign";
 import { BackLink } from "#features/back-link/back-link";
 import Confetti from 'react-confetti';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 export const Cart: React.FC = () => {
@@ -23,6 +23,15 @@ export const Cart: React.FC = () => {
   const totalSum: any = (+bookSumAmount + +vatAmount).toFixed(2);
 
   const [showMeConfetti, setShowMeConfetti] = useState(false);
+
+  const token = useAppSelector(
+    (state) => state.authorization.token
+  );
+
+  const navigate = useNavigate();
+  const navigateToLogIn = () => {
+    navigate("/sign-in");
+  }
 
   return (
     <CartWrapper>
@@ -90,7 +99,13 @@ export const Cart: React.FC = () => {
             <Button
               variant="contained"
               fullWidth={true}
-              onClick={() => setShowMeConfetti(!showMeConfetti)}
+              onClick={() => {
+                if (token) {
+                  setShowMeConfetti(!showMeConfetti);
+                } else {
+                  navigateToLogIn();
+                }
+              }}
             >
               Check out
             </Button>

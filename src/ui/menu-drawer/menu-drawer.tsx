@@ -10,11 +10,20 @@ import ListItemText from '@mui/material/ListItemText';
 import { styled } from 'styled-components';
 import Person from '@mui/icons-material/Person';
 import { Link } from 'react-router-dom';
-import { Tooltip } from '@mui/material';
+import { Avatar, Tooltip, Typography } from '@mui/material';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { authorizationLogout } from '#features/auth/authorization.slice';
+import avatarDefault from '#images/avatar-default.png';
 
 type Anchor = 'right';
 
 export default function TemporaryDrawer() {
+  const dispatch = useAppDispatch();
+
+  const token = useAppSelector(
+    (state) => state.authorization.token
+  );
+
   const [state, setState] = React.useState({
     right: false,
   });
@@ -40,6 +49,19 @@ export default function TemporaryDrawer() {
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
+      {token
+        ?
+        <UserDiv>
+          <AvatarDiv>
+            <Avatar alt="avatar" src={avatarDefault} sx={{ width: 60, height: 60 }} />
+          </AvatarDiv>
+          <NameDiv>
+            <Typography variant='h5'>Hi, {'Anonomys'}!</Typography>
+          </NameDiv>
+        </UserDiv>
+        :
+        <></>
+      }
       <ListDiv>
         <List>
           <ListItem key='favourites'>
@@ -52,19 +74,45 @@ export default function TemporaryDrawer() {
               <ListItemText primary='Cart' sx={{ textTransform: 'uppercase' }} />
             </ListItemButton>
           </ListItem>
-          <ListItem key='account'>
-            <ListItemButton sx={{ textAlign: 'center' }} component={Link} to="/account">
-              <ListItemText primary='account' sx={{ textTransform: 'uppercase' }} />
-            </ListItemButton>
-          </ListItem>
+          {token
+            ?
+            <ListItem key='account'>
+              <ListItemButton sx={{ textAlign: 'center' }} component={Link} to="/account">
+                <ListItemText primary='account' sx={{ textTransform: 'uppercase' }} />
+              </ListItemButton>
+            </ListItem>
+            :
+            <></>
+          }
         </List>
         <Divider />
       </ListDiv>
-      <ButtonDiv>
-        <Button variant="contained" color="primary" fullWidth={true} component={Link} to='/sign-in'>
-          Sign In
-        </Button>
-      </ButtonDiv>
+      {token
+        ?
+        <ButtonDiv>
+          <Button
+            variant="contained"
+            color="primary"
+            fullWidth={true}
+            component={Link}
+            to='/sign-in'
+            onClick={() => dispatch(authorizationLogout())}
+          >
+            Log out
+          </Button>
+        </ButtonDiv>
+        :
+        <ButtonDiv>
+          <Button
+            variant="contained"
+            color="primary"
+            fullWidth={true}
+            component={Link}
+            to='/sign-in'>
+            Sign In
+          </Button>
+        </ButtonDiv>
+      }
     </Box>
   );
 
@@ -90,8 +138,25 @@ export default function TemporaryDrawer() {
   );
 }
 
+const UserDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 20px 0;
+`;
+
+const AvatarDiv = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
+const NameDiv = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
 const ListDiv = styled.div`
-  margin: 100px 0;
+  margin: 30px 0;
 `;
 
 const ButtonDiv = styled.div`

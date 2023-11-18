@@ -4,34 +4,26 @@ import { AuthorizationPayload } from './types';
 const authorizationSlice = createSlice({
   name: 'authorizationSlice',
   initialState: {
-    isInProgress: false,
-    isInComplete: false,
+    auth: {} as AuthorizationPayload,
+    token: false
   },
   reducers: {
-    authorization(state, action: { payload: AuthorizationPayload }) {},
-    authorizationSuccess(state) {
-      state.isInComplete = true;
-      state.isInProgress = false;
+    authorization(state, action: { payload: AuthorizationPayload }) {
+      state.auth.email = action.payload.email;
+      state.auth.password = action.payload.password;
+      console.log('auth pair: ', action.payload.email, ' / ', action.payload.password);
+      state.token = true;
     },
     authorizationFailure(state) {
-      state.isInProgress = false;
+      state.token = false;
     },
     authorizationLogout(state) {
-
+      state.token = false;
     },
-    authorizationLogoutSuccess(state) {
-      state.isInComplete = false;
-    }
   },
 });
 
 export const {
-  actions: {
-    authorization,
-    authorizationSuccess,
-    authorizationFailure,
-    authorizationLogout,
-    authorizationLogoutSuccess,
-  },
+  actions: { authorization, authorizationFailure, authorizationLogout, },
   reducer: authorizationReducer,
 } = authorizationSlice;

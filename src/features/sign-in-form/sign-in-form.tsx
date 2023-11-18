@@ -9,12 +9,14 @@ export const SignInForm: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useAppDispatch();
-  const isCompleted = useAppSelector(
-    (state) => state.authorization.isInComplete
+
+  const token = useAppSelector(
+    (state) => state.authorization.token
   );
-  if (isCompleted) {
+  if (token) {
     return <Navigate to={'/all'} />;
   }
+  
   return (
     <SignInFormWrapper>
       <EmailInputDiv>
