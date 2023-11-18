@@ -24,6 +24,6 @@ export type AuthorizationResponse = {
   refresh: string;
 };
 
-export type ForgotPasswordPayload = {
+export type ResetPasswordPayload = {
   email: string;
 };
