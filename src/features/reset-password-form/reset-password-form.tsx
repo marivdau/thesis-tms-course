@@ -3,6 +3,7 @@ import { useState } from "react";
 import styled from "styled-components"
 import { useAppDispatch } from "../../hooks";
 import { forgotPassword } from "#features/auth/reset-password.slice";
+import { Link } from "react-router-dom";
 
 export const ResetPasswordForm: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -12,7 +13,12 @@ export const ResetPasswordForm: React.FC = () => {
   return (
     <ResetPasswordFormWrapper>
       <TypographyDiv>
-        <Typography variant="h5" sx={{ textTransform: 'uppercase' }}>reset password</Typography>
+        <Typography
+          variant="h5"
+          sx={{ textTransform: 'uppercase' }}
+        >
+          reset password
+        </Typography>
       </TypographyDiv>
       {sentEmail
         ?
@@ -21,7 +27,14 @@ export const ResetPasswordForm: React.FC = () => {
             <Typography>You will receive an email on the address <Typography variant="overline">{email}</Typography>  with a link to reset your password!</Typography>
           </EmailTextDiv>
           <ButtonDiv>
-            <Button variant="contained" href="/" fullWidth={true}>Go home</Button>
+            <Button
+              variant="contained"
+              component={Link}
+              to={'/'}
+              fullWidth={true}
+            >
+              Go home
+            </Button>
           </ButtonDiv>
         </ResetPasswordWrapper>
         :
@@ -39,7 +52,6 @@ export const ResetPasswordForm: React.FC = () => {
             <Button
               variant="contained"
               fullWidth={true}
-              // href="/reset-password-email-sent"
               onClick={() => {
                 dispatch(forgotPassword({ email }));
                 setSentEmail(true)
