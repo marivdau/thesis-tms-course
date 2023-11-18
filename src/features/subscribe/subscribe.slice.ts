@@ -6,12 +6,14 @@ type SubscribeArray = {
 
 type State = {
   subscribeList: SubscribeArray[];
+  isComplete: boolean;
 }
 
 const subscribeSlice = createSlice({
   name: 'subscribeSlice',
   initialState: {
     subscribeList: [],
+    isComplete: false,
   } as State,
 
   reducers: {
@@ -19,6 +21,7 @@ const subscribeSlice = createSlice({
       state.subscribeList.push({
         email: action.payload,
       })
+      state.isComplete = true;
     },
   },
 });

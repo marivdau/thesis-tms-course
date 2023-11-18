@@ -9,7 +9,7 @@ import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 import { Button, Rating } from "@mui/material";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Subscribe } from "#features/subscribe/subscribe";
 import { Socials } from "#ui/socials/socials";
 import { SimilarBooks } from "#ui/similar-books/similar-books";
@@ -37,6 +37,14 @@ export const BookPreviewPage: React.FC = () => {
     setValue(newValue);
   };
 
+  const token = useAppSelector(
+    (state) => state.authorization.token
+  );
+  const navigate = useNavigate();
+  const navigateToLogIn = () => {
+    navigate("/sign-in");
+  }
+
   return (
     <BooksPreviewWrapper>
       <PageTitle>{bookPreview.title}</PageTitle>
@@ -48,10 +56,13 @@ export const BookPreviewPage: React.FC = () => {
               <Button
                 variant={isMarked ? 'contained' : 'text'}
                 onClick={() => {
-                  dispatch(markItem(bookPreview));
-                  setIsMarked(!isMarked)
-                }
-                }
+                  if (token) {
+                    dispatch(markItem(bookPreview));
+                    setIsMarked(!isMarked)
+                  } else {
+                    navigateToLogIn();
+                  }
+                }}
               >
                 <Bookmark />
               </Button>

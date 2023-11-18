@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Favourites from '@mui/icons-material/Favorite';
 import { randomRaiting } from "../../service/random-rating";
 import { Link } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "../../hooks";
+import { useAppDispatch } from "../../hooks";
 import { unMarkItem } from "#features/bookmark/bookmark.slice";
 
 type PropsCard = {

@@ -14,7 +14,7 @@ export const SignInForm: React.FC = () => {
     (state) => state.authorization.token
   );
   if (token) {
-    return <Navigate to={'/all'} />;
+    return <Navigate to={'/'} />;
   }
   
   return (

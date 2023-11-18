@@ -1,24 +1,30 @@
 import { Button, TextField, Typography } from "@mui/material";
 import styled from "styled-components";
 import Send from "@mui/icons-material/Send"
-import { useAppDispatch } from "../../hooks";
+import { useAppDispatch, useAppSelector } from "../../hooks";
 import { subscribeToNewsLetters } from "./subscribe.slice";
 import { useState } from "react";
 
 export const Subscribe = () => {
   const dispatch = useAppDispatch();
   const [email, setEmail] = useState('');
-  const [visible, setVisible] = useState(true);
+  const isCompletedSubscribtion = useAppSelector((state) => state.subscribtion.isComplete)
 
   return (
     <SubscribeWrapper>
       <SubscribeTextDiv>
         <Typography variant="h4" sx={{ textTransform: 'uppercase' }}>
-          {visible ? 'Subscribe to Newsletter' : 'You are subscribed now!'}
+          {!isCompletedSubscribtion
+            ?
+            'Subscribe to Newsletter'
+            :
+            'Congrats! You are subscribed now!'}
         </Typography>
         <Typography variant="subtitle2">
-          {visible ?
-            'Be the first to know about new IT books, upcoming releases, exclusive offers and more.' :
+          {!isCompletedSubscribtion
+            ?
+            'Be the first to know about new IT books, upcoming releases, exclusive offers and more.'
+            :
             'Check your email for the futher information'}
         </Typography>
       </SubscribeTextDiv>
@@ -29,7 +35,7 @@ export const Subscribe = () => {
           variant="outlined"
           fullWidth
           sx={{
-            display: visible ? 'block' : 'none',
+            display: !isCompletedSubscribtion ? 'block' : 'none',
           }}
           onChange={({ currentTarget }) => setEmail(currentTarget.value)} />
         <Button
@@ -37,13 +43,12 @@ export const Subscribe = () => {
           color="secondary"
           endIcon={<Send />}
           sx={{
-            display: visible ? 'flex' : 'none',
+            display: !isCompletedSubscribtion ? 'flex' : 'none',
           }}
           onClick={() => {
             dispatch(subscribeToNewsLetters({ email }));
-            setVisible(!visible)
-          }
-          }>
+          }}
+        >
           Subscribe
         </Button>
       </SubscribeInputDiv>

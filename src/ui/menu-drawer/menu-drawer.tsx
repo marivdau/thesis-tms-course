@@ -24,6 +24,8 @@ export default function TemporaryDrawer() {
     (state) => state.authorization.token
   );
 
+  const name = useAppSelector((state) => state.registration.info.username)
+
   const [state, setState] = React.useState({
     right: false,
   });
@@ -56,7 +58,7 @@ export default function TemporaryDrawer() {
             <Avatar alt="avatar" src={avatarDefault} sx={{ width: 60, height: 60 }} />
           </AvatarDiv>
           <NameDiv>
-            <Typography variant='h5'>Hi, {'Anonomys'}!</Typography>
+            <Typography variant='h5'>Hi, {name || 'Anonomys'}!</Typography>
           </NameDiv>
         </UserDiv>
         :

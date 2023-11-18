@@ -4,24 +4,24 @@ import { RegistrationPayload } from './types';
 const registrationSlice = createSlice({
   name: 'registrationSlice',
   initialState: {
-    isInProgress: false,
+    info: {} as RegistrationPayload,
     isCompleted: false,
   },
   reducers: {
     register(state, action: { payload: RegistrationPayload }) {
-      state.isInProgress = true;
-    },
-    registerSuccess(state) {
-      state.isInProgress = false;
       state.isCompleted = true;
+      state.info.email = action.payload.email;
+      state.info.password = action.payload.password;
+      state.info.username = action.payload.username;
+      console.log('register info: ', action.payload.email, ' / ', action.payload.password, ' / ', action.payload.username)
     },
     registerFailure(state) {
-      state.isInProgress = false;
+      state.isCompleted = false;
     },
   },
 });
 
 export const {
-  actions: { register, registerSuccess, registerFailure },
+  actions: { register, registerFailure },
   reducer: registrationReducer,
 } = registrationSlice;
