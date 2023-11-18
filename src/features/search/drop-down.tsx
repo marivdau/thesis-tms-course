@@ -64,7 +64,7 @@ const SearchedImage = styled.div`
   width: 50px;
   height: 50px;
   background-color: var(--green-color);
-  margin: 20px;
+  margin-right: 20px;
 
   & img {
     width: 100%;
