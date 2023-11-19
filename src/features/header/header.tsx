@@ -36,7 +36,6 @@ export const Header = () => {
         </IconsDiv>
         <IconsDiv>
           <Tooltip title='Favourites'>
-
             <Button component={Link} to="/favourites">
               <Badge badgeContent={favouritesAmount} color="primary">
                 <Favourites />
@@ -68,13 +67,25 @@ const HeaderWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   height: 70px;
-  border-bottom: 1px solid var(--text-secondary-color);;
+  border-bottom: 1px solid var(--text-secondary-color);
+
+  @media screen and (max-width: 800px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 200px;
+  }
+
 `;
 
 const LogoDiv = styled.div`
   width: 200px;
   height: 70px;
   margin-right: 50px;
+
+  @media screen and (max-width: 800px) {
+    margin: 10px 0;
+  }
 `;
 
 const LogoImg = styled.img`
@@ -85,14 +96,27 @@ const LogoImg = styled.img`
 
 const SearchDiv = styled.div`
   width: 600px;
+
+  @media screen and (max-width: 800px) {
+    width: 100%;
+    margin: 0 20px;
+  }
 `;
 
 const HeaderMenuDiv = styled.div`
   display: flex;
   justify-content: space-between;
   flex-direction: row;
+
+  @media screen and (max-width: 800px) {
+    margin: 20px 0;
+  }
 `;
 
 const IconsDiv = styled.div`
   margin-right: 20px;
+
+  @media screen and (max-width: 800px) {
+    margin: 0 5px;
+  }
 `;

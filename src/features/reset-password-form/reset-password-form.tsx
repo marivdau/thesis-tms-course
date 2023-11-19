@@ -70,6 +70,10 @@ const ResetPasswordFormWrapper = styled.form`
   flex-direction: column;
   width: 500px;
   margin: auto;
+
+  @media screen and (max-width: 900px) {
+    width: 100%;
+  }
 `;
 
 const ResetPasswordWrapper = styled.div`
@@ -77,28 +81,48 @@ const ResetPasswordWrapper = styled.div`
   flex-direction: column;
   width: 500px;
   margin: auto;
+
+  @media screen and (max-width: 900px) {
+    width: 100%;
+  }
 `;
 
 const EmailTextDiv = styled.div`
   margin: auto;
   padding: 20px 0;
   width: 300px;
+
+  @media screen and (max-width: 900px) {
+    width: 100%;
+  }
 `;
 
 const TypographyDiv = styled.div`
   margin: auto;
   padding: 20px 0;
   width: 300px;
+
+  @media screen and (max-width: 900px) {
+    width: 100%;
+  }
 `;
 
 const EmailInputDiv = styled.div`
   margin: auto;
   padding: 20px 0;
   width: 300px;
+
+  @media screen and (max-width: 900px) {
+    width: 100%;
+  }
 `;
 
 const ButtonDiv = styled.div`
   margin: auto;
   width: 300px;
   padding: 20px 0;
+
+  @media screen and (max-width: 900px) {
+    width: 100%;
+  }
 `;

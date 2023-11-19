@@ -15,4 +15,9 @@ const ResetPasswrodWrapper = styled.div`
   padding: 100px;
   width: 500px;
   margin: auto;
+
+  @media screen and (max-width: 900px) {
+    padding: 0;
+    width: 100%;
+  }
 `;

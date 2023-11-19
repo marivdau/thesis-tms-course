@@ -46,7 +46,7 @@ export default function TemporaryDrawer() {
 
   const list = (anchor: Anchor) => (
     <Box
-      sx={{ width: 400 }}
+      sx={{ width: 360 }}
       role="presentation"
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
@@ -145,6 +145,10 @@ const UserDiv = styled.div`
   flex-direction: column;
   justify-content: center;
   margin: 20px 0;
+
+  @media screen and (max-width: 700px) {
+    margin: 20px 0;
+  }
 `;
 
 const AvatarDiv = styled.div`
@@ -159,10 +163,18 @@ const NameDiv = styled.div`
 
 const ListDiv = styled.div`
   margin: 30px 0;
+
+  @media screen and (max-width: 700px) {
+    margin: 20px 0;
+  }
 `;
 
 const ButtonDiv = styled.div`
   display: block;
   width: 330px;
   margin: auto;
+
+  @media screen and (max-width: 700px) {
+    width: 200px;
+  }
 `;

@@ -138,13 +138,20 @@ const OrderDiv = styled.div`
   width: 300px;
   margin-left: 60%;
   padding: 30px;
+  
+  @media screen and (max-width: 900px) {
+    width: 100%;
+    margin: auto;
+    padding: 0;
+  }
 `;
 
 const OrderDetailesDiv = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between; 
-  align-items: stretch;`;
+  align-items: stretch;
+`;
 
 const SumTotalDiv = styled.div`
   display: flex;

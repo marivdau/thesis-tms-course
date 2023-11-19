@@ -4,7 +4,6 @@ import { reset, search } from './search.slice';
 import { DropDown } from "./drop-down";
 import styled from "styled-components";
 import Cancel from '@mui/icons-material/Cancel';
-import Search from '@mui/icons-material/Search';
 import { InputAdornment, TextField, Tooltip } from "@mui/material";
 
 type Props = {};
@@ -57,4 +56,8 @@ export const SearchComponent: React.FC<Props> = () => {
 const RelativeContainer = styled.div`
   position: relative;
   width: 90%;
+
+  @media screen and (max-width: 900px) {
+    width: 100%;
+  }
 `;

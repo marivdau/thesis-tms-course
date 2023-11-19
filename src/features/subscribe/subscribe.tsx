@@ -13,31 +13,34 @@ export const Subscribe = () => {
   return (
     <SubscribeWrapper>
       <SubscribeTextDiv>
-        <Typography variant="h4" sx={{ textTransform: 'uppercase' }}>
+        <SubscribeText>
           {!isCompletedSubscribtion
             ?
             'Subscribe to Newsletter'
             :
             'Congrats! You are subscribed now!'}
-        </Typography>
-        <Typography variant="subtitle2">
+        </SubscribeText>
+        <SubscribeSubtitle>
           {!isCompletedSubscribtion
             ?
             'Be the first to know about new IT books, upcoming releases, exclusive offers and more.'
             :
             'Check your email for the futher information'}
-        </Typography>
+        </SubscribeSubtitle>
       </SubscribeTextDiv>
       <SubscribeInputDiv>
-        <TextField
-          id="outlined-basic"
-          label="Your email"
-          variant="outlined"
-          fullWidth
-          sx={{
-            display: !isCompletedSubscribtion ? 'block' : 'none',
-          }}
-          onChange={({ currentTarget }) => setEmail(currentTarget.value)} />
+        <InputDiv>
+          <TextField
+            id="outlined-basic"
+            label="Your email"
+            variant="outlined"
+            fullWidth
+            sx={{
+              display: !isCompletedSubscribtion ? 'block' : 'none',
+            }}
+            onChange={({ currentTarget }) => setEmail(currentTarget.value)} />
+        </InputDiv>
+
         <Button
           variant="contained"
           color="secondary"
@@ -69,10 +72,55 @@ const SubscribeWrapper = styled.div`
 
 const SubscribeTextDiv = styled.div`
   margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+`;
+
+const SubscribeText = styled.p`
+  all: unset;
+  text-transform: uppercase;
+  font-size: 30px;
+  font-weight: 400;
+  line-height: 45px;
+  
+  @media screen and (max-width: 700px) {
+    font-size: 25px;
+    font-weight: 400;
+    line-height: 30px;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+`;
+
+const SubscribeSubtitle = styled.p`
+  all: unset;
+  font-size: 20px;
+  font-weight: 200;
+  line-height: 25px;
+  
+  @media screen and (max-width: 700px) {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 20px;
+    text-align: center;
+    margin-bottom: 10px;
+  }
 `;
 
 const SubscribeInputDiv = styled.div`
   display: flex;
   flex-direction: row;
-  width: 100%
+  width: 100%;
+  
+  @media screen and (max-width: 700px) {
+    flex-direction: column;
+  }
+`;
+
+const InputDiv = styled.div`
+  width: 100%;
+
+  @media screen and (max-width: 700px) {
+    margin-bottom: 20px;
+  }
 `;

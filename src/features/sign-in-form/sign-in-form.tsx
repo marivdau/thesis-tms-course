@@ -1,4 +1,4 @@
-import { Button, IconButton, InputAdornment, OutlinedInput, TextField } from "@mui/material"
+import { Button, IconButton, InputAdornment, OutlinedInput } from "@mui/material"
 import { useState } from "react";
 import { Link, Navigate } from "react-router-dom";
 import styled from "styled-components"
@@ -74,22 +74,46 @@ const SignInFormWrapper = styled.form`
   flex-direction: column;
   width: 500px;
   margin: auto;
+
+  @media screen and (max-width: 900px) {
+    margin: auto;
+    width: 80%;
+    align-items: center;
+  }
 `;
 
 const EmailInputDiv = styled.div`
   margin: auto;
   padding: 20px 0;
   width: 300px;
+
+  @media screen and (max-width: 900px) {
+    margin-bottom: 10px;
+    padding: 0;
+    width: 100%;
+  }
 `;
 
 const PasswordInputDiv = styled.div`
   margin: auto;
   padding: 20px 0;
   width: 300px;
+
+  @media screen and (max-width: 900px) {
+    margin-bottom: 10px;
+    padding: 0;
+    width: 100%;
+  }
 `;
 
 const ButtonDiv = styled.div`
   margin: auto;
   width: 300px;
   padding: 20px 0;
+
+  @media screen and (max-width: 900px) {
+    margin-bottom: 50px;
+    padding: 0;
+    width: 100%;
+  }
 `;

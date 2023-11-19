@@ -76,7 +76,11 @@ export const CartItem: React.FC<PropsCart> = (props: PropsCart) => {
   )
 }
 
-const CartWrapper = styled.div``;
+const CartWrapper = styled.div`
+  @media screen and (max-width: 900px) {
+    margin-bottom: 20px;
+  }
+`;
 
 const Cart = styled.div`
   width: 100%;
@@ -85,6 +89,12 @@ const Cart = styled.div`
   align-items: center;
   justify-content: flex-start;
   flex-direction: row;
+
+  @media screen and (max-width: 900px) {
+    flex-direction: row;
+    padding: 0;
+    align-items: center;
+  }
 `;
 
 const CartImageDiv = styled.div`
@@ -92,6 +102,10 @@ const CartImageDiv = styled.div`
   height: 300px;
   margin-right: 30px;
   background-color: var(--green-color);
+
+  @media screen and (max-width: 900px) {
+    display: none;
+  }
 `;
 
 const CartImg = styled.img`
@@ -104,6 +118,11 @@ const CartTitle = styled.span`
   font-size: 24px;
   font-weight: 600;
   color: var(--text-primary-color);
+
+    @media screen and (max-width: 900px) {
+      font-size: 16px;
+      font-weight: 500;
+  }
 `;
 
 const CartSubtitle = styled.p`
@@ -124,6 +143,11 @@ const InfoLineDiv = styled.div`
   flex-direction: column;
   justify-content: space-between;
   width: 600px;
+  
+  @media screen and (max-width: 900px) {
+    width: 100%;
+    margin-right: 5px;
+  }
 `;
 
 const PriceRaitingDiv = styled.div`
@@ -140,6 +164,13 @@ const PriceSpan = styled.span`
   display: flex;
   flex-direction: row;
   align-items: center;
+
+  @media screen and (max-width: 900px) {
+    font-size: 28px;
+    font-weight: 500;
+    line-height: 40px;
+    margin-right: 0;
+  }
 `;
 
 const FavIconDiv = styled.div``;

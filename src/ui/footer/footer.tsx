@@ -22,6 +22,11 @@ const FooterWrapper = styled.div`
   border-top: 1px solid var(--text-secondary-color);;
   font-size: 16px;
   line-height: 50px;
+  
+  @media screen and (max-width: 700px) {
+    flex-direction: column;
+    line-height: 30px;
+  }
 `;
 
 const DateNameSpan = styled.span`
@@ -38,4 +43,8 @@ const RightsSpan = styled.span`
   justify-content: space-between;
   align-items: center;
   color: var(--text-secondary-color);
+
+  @media screen and (max-width: 700px) {
+    margin-bottom: 10px;
+  }
 `;

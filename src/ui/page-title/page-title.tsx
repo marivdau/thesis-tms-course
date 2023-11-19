@@ -20,4 +20,9 @@ const PageTitleWrapper = styled.h1`
   text-transform: uppercase;
   color: var(--text-primary-color);
   padding: 20px 0 50px;
+  
+  @media screen and (max-width: 700px) {
+    font-size: 38px;
+    line-height: 54px;
+  }
 `;

@@ -151,14 +151,26 @@ const BookInfoDivFirstLine = styled.div`
   flex-direction: row;
   align-items: flex-start;
   margin-bottom: 50px;
+
+  @media screen and (max-width: 900px) {
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+  }
 `;
 
 const BookImageDiv = styled.div`
   position: relative;
   background-color: var(--orange-color);
-  width: 500px;
+  max-width: 500px;
   height: 400px;
   margin-right: 100px;
+
+  @media screen and (max-width: 900px) {
+    width: 90%;
+    height: 90%;
+    margin-right: 0;
+  }
 `;
 
 const BookmarkDiv = styled.div`
@@ -176,6 +188,11 @@ const BookDetailsDiv = styled.div`
   border-top: 1px solid var(--text-secondary-color);
   width: 400px;
   display: block;
+
+  @media screen and (max-width: 900px) {
+    width: 80%;
+    margin-right: 0;
+  }
 `;
 
 const PriceRatingDiv = styled.div`
@@ -221,11 +238,20 @@ const ButtonsDiv = styled.div`
   flex-direction: column;
   align-items: center;
   width: 400px;
+
+  @media screen and (max-width: 900px) {
+    width: 80%;
+    margin: auto;
+  }
 `;
 
 const AddToCardButtonDiv = styled.div`
   margin-bottom: 30px;
   width: 400px;
+
+  @media screen and (max-width: 900px) {
+    width: 80%;
+  }
 `;
 
 const BookInfoDivSecondLine = styled.div``;

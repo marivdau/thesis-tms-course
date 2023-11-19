@@ -5,20 +5,29 @@ import styled from "styled-components"
 
 export const Account: React.FC = () => {
   return (
-    <>
-      <PageTitle>
-        Account
-      </PageTitle>
+    <AccountPage>
+      <PageTitle children="Account" />
       <BackLink />
       <AccountWrapper>
         <AccountForm />
       </AccountWrapper>
-    </>
+    </AccountPage>
   )
 }
+
+const AccountPage = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 40px;
+`;
 
 const AccountWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 50px;
+
+  @media screen and (max-width: 900px) {
+    padding: 0;
+    align-items: center;
+    width: 100%;
+  }
 `;

@@ -144,11 +144,11 @@ export const AccountForm: React.FC = () => {
             Save changes
           </Button>
         </ButtonSaveDiv>
-        <ButtonCancelDiv>
+        {/* <ButtonCancelDiv>
           <Button variant="outlined" fullWidth={true}>
             Cancel
           </Button>
-        </ButtonCancelDiv>
+        </ButtonCancelDiv> */}
       </ButtonsDiv>
     </AccountFormWrapper>
   )
@@ -157,6 +157,12 @@ export const AccountForm: React.FC = () => {
 const AccountFormWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  padding: 50px;
+
+  @media screen and (max-width: 1000px) {
+    width: 100%;
+    align-items: center;
+  }
 `;
 
 const UserInfo = styled.div`
@@ -165,11 +171,25 @@ const UserInfo = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-bottom: 30px;
+  
+  @media screen and (max-width: 1000px) {
+    margin: auto;
+    flex-direction: column;
+    width: 100%;
+  }
 `;
 
 const NameInfo = styled.div`
+  display: flex;
+  flex-direction: column;
   margin-right: 30px;
   width: 400px;
+
+  @media screen and (max-width: 1000px) {
+    margin: auto;
+    flex-direction: column;
+    width: 100%;
+  }
 `;
 
 const EmailInfo = styled.div`
@@ -177,6 +197,12 @@ const EmailInfo = styled.div`
   flex-direction: column;
   margin: 10px 0;
   width: 400px;
+
+  @media screen and (max-width: 1000px) {
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 30px;
+  }
 `;
 
 const PasswordDiv = styled.div`
@@ -184,10 +210,22 @@ const PasswordDiv = styled.div`
   flex-direction: row;
   justify-content: space-between;
   margin: 10px 0;
+
+  @media screen and (max-width: 1000px) {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
 `;
 
 const PasswordInfo = styled.div`
   width: 400px;
+
+  @media screen and (max-width: 1000px) {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
 `;
 
 const PasswordNewDiv = styled.div`
@@ -195,19 +233,41 @@ const PasswordNewDiv = styled.div`
   flex-direction: row;
   justify-content: space-between;
   margin-bottom: 50px;
+
+  @media screen and (max-width: 1000px) {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
 `;
 
 const ButtonsDiv = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
+
+  @media screen and (max-width: 1000px) {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
 `;
 
 const ButtonSaveDiv = styled.div`
   margin-right: 50px;
   width: 180px;
+
+  @media screen and (max-width: 1000px) {
+    width: 100%;
+    margin: 20px 0;
+  }
 `;
 
 const ButtonCancelDiv = styled.div`
   width: 180px;
+
+  @media screen and (max-width: 1000px) {
+    width: 100%;
+    margin-bottom: 50px;
+  }
 `;

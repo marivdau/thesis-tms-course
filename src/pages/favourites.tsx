@@ -25,6 +25,8 @@ export const FavouritesPage: React.FC = () => {
               subtitle={item.item.subtitle}
               price={item.item.price}
               isbn13={item.item.isbn13}
+              author={item.item.authors}
+              year={item.item.year}
             />) :
           <NoFavouritesDiv>
             <Typography variant="h4">There is no favourites.{' '}
@@ -40,9 +42,15 @@ export const FavouritesPage: React.FC = () => {
   )
 }
 
-const FavouritesWrapper = styled.div``;
+const FavouritesWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 40px;
+`;
 
-const FavoritesDiv = styled.div``;
+const FavoritesDiv = styled.div`
+  margin-bottom: 30px;
+`;
 
 const NoFavouritesDiv = styled.div`
   margin: 30px;

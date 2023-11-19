@@ -13,6 +13,8 @@ type PropsCard = {
   price: string;
   image: string;
   url: string;
+  author: string;
+  year: string;
 }
 
 export const FavouriteCard: React.FC<PropsCard> = (props: PropsCard) => {
@@ -30,7 +32,7 @@ export const FavouriteCard: React.FC<PropsCard> = (props: PropsCard) => {
           </CardTitle>
         </Link>
         <CardSubtitle>
-          {'by '}{'author'}, {' '} {'year'}
+          {'by '}{props.author}, {' '} {props.year}
         </CardSubtitle>
         <PriceRaitingDiv>
           <PriceSpan>{props.price}</PriceSpan>
@@ -53,6 +55,10 @@ const CardWrapper = styled.div`
   align-items: center;
   justify-content: flex-start;
   flex-direction: row;
+
+  @media screen and (max-width: 900px) {
+    padding: 20px 0;
+  }
 `;
 
 const CardImageDiv = styled.div`
@@ -60,6 +66,10 @@ const CardImageDiv = styled.div`
   height: 300px;
   margin-right: 30px;
   background-color: var(--green-color);
+
+  @media screen and (max-width: 900px) {
+    display: none;
+  }
 `;
 
 const CardImg = styled.img`
@@ -86,6 +96,11 @@ const InfoLineDiv = styled.div`
   flex-direction: column;
   justify-content: space-between;
   width: 600px;
+
+  @media screen and (max-width: 900px) {
+    width: 80%;
+    margin: auto;
+  }
 `;
 
 const PriceRaitingDiv = styled.div`
