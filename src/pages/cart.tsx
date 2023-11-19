@@ -3,13 +3,11 @@ import { PageTitle } from "#ui/page-title/page-title";
 import { CartItem } from "#ui/cart-item/cart-item";
 import { Button, Typography } from "@mui/material";
 import AttachMoney from '@mui/icons-material/AttachMoney';
-import { clearCart } from "#features/order/order.slice";
+import { clearCart, getTotalSum } from "#features/order/order.slice";
 import { useAppDispatch, useAppSelector } from "../hooks";
 import { removeDollarSignConvertToNumber } from "../service/remove-dollar-sign";
 import { BackLink } from "#features/back-link/back-link";
-import Confetti from 'react-confetti';
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
 
 export const Cart: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -22,8 +20,6 @@ export const Cart: React.FC = () => {
   const vatAmount: any = (bookSumAmount * 0.23).toFixed(2);
   const totalSum: any = (+bookSumAmount + +vatAmount).toFixed(2);
 
-  const [showMeConfetti, setShowMeConfetti] = useState(false);
-
   const token = useAppSelector(
     (state) => state.authorization.token
   );
@@ -32,15 +28,12 @@ export const Cart: React.FC = () => {
   const navigateToLogIn = () => {
     navigate("/sign-in");
   }
+  const navigateToPaymentPage = () => {
+    navigate("/payment");
+  }
 
   return (
     <CartWrapper>
-      <Confetti
-        style={{ display: showMeConfetti ? 'flex' : 'none' }}
-        width={1200}
-        height={900}
-        numberOfPieces={200}
-      />
       <PageTitle children='Your cart' />
       <BackLink />
       {basket.length > 0 ?
@@ -101,7 +94,8 @@ export const Cart: React.FC = () => {
               fullWidth={true}
               onClick={() => {
                 if (token) {
-                  setShowMeConfetti(!showMeConfetti);
+                  navigateToPaymentPage();
+                  dispatch(getTotalSum(totalSum));
                 } else {
                   navigateToLogIn();
                 }
@@ -116,7 +110,6 @@ export const Cart: React.FC = () => {
               fullWidth={true}
               onClick={() => {
                 dispatch(clearCart());
-                setShowMeConfetti(false)
               }}
             >
               Empty cart

@@ -8,12 +8,14 @@ export type BasketItem = {
 
 type State = {
   basket: BasketItem[],
+  totalSum: string,
 }
 
 const orderSlice = createSlice({
   name: 'orderSlice',
   initialState: {
     basket: [],
+    totalSum: '',
   } as State,
   reducers: {
     addItem(state, action) {
@@ -38,6 +40,9 @@ const orderSlice = createSlice({
         state.basket[index].quantity--;
       }
     },
+    getTotalSum(state, action) {
+      state.totalSum = action.payload;
+    },
     clearCart(state) {
       state.basket = [];
     }
@@ -45,6 +50,6 @@ const orderSlice = createSlice({
 });
 
 export const {
-  actions: { addItem, deleteItem, increaseItemQuantity, decreaseItemQuantity, clearCart },
+  actions: { addItem, deleteItem, increaseItemQuantity, decreaseItemQuantity, clearCart, getTotalSum },
   reducer: orderReducer,
 } = orderSlice;

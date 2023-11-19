@@ -12,6 +12,7 @@ import { FavouritesPage } from './pages/favourites';
 import { Cart } from './pages/cart';
 import { Account } from './pages/account';
 import { AllBooksPage } from './pages/all-books';
+import { Payment } from './pages/payment-page';
 
 function Root() {
   return (
@@ -23,6 +24,7 @@ function Root() {
         <Route path='/preview-book/:bookIsbn' element={<BookPreviewPage />} />
         <Route path='/favourites' element={<FavouritesPage />} />
         <Route path='/cart' element={<Cart />} />
+        <Route path='/payment' element={<Payment />} />
         <Route path='/account' element={<Account />} />
         <Route path='/sign-in' element={<SignInPage />} />
         <Route path='/sign-up' element={<SignUpPage />} />
