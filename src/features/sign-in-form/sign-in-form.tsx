@@ -26,9 +26,9 @@ export const SignInForm: React.FC = () => {
   return (
     <SignInFormWrapper>
       <EmailInputDiv>
-        <TextField
+        <OutlinedInput
+          type='email'
           placeholder="Your email *"
-          variant="outlined"
           fullWidth={true}
           value={email}
           onChange={({ currentTarget }) => setEmail(currentTarget.value)}

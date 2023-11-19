@@ -34,6 +34,7 @@ export const AccountForm: React.FC = () => {
             Name
           </Typography>
           <TextField
+            type="text"
             fullWidth={true}
             value={name || ''}
             onChange={({ currentTarget }) => dispatch(setName(currentTarget.value))}
@@ -45,6 +46,7 @@ export const AccountForm: React.FC = () => {
           </Typography>
           <TextField
             fullWidth={true}
+            type="email"
             value={email}
             onChange={({ currentTarget }) =>
               dispatch(setEmail(currentTarget.value))
@@ -133,7 +135,7 @@ export const AccountForm: React.FC = () => {
               dispatch(
                 register({
                   username: name,
-                  password,                  
+                  password,
                   email,
                 })
               )

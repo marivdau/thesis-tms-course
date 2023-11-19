@@ -39,6 +39,7 @@ export const SignUpForm: React.FC = () => {
         <SignInFormWrapper>
           <NameInputDiv>
             <TextField
+              type="text"
               placeholder="Your name *"
               variant="outlined"
               fullWidth={true}
@@ -47,9 +48,9 @@ export const SignUpForm: React.FC = () => {
             />
           </NameInputDiv>
           <EmailInputDiv>
-            <TextField
+            <OutlinedInput
               placeholder="Your email *"
-              variant="outlined"
+              type='email'
               fullWidth={true}
               value={email}
               onChange={({ currentTarget }) =>
