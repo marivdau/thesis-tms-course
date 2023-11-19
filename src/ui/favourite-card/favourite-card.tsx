@@ -59,6 +59,11 @@ const CardWrapper = styled.div`
   @media screen and (max-width: 900px) {
     padding: 20px 0;
   }
+
+  @media screen and (max-width: 700px) {
+    padding: 20px 0;
+    border-bottom: 1px solid var(--purple-color);
+  }
 `;
 
 const CardImageDiv = styled.div`
@@ -68,6 +73,10 @@ const CardImageDiv = styled.div`
   background-color: var(--green-color);
 
   @media screen and (max-width: 900px) {
+    margin-bottom: 10px;
+  }
+
+  @media screen and (max-width: 700px) {
     display: none;
   }
 `;

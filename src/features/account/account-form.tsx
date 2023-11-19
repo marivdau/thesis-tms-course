@@ -144,11 +144,6 @@ export const AccountForm: React.FC = () => {
             Save changes
           </Button>
         </ButtonSaveDiv>
-        {/* <ButtonCancelDiv>
-          <Button variant="outlined" fullWidth={true}>
-            Cancel
-          </Button>
-        </ButtonCancelDiv> */}
       </ButtonsDiv>
     </AccountFormWrapper>
   )
@@ -260,14 +255,5 @@ const ButtonSaveDiv = styled.div`
   @media screen and (max-width: 1000px) {
     width: 100%;
     margin: 20px 0;
-  }
-`;
-
-const ButtonCancelDiv = styled.div`
-  width: 180px;
-
-  @media screen and (max-width: 1000px) {
-    width: 100%;
-    margin-bottom: 50px;
   }
 `;

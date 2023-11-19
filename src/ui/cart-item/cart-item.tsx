@@ -104,6 +104,10 @@ const CartImageDiv = styled.div`
   background-color: var(--green-color);
 
   @media screen and (max-width: 900px) {
+    margin-bottom: 10px;
+  }
+
+  @media screen and (max-width: 700px) {
     display: none;
   }
 `;
@@ -173,4 +177,10 @@ const PriceSpan = styled.span`
   }
 `;
 
-const FavIconDiv = styled.div``;
+const FavIconDiv = styled.div`
+  margin-right: 10px;
+
+    @media screen and (max-width: 900px) {
+      margin-right: 0;
+  }
+`;
