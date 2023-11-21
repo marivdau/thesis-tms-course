@@ -2,11 +2,10 @@ import { searchRequest } from '../../api/api';
 import { baseUrl } from '../../api/constants';
 import { SearchResponce } from './types';
 
-export const searchsApi = {
-  search: (search: string): Promise<SearchResponce> => {
+export const searchApi = {
+  search: (payload: string): Promise<SearchResponce> => {
     return searchRequest(
-      baseUrl +
-      `search/${search}/?page=42`,
+      baseUrl + `search/${payload}/?page=${payload}`,
       {
         method: 'GET',
         headers: {},

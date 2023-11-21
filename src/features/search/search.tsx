@@ -24,7 +24,7 @@ export const SearchComponent: React.FC<Props> = () => {
         onChange={(event) => {
           setSearchedText(event.currentTarget.value);
           if (event.currentTarget.value === '') {
-            return dispatch(reset());
+            return dispatch(reset(''));
           }
           dispatch(search(event.currentTarget.value));
         }}
@@ -35,7 +35,7 @@ export const SearchComponent: React.FC<Props> = () => {
                 <Cancel
                   onClick={() => {
                     setSearchedText('');
-                    dispatch(reset());
+                    dispatch(reset(''));
                   }}
                 />
               </Tooltip>
@@ -45,7 +45,7 @@ export const SearchComponent: React.FC<Props> = () => {
       />
       {
         <DropDown
-          search={searchedBooks.books}
+          search={searchedBooks}
           searchedString={searchedText}
         ></DropDown>
       }

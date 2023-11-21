@@ -1,11 +1,11 @@
 import styled from 'styled-components';
-import { SearchedBooks } from './types';
-import { Divider, Typography } from '@mui/material';
-import { Link as RouteLink } from 'react-router-dom';
+import { SearchResponce } from './types';
+import { ListItem, ListItemButton, Typography } from '@mui/material';
+import { Link, Link as RouteLink } from 'react-router-dom';
 import { useState } from 'react';
 
 type DropDownProps = {
-  search: SearchedBooks[];
+  search: SearchResponce;
   searchedString: string;
 };
 
@@ -17,10 +17,10 @@ export const DropDown: React.FC<DropDownProps> = ({
 
   return (
     <DropDownWrapper style={{ display: dropdown ? 'block' : 'none' }}>
-      {!!search.length &&
-        search.map((element) => (
-          <div key={element.isbn13}>
-            <DropDownElement>
+      {!!search &&
+        search.books?.map((element, index) => (
+          <ListItem component="div" disablePadding key={index}>
+            <ListItemButton>
               <SearchedImage>
                 <img src={element.image} alt="#" />
               </SearchedImage>
@@ -30,11 +30,21 @@ export const DropDown: React.FC<DropDownProps> = ({
               >
                 <Typography>{element.title}</Typography>
               </RouteLink>
-            </DropDownElement>
-            <Divider />
-          </div>
-        ))}
-      {!search.length && searchedString && <Typography>Sorry, there is no books match your request</Typography>}
+            </ListItemButton>
+          </ListItem>
+        ))
+      }
+
+      {searchedString &&
+        <ListItem
+          component={Link}
+          to={'/search-result'}
+          onClick={() => setDropdown(!dropdown)}
+        >
+          View all results
+        </ListItem>}
+
+      {!search && searchedString && <ListItem>Sorry, there is no books match your request</ListItem>}
     </DropDownWrapper>
   );
 };
@@ -49,15 +59,6 @@ const DropDownWrapper = styled.ul`
   z-index: 40;
   background-color: var(--purple-color);
   border-radius: 5px;
-`;
-
-const DropDownElement = styled.li`
-  all: unset;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  padding: 0 10px;
-  height: 60px;
 `;
 
 const SearchedImage = styled.div`

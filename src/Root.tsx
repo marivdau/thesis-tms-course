@@ -13,6 +13,7 @@ import { Cart } from './pages/cart';
 import { Account } from './pages/account';
 import { AllBooksPage } from './pages/all-books';
 import { Payment } from './pages/payment-page';
+import { SearchResultPage } from '#features/search/all-search-result';
 
 function Root() {
   return (
@@ -21,6 +22,7 @@ function Root() {
       <Routes>
         <Route path='/' element={<MainNewBooksPage />} />
         <Route path='/all' element={<AllBooksPage />} />
+        <Route path='/search-result' element={<SearchResultPage />} />
         <Route path='/preview-book/:bookIsbn' element={<BookPreviewPage />} />
         <Route path='/favourites' element={<FavouritesPage />} />
         <Route path='/cart' element={<Cart />} />

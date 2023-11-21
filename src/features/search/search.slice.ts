@@ -1,27 +1,23 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { SearchResponce } from "./types";
 
-const initialState = {
-  searchedBooks: {
-    error: '0',
-    total: 8071,
-    page: 1,
-    books: []
-  } as SearchResponce,
-
-  isInProgress: false,
-  isCompleted: false,
-};
-
 const searchSlice = createSlice({
   name: 'searchSlice',
-  initialState: initialState,
+  initialState: {
+    searchedBooks: {} as SearchResponce,
+    isInProgress: false,
+    isCompleted: false,
+    searchedPhrase: '',
+  },
 
   reducers: {
-    search(state, action: { payload: string }) {
+    search(state, action) {
+      state.isInProgress = true;
+      state.searchedPhrase = action.payload.phrase;
+    },
+    getSearchedBooks(state, action) {
       state.isInProgress = true;
     },
-
     searchSuccess(state, action: { payload: SearchResponce }) {
       state.isInProgress = false;
       state.isCompleted = true;
@@ -32,13 +28,14 @@ const searchSlice = createSlice({
       state.isInProgress = false;
     },
 
-    reset(state) {
-      state.searchedBooks = initialState.searchedBooks;
+    reset(state, action) {
+      state.searchedPhrase = '';
+      state.searchedBooks = action.payload;
     },
   },
 });
 
-export const { search, searchSuccess, searchFailure, reset } =
+export const { search, getSearchedBooks, searchSuccess, searchFailure, reset } =
   searchSlice.actions;
 
 export const searchReducer = searchSlice.reducer;
