@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../hooks";
-import { reset, search } from './search.slice';
-import { DropDown } from "./drop-down";
+import { SearchBooksDropDown } from "./search-books-drop-down";
 import styled from "styled-components";
 import Cancel from '@mui/icons-material/Cancel';
+import Search from '@mui/icons-material/Search';
 import { InputAdornment, TextField, Tooltip } from "@mui/material";
+import { resetBooks, searchBooks } from "./search.slice";
 
 type Props = {};
 
@@ -13,6 +14,7 @@ export const SearchComponent: React.FC<Props> = () => {
 
   const dispatch = useAppDispatch();
   const { searchedBooks } = useAppSelector(({ search }) => search);
+  const page = useAppSelector(state => state.search.searchedBooksPage);
 
   return (
     <RelativeContainer>
@@ -24,30 +26,32 @@ export const SearchComponent: React.FC<Props> = () => {
         onChange={(event) => {
           setSearchedText(event.currentTarget.value);
           if (event.currentTarget.value === '') {
-            return dispatch(reset(''));
+            return dispatch(resetBooks(''));
           }
-          dispatch(search(event.currentTarget.value));
+          dispatch(searchBooks({ search: event.currentTarget.value, page: page }));
         }}
         InputProps={
           {
             endAdornment: <InputAdornment position="end">
               <Tooltip title='Clear'>
                 <Cancel
+                  sx={{ display: searchedText ? 'block' : 'none' }}
                   onClick={() => {
                     setSearchedText('');
-                    dispatch(reset(''));
+                    dispatch(resetBooks(''));
                   }}
                 />
               </Tooltip>
+              <Search sx={{ display: !searchedText ? 'block' : 'none' }} />
             </InputAdornment>
           }
         }
       />
       {
-        <DropDown
-          search={searchedBooks}
-          searchedString={searchedText}
-        ></DropDown>
+        <SearchBooksDropDown
+          books={searchedBooks}
+          open={!!searchedText}
+        />
       }
     </RelativeContainer>
   );

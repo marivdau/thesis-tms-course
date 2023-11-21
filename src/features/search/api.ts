@@ -3,9 +3,9 @@ import { baseUrl } from '../../api/constants';
 import { SearchResponce } from './types';
 
 export const searchApi = {
-  search: (payload: string): Promise<SearchResponce> => {
+  search: (payload: { search: string, page: number }): Promise<SearchResponce> => {
     return searchRequest(
-      baseUrl + `search/${payload}/?page=${payload}`,
+      baseUrl + `search/${payload.search}/${payload.page}`,
       {
         method: 'GET',
         headers: {},

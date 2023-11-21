@@ -36,7 +36,17 @@ export const SignUpForm: React.FC = () => {
           <Button component={Link} to={'/sign-in'}>Click here to proceed to sign in page</Button>
         </SignInSuccess>
         :
-        <SignInFormWrapper>
+        <SignInFormWrapper onSubmit={(event) => {
+          event?.preventDefault();
+          dispatch(
+            register({
+              username: name,
+              password,
+              email,
+            })
+          )
+        }
+        }>
           <NameInputDiv>
             <TextField
               type="text"
@@ -105,17 +115,9 @@ export const SignUpForm: React.FC = () => {
 
           <ButtonDiv>
             <Button
+              type="submit"
               variant="contained"
               fullWidth={true}
-              onClick={() =>
-                dispatch(
-                  register({
-                    username: name,
-                    password,
-                    email,
-                  })
-                )
-              }
             >
               Sign Up
             </Button>

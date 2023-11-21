@@ -1,24 +1,24 @@
 import styled from 'styled-components';
-import { SearchResponce } from './types';
+import { Books } from './types';
 import { ListItem, ListItemButton, Typography } from '@mui/material';
 import { Link, Link as RouteLink } from 'react-router-dom';
 import { useState } from 'react';
 
 type DropDownProps = {
-  search: SearchResponce;
-  searchedString: string;
+  books: Books;
+  open: boolean;
 };
 
-export const DropDown: React.FC<DropDownProps> = ({
-  search,
-  searchedString,
+export const SearchBooksDropDown: React.FC<DropDownProps> = ({
+  books,
+  open,
 }) => {
-  const [dropdown, setDropdown] = useState(true);
+  const [dropdown, setDropdown] = useState(false);
 
   return (
-    <DropDownWrapper style={{ display: dropdown ? 'block' : 'none' }}>
-      {!!search &&
-        search.books?.map((element, index) => (
+    <DropDownWrapper style={{ display: open ? 'block' : 'none' }}>
+      {!!books &&
+        books?.map((element, index) => (
           <ListItem component="div" disablePadding key={index}>
             <ListItemButton>
               <SearchedImage>
@@ -35,7 +35,7 @@ export const DropDown: React.FC<DropDownProps> = ({
         ))
       }
 
-      {searchedString &&
+      {books?.length > 0 &&
         <ListItem
           component={Link}
           to={'/search-result'}
@@ -44,7 +44,7 @@ export const DropDown: React.FC<DropDownProps> = ({
           View all results
         </ListItem>}
 
-      {!search && searchedString && <ListItem>Sorry, there is no books match your request</ListItem>}
+      {!books?.length && <ListItem>Sorry, there is no books match your request</ListItem>}
     </DropDownWrapper>
   );
 };

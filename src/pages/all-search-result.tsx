@@ -6,25 +6,24 @@ import { Pagination } from "@mui/material";
 import { Subscribe } from "#features/subscribe/subscribe";
 import { BackLink } from "#features/back-link/back-link";
 import { useAppDispatch, useAppSelector } from "../hooks";
-import { getSearchedBooks } from "../features/search/search.slice";
+import { searchBooks } from "#features/search/search.slice";
 
 export const SearchResultPage: React.FC = () => {
   const dispatch = useAppDispatch();
   const [page, setPage] = useState(1);
+  const searchWord = useAppSelector(state => state.search.searchedBooksKeyword);
+  const { searchedBooks, searchedBooksTotal } = useAppSelector(({ search }) => search)
 
-  const { searchedBooks } = useAppSelector(({ search }) => search)
   useEffect(() => {
-    dispatch(getSearchedBooks(page));
-  }, [dispatch, page]);
-
-  // const searchPhrase = useAppSelector((state) => state.search.searchedPhrase);
+    dispatch(searchBooks({ search: searchWord, page: page }));
+  }, [dispatch, searchWord, page]);
 
   return (
     <MainNewBooksWrapper>
       <PageTitle children={`search Result`} />
       <BackLink />
       <CardsDiv>
-        {searchedBooks.books?.map(item =>
+        {searchedBooks?.map(item =>
           <Card
             key={item.isbn13}
             image={item.image}
@@ -45,7 +44,7 @@ export const SearchResultPage: React.FC = () => {
             setPage(value);
             window.scroll(0, 0);
           }}
-          count={+searchedBooks.total || 1}
+          count={+searchedBooksTotal || 1}
         />
       </PaginationDiv>
       <Subscribe />

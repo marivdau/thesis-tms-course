@@ -1,41 +1,39 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { SearchResponce } from "./types";
+import { Books, SearchResponce } from "./types";
 
-const searchSlice = createSlice({
-  name: 'searchSlice',
+const searchedBooksSlice = createSlice({
+  name: 'searchedBooksSlice',
   initialState: {
-    searchedBooks: {} as SearchResponce,
-    isInProgress: false,
-    isCompleted: false,
-    searchedPhrase: '',
+    searchedBooks: [] as Books,
+    searchedBooksPage: 1,
+    searchedBooksTotal: 1,
+    searchedBooksLoading: false,
+    searchedBooksKeyword: '',
   },
 
   reducers: {
-    search(state, action) {
-      state.isInProgress = true;
-      state.searchedPhrase = action.payload.phrase;
-    },
-    getSearchedBooks(state, action) {
-      state.isInProgress = true;
-    },
-    searchSuccess(state, action: { payload: SearchResponce }) {
-      state.isInProgress = false;
-      state.isCompleted = true;
-      state.searchedBooks = action.payload;
+    searchBooks(state, action: { payload: { search: string, page: number } }) {
+      state.searchedBooksLoading = true;
+      state.searchedBooksPage = action.payload.page;
     },
 
-    searchFailure(state) {
-      state.isInProgress = false;
+    searchBooksSuccess(state, action: { payload: SearchResponce }) {
+      state.searchedBooksLoading = false;
+      state.searchedBooks = action.payload.books;
     },
 
-    reset(state, action) {
-      state.searchedPhrase = '';
-      state.searchedBooks = action.payload;
+    searchBooksFailure(state) {
+      state.searchedBooksLoading = false;
+    },
+
+    resetBooks(state, action) {
+      state.searchedBooksKeyword = '';
+      state.searchedBooks = [];
     },
   },
 });
 
-export const { search, getSearchedBooks, searchSuccess, searchFailure, reset } =
-  searchSlice.actions;
+export const { searchBooks, searchBooksSuccess, searchBooksFailure, resetBooks } =
+  searchedBooksSlice.actions;
 
-export const searchReducer = searchSlice.reducer;
+export const searchReducer = searchedBooksSlice.reducer;

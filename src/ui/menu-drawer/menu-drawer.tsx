@@ -93,6 +93,11 @@ export default function TemporaryDrawer() {
         ?
         <ButtonDiv>
           <Button
+            onKeyDown={(event) => {
+              if (event.key === 'Enter') {
+                dispatch(authorizationLogout())
+              }
+            }}
             variant="contained"
             color="primary"
             fullWidth={true}

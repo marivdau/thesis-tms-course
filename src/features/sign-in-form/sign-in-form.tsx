@@ -24,7 +24,7 @@ export const SignInForm: React.FC = () => {
   }
 
   return (
-    <SignInFormWrapper>
+    <SignInFormWrapper onSubmit={(event) => { event.preventDefault(); dispatch(authorization({ email, password })) }}>
       <EmailInputDiv>
         <OutlinedInput
           type='email'
@@ -58,9 +58,9 @@ export const SignInForm: React.FC = () => {
 
       <ButtonDiv>
         <Button
+          type="submit"
           variant="contained"
           fullWidth={true}
-          onClick={() => dispatch(authorization({ email, password }))}
         >
           Sign In
         </Button>
