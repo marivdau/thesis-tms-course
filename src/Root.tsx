@@ -13,7 +13,7 @@ import { Cart } from './pages/cart';
 import { Account } from './pages/account';
 import { AllBooksPage } from './pages/all-books';
 import { Payment } from './pages/payment-page';
-import { SearchResultPage } from '#features/search/all-search-result';
+import { SearchResultPage } from './pages/all-search-result';
 
 function Root() {
   return (

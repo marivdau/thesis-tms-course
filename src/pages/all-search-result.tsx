@@ -5,8 +5,8 @@ import styled from "styled-components";
 import { Pagination } from "@mui/material";
 import { Subscribe } from "#features/subscribe/subscribe";
 import { BackLink } from "#features/back-link/back-link";
-import { useAppDispatch, useAppSelector } from "../../hooks";
-import { getSearchedBooks } from "./search.slice";
+import { useAppDispatch, useAppSelector } from "../hooks";
+import { getSearchedBooks } from "../features/search/search.slice";
 
 export const SearchResultPage: React.FC = () => {
   const dispatch = useAppDispatch();
