@@ -1,22 +1,22 @@
 import styled from 'styled-components';
 import { Books } from './types';
-import { ListItem, ListItemButton, Typography } from '@mui/material';
+import { Button, ListItem, ListItemButton, Typography } from '@mui/material';
 import { Link, Link as RouteLink } from 'react-router-dom';
 import { useState } from 'react';
 
 type DropDownProps = {
   books: Books;
-  open: boolean;
+  keyword: string;
 };
 
 export const SearchBooksDropDown: React.FC<DropDownProps> = ({
   books,
-  open,
+  keyword,
 }) => {
   const [dropdown, setDropdown] = useState(false);
 
   return (
-    <DropDownWrapper style={{ display: open ? 'block' : 'none' }}>
+    <DropDownWrapper style={{ display: !dropdown ? 'block' : 'none' }}>
       {!!books &&
         books?.map((element, index) => (
           <ListItem component="div" disablePadding key={index}>
@@ -36,15 +36,16 @@ export const SearchBooksDropDown: React.FC<DropDownProps> = ({
       }
 
       {books?.length > 0 &&
-        <ListItem
+        <Button
+          fullWidth
           component={Link}
           to={'/search-result'}
           onClick={() => setDropdown(!dropdown)}
         >
           View all results
-        </ListItem>}
+        </Button>}
 
-      {!books?.length && <ListItem>Sorry, there is no books match your request</ListItem>}
+      {!books?.length && keyword && <ListItem>Sorry, there is no books match your request</ListItem>}
     </DropDownWrapper>
   );
 };

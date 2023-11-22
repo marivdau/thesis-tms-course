@@ -2,7 +2,7 @@ import { Card } from "#ui/card/card"
 import { PageTitle } from "#ui/page-title/page-title"
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import { Pagination } from "@mui/material";
+import { Pagination, Typography } from "@mui/material";
 import { Subscribe } from "#features/subscribe/subscribe";
 import { BackLink } from "#features/back-link/back-link";
 import { useAppDispatch, useAppSelector } from "../hooks";
@@ -12,7 +12,7 @@ export const SearchResultPage: React.FC = () => {
   const dispatch = useAppDispatch();
   const [page, setPage] = useState(1);
   const searchWord = useAppSelector(state => state.search.searchedBooksKeyword);
-  const { searchedBooks, searchedBooksTotal } = useAppSelector(({ search }) => search)
+  const { searchedBooks } = useAppSelector(({ search }) => search);
 
   useEffect(() => {
     dispatch(searchBooks({ search: searchWord, page: page }));
@@ -20,19 +20,24 @@ export const SearchResultPage: React.FC = () => {
 
   return (
     <MainNewBooksWrapper>
-      <PageTitle children={`search Result`} />
+      <PageTitle children={searchWord ? `search Result for ${searchWord}` : `search result page`} />
       <BackLink />
       <CardsDiv>
-        {searchedBooks?.map(item =>
-          <Card
-            key={item.isbn13}
-            image={item.image}
-            url={item.url}
-            title={item.title}
-            subtitle={item.subtitle}
-            price={item.price}
-            isbn13={item.isbn13}
-          />)}
+        {searchWord
+          ?
+          searchedBooks?.books?.map(item =>
+            <Card
+              key={item.isbn13}
+              image={item.image}
+              url={item.url}
+              title={item.title}
+              subtitle={item.subtitle}
+              price={item.price}
+              isbn13={item.isbn13}
+            />)
+          :
+          <Typography variant="h4">Let's search something!</Typography>
+        }
       </CardsDiv>
       <PaginationDiv>
         <Pagination
@@ -44,7 +49,7 @@ export const SearchResultPage: React.FC = () => {
             setPage(value);
             window.scroll(0, 0);
           }}
-          count={+searchedBooksTotal || 1}
+          count={+searchedBooks.total || 1}
         />
       </PaginationDiv>
       <Subscribe />

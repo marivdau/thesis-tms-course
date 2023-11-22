@@ -4,7 +4,7 @@ import { SearchBooksDropDown } from "./search-books-drop-down";
 import styled from "styled-components";
 import Cancel from '@mui/icons-material/Cancel';
 import Search from '@mui/icons-material/Search';
-import { InputAdornment, TextField, Tooltip } from "@mui/material";
+import { InputAdornment, TextField } from "@mui/material";
 import { resetBooks, searchBooks } from "./search.slice";
 
 type Props = {};
@@ -33,24 +33,26 @@ export const SearchComponent: React.FC<Props> = () => {
         InputProps={
           {
             endAdornment: <InputAdornment position="end">
-              <Tooltip title='Clear'>
-                <Cancel
-                  sx={{ display: searchedText ? 'block' : 'none' }}
-                  onClick={() => {
-                    setSearchedText('');
-                    dispatch(resetBooks(''));
-                  }}
-                />
-              </Tooltip>
-              <Search sx={{ display: !searchedText ? 'block' : 'none' }} />
+              <Cancel
+                titleAccess="Clear"
+                sx={{ display: searchedText ? 'block' : 'none' }}
+                onClick={() => {
+                  setSearchedText('');
+                  dispatch(resetBooks(''));
+                }}
+              />
+              <Search
+                titleAccess="Search"
+                sx={{ display: !searchedText ? 'block' : 'none' }}
+              />
             </InputAdornment>
           }
         }
       />
       {
         <SearchBooksDropDown
-          books={searchedBooks}
-          open={!!searchedText}
+          books={searchedBooks.books}
+          keyword={searchedText}
         />
       }
     </RelativeContainer>
