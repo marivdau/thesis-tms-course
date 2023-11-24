@@ -4,7 +4,7 @@ import { SearchBooksDropDown } from "./search-books-drop-down";
 import styled from "styled-components";
 import Cancel from '@mui/icons-material/Cancel';
 import Search from '@mui/icons-material/Search';
-import { InputAdornment, TextField } from "@mui/material";
+import { InputAdornment, OutlinedInput } from "@mui/material";
 import { resetBooks, searchBooks } from "./search.slice";
 
 type Props = {};
@@ -18,10 +18,10 @@ export const SearchComponent: React.FC<Props> = () => {
 
   return (
     <RelativeContainer>
-      <TextField
-        variant="outlined"
+      <OutlinedInput
         placeholder="Search"
         fullWidth
+        sx={{ color: 'var(--text-primary-color)' }}
         color="primary"
         value={searchedText}
         onChange={(event) => {
@@ -31,23 +31,21 @@ export const SearchComponent: React.FC<Props> = () => {
           }
           dispatch(searchBooks({ search: event.currentTarget.value, page: page }));
         }}
-        InputProps={
-          {
-            endAdornment: <InputAdornment position="end">
-              <Cancel
-                titleAccess="Clear"
-                sx={{ display: searchedText ? 'block' : 'none' }}
-                onClick={() => {
-                  setSearchedText('');
-                  dispatch(resetBooks(''));
-                }}
-              />
-              <Search
-                titleAccess="Search"
-                sx={{ display: !searchedText ? 'block' : 'none' }}
-              />
-            </InputAdornment>
-          }
+        endAdornment={
+          <InputAdornment position="end">
+            <Cancel
+              titleAccess="Clear"
+              sx={{ display: searchedText ? 'block' : 'none', color: 'var(--text-primary-color)' }}
+              onClick={() => {
+                setSearchedText('');
+                dispatch(resetBooks(''));
+              }}
+            />
+            <Search
+              titleAccess="Search"
+              sx={{ display: !searchedText ? 'block' : 'none', color: 'var(--text-primary-color)' }}
+            />
+          </InputAdornment>
         }
       />
       {

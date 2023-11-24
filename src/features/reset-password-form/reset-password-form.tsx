@@ -1,4 +1,4 @@
-import { Button, OutlinedInput, TextField, Typography } from "@mui/material";
+import { Button, OutlinedInput } from "@mui/material";
 import { useState } from "react";
 import styled from "styled-components"
 import { useAppDispatch } from "../../hooks";
@@ -40,6 +40,7 @@ export const ResetPasswordForm: React.FC = () => {
             <OutlinedInput
               type="email"
               placeholder="Your email"
+              sx={{ color: 'var(--text-primary-color)' }}
               fullWidth={true}
               value={email}
               onChange={({ currentTarget }) => setEmail(currentTarget.value)}

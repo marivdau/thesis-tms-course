@@ -110,8 +110,7 @@ export const BookPreviewPage: React.FC = () => {
                   onClick={() => {
                     dispatch(addItem(bookPreview));
                     setIsClicked(!isClicked);
-                  }
-                  }
+                  }}
                 >
                   Add to cart
                 </Button>
@@ -123,14 +122,14 @@ export const BookPreviewPage: React.FC = () => {
           <TabContext value={value}>
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
               <TabList onChange={handleChange} centered>
-                <Tab label="Desription" value="1" />
-                <Tab label="Author" value="2" />
-                <Tab label="Subtitle" value="3" />
+                <Tab label="Desription" value="1" sx={{ color: 'var(--text-primary-color)' }} />
+                <Tab label="Author" value="2" sx={{ color: 'var(--text-primary-color)' }} />
+                <Tab label="Subtitle" value="3" sx={{ color: 'var(--text-primary-color)' }} />
               </TabList>
             </Box>
-            <TabPanel value="1">{bookPreview.desc}</TabPanel>
-            <TabPanel value="2">{bookPreview.authors}</TabPanel>
-            <TabPanel value="3">{bookPreview.subtitle}</TabPanel>
+            <TabPanel value="1" sx={{ color: 'var(--text-primary-color)' }}>{bookPreview.desc}</TabPanel>
+            <TabPanel value="2" sx={{ color: 'var(--text-primary-color)' }}>{bookPreview.authors}</TabPanel>
+            <TabPanel value="3" sx={{ color: 'var(--text-primary-color)' }}>{bookPreview.subtitle}</TabPanel>
           </TabContext>
         </BookInfoDivSecondLine>
       </BookInfoDiv>

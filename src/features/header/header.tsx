@@ -31,7 +31,7 @@ export const Header = () => {
         <IconsDiv>
           <Tooltip title='All books'>
             <Button component={Link} to="/all">
-              <MenuBookIcon />
+              <MenuBookIcon sx={{ color: 'var(--header-menu-button-icon-color)' }} />
             </Button>
           </Tooltip>
         </IconsDiv>
@@ -39,7 +39,7 @@ export const Header = () => {
           <Tooltip title='Favourites'>
             <Button component={Link} to="/favourites">
               <Badge badgeContent={favouritesAmount} color="primary">
-                <Favourites />
+                <Favourites sx={{ color: 'var(--header-menu-button-icon-color)' }} />
               </Badge>
             </Button>
           </Tooltip>
@@ -48,7 +48,7 @@ export const Header = () => {
           <Tooltip title='Cart'>
             <Button component={Link} to="/cart">
               <Badge badgeContent={cartAmount} color="primary">
-                <Cart />
+                <Cart sx={{ color: 'var(--header-menu-button-icon-color)' }} />
               </Badge>
             </Button>
           </Tooltip>

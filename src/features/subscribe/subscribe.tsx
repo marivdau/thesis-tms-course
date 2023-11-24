@@ -38,6 +38,7 @@ export const Subscribe = () => {
             fullWidth
             sx={{
               display: !isCompletedSubscribtion ? 'block' : 'none',
+              color: 'var(--text-primary-color)'
             }}
             onChange={({ currentTarget }) => setEmail(currentTarget.value)} />
         </InputDiv>

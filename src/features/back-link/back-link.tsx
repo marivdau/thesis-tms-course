@@ -7,7 +7,9 @@ export const BackLink: React.FC = () => (
   <BackLinkWrapper>
     <IconButton component={Link} to="/">
       <Tooltip title='Back to main page'>
-        <ArrowBack />
+        <ArrowBack
+          sx={{ color: 'var(--text-primary-color)' }}
+        />
       </Tooltip>
     </IconButton>
   </BackLinkWrapper>

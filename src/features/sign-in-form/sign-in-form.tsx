@@ -29,6 +29,7 @@ export const SignInForm: React.FC = () => {
         <OutlinedInput
           type='email'
           placeholder="Your email *"
+          sx={{ color: 'var(--text-primary-color)' }}
           fullWidth={true}
           value={email}
           onChange={({ currentTarget }) => setEmail(currentTarget.value)}
@@ -36,6 +37,7 @@ export const SignInForm: React.FC = () => {
       </EmailInputDiv>
       <PasswordInputDiv>
         <OutlinedInput
+          sx={{ color: 'var(--text-primary-color)' }}
           placeholder="Your password *"
           fullWidth={true}
           type={showPassword ? 'text' : 'password'}

@@ -1,4 +1,4 @@
-import { Button, IconButton, InputAdornment, OutlinedInput, TextField, Typography } from "@mui/material"
+import { Button, IconButton, InputAdornment, OutlinedInput } from "@mui/material"
 import styled from "styled-components"
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { setConfirmedPassword, setEmail, setName, setPassword } from "./sign-up-form.slice";
@@ -50,10 +50,10 @@ export const SignUpForm: React.FC = () => {
         }
         }>
           <NameInputDiv>
-            <TextField
+            <OutlinedInput
               type="text"
               placeholder="Your name *"
-              variant="outlined"
+              sx={{ color: 'var(--text-primary-color)' }}
               fullWidth={true}
               value={name}
               onChange={({ currentTarget }) => dispatch(setName(currentTarget.value))}
@@ -62,6 +62,7 @@ export const SignUpForm: React.FC = () => {
           <EmailInputDiv>
             <OutlinedInput
               placeholder="Your email *"
+              sx={{ color: 'var(--text-primary-color)' }}
               type='email'
               fullWidth={true}
               value={email}
@@ -73,6 +74,7 @@ export const SignUpForm: React.FC = () => {
           <PasswordInputDiv>
             <OutlinedInput
               placeholder="Your password *"
+              sx={{ color: 'var(--text-primary-color)' }}
               fullWidth={true}
               value={password}
               onChange={({ currentTarget }) =>
@@ -97,6 +99,7 @@ export const SignUpForm: React.FC = () => {
               placeholder="Confirm password *"
               fullWidth={true}
               value={confirmedPassword}
+              sx={{ color: 'var(--text-primary-color)' }}
               onChange={({ currentTarget }) =>
                 dispatch(setConfirmedPassword(currentTarget.value))
               }

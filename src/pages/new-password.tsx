@@ -1,7 +1,7 @@
 import { setConfirmedPassword, setPassword } from "#features/sign-up-form/sign-up-form.slice";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import { Button, IconButton, InputAdornment, OutlinedInput, Typography } from "@mui/material"
+import { Button, IconButton, InputAdornment, OutlinedInput } from "@mui/material"
 import { useState } from "react";
 import styled from "styled-components"
 import { useAppDispatch, useAppSelector } from "../hooks";
@@ -53,6 +53,7 @@ export const NewPassword: React.FC = () => {
             <OutlinedInput
               fullWidth={true}
               type={showNewPassword ? 'text' : 'password'}
+              sx={{ color: 'var(--text-primary-color)' }}
               endAdornment={
                 <InputAdornment position="end">
                   <IconButton
@@ -71,6 +72,7 @@ export const NewPassword: React.FC = () => {
             <OutlinedInput
               fullWidth={true}
               type={showNewConfPassword ? 'text' : 'password'}
+              sx={{ color: 'var(--text-primary-color)' }}
               endAdornment={
                 <InputAdornment position="end">
                   <IconButton
