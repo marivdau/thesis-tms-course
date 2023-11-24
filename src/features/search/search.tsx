@@ -63,7 +63,7 @@ const RelativeContainer = styled.div`
   width: 90%;
   color: var(--text-primary-color);
 
-  @media screen and (max-width: 900px) {
+  @media screen and (max-width: 1200px) {
     width: 90%;
     margin: auto;
   }

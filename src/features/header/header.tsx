@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import logo from '../../images/boosktore-logo.png';
+import DefaultLogo from '../../images/boosktore-logo.png';
+import GrayLogo from '../../images/bookstore-logo-gray.png';
 import Favourites from '@mui/icons-material/Favorite';
 import Cart from '@mui/icons-material/ShoppingCart';
 import { Badge, Button, Tooltip } from '@mui/material';
@@ -13,6 +14,7 @@ import { ThemeModeSwitcher } from '#features/theme-mode-switcher/theme-mode-swit
 export const Header = () => {
   const { favourites } = useAppSelector(({ favourites }) => favourites);
   const { basket } = useAppSelector(({ order }) => order);
+  const theme = useAppSelector((state) => state.themeMode.isDarkThemeActive)
 
   const favouritesAmount: number = favourites.length;
   const cartAmount: number = basket.length;
@@ -21,7 +23,13 @@ export const Header = () => {
     <HeaderWrapper>
       <LogoDiv>
         <Link to={'/'}>
-          <LogoImg src={logo} alt="logo" />
+          {
+            theme
+              ?
+              <LogoImg src={GrayLogo} alt="logo-gray" />
+              :
+              <LogoImg src={DefaultLogo} alt="logo-default" />
+          }
         </Link>
       </LogoDiv>
       <SearchDiv>
@@ -31,7 +39,7 @@ export const Header = () => {
         <IconsDiv>
           <Tooltip title='All books'>
             <Button component={Link} to="/all">
-              <MenuBookIcon sx={{ color: 'var(--header-menu-button-icon-color)' }} />
+              <MenuBookIcon sx={{ color: 'var(--header-menu-button-icon-color)' }} fontSize='large' />
             </Button>
           </Tooltip>
         </IconsDiv>
@@ -39,7 +47,7 @@ export const Header = () => {
           <Tooltip title='Favourites'>
             <Button component={Link} to="/favourites">
               <Badge badgeContent={favouritesAmount} color="primary">
-                <Favourites sx={{ color: 'var(--header-menu-button-icon-color)' }} />
+                <Favourites sx={{ color: 'var(--header-menu-button-icon-color)' }} fontSize='large' />
               </Badge>
             </Button>
           </Tooltip>
@@ -48,7 +56,7 @@ export const Header = () => {
           <Tooltip title='Cart'>
             <Button component={Link} to="/cart">
               <Badge badgeContent={cartAmount} color="primary">
-                <Cart sx={{ color: 'var(--header-menu-button-icon-color)' }} />
+                <Cart sx={{ color: 'var(--header-menu-button-icon-color)' }} fontSize='large' />
               </Badge>
             </Button>
           </Tooltip>
@@ -72,7 +80,7 @@ const HeaderWrapper = styled.div`
   border-bottom: 1px solid var(--text-secondary-color);
   background-color: var(--background-primary-color);
 
-  @media screen and (max-width: 800px) {
+  @media screen and (max-width: 1200px) {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -84,9 +92,9 @@ const HeaderWrapper = styled.div`
 const LogoDiv = styled.div`
   width: 200px;
   height: 70px;
-  margin-right: 50px;
+  margin: 0 50px;
 
-  @media screen and (max-width: 800px) {
+  @media screen and (max-width: 1200px) {
     margin: 10px 0;
   }
 `;
@@ -100,7 +108,7 @@ const LogoImg = styled.img`
 const SearchDiv = styled.div`
   width: 600px;
 
-  @media screen and (max-width: 800px) {
+  @media screen and (max-width: 1200px) {
     width: 100%;
     margin: 0 20px;
   }
@@ -111,15 +119,15 @@ const HeaderMenuDiv = styled.div`
   justify-content: space-between;
   flex-direction: row;
 
-  @media screen and (max-width: 800px) {
+  @media screen and (max-width: 1200px) {
     margin: 20px 0;
   }
 `;
 
 const IconsDiv = styled.div`
-  margin-right: 30px;
+  margin: 0 50px;
 
-  @media screen and (max-width: 800px) {
+  @media screen and (max-width: 1200px) {
     margin: 0 5px;
   }
 `;

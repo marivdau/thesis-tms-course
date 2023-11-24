@@ -132,7 +132,7 @@ export default function TemporaryDrawer() {
         <React.Fragment key={anchor}>
           <Tooltip title='Account'>
             <Button onClick={toggleDrawer(anchor, true)}>
-              <Person sx={{ color: 'var(--header-menu-button-icon-color)' }} />
+              <Person sx={{ color: 'var(--header-menu-button-icon-color)' }} fontSize='large' />
             </Button>
           </Tooltip>
           <Drawer

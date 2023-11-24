@@ -43,7 +43,7 @@ export const AllBooksPage: React.FC = () => {
             setPage(value); 
             window.scroll(0, 0);
           }}
-          count={+allBooks.total || 1}
+          count={+allBooks.total || 1}        
         />
       </PaginationDiv>
       <Subscribe />
