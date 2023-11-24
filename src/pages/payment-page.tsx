@@ -15,11 +15,11 @@ export const Payment: React.FC = () => {
   const totalSumToPay: string = useAppSelector((state) => state.order.totalSum);
 
   return (
-    <CartWrapper>
+    <PaymentWrapper>
       <Confetti
         style={{ display: showMeConfetti ? 'flex' : 'none' }}
-        width={1200}
-        height={900}
+        width={window.innerWidth || 300}
+        height={window.innerHeight || 200}
         numberOfPieces={200}
       />
       <PageTitle children='Payment page' />
@@ -29,39 +29,39 @@ export const Payment: React.FC = () => {
         </Tooltip>
       </Link>
       <PaymentDiv>
-        <Stack spacing={2}>
+        <Stack spacing={6}>
           {!showMeConfetti
             ?
             <>
-              <Typography variant="h5">The total sum to pay is ${totalSumToPay}</Typography>
-              <Typography variant="h6">Click the button below to pay your order</Typography>
+              <PaymentTextSpan>The total sum to pay is ${totalSumToPay}</PaymentTextSpan>
+              <PaymentTextSpan>Click the button below to pay your order</PaymentTextSpan>
             </>
             :
-            <Typography variant="h5">Success!</Typography>
+            <PaymentTextSpan>Success!</PaymentTextSpan>
           }
           <Button
             variant="contained"
             onClick={() => {
               setShowMeConfetti(!showMeConfetti);
-              dispatch(clearCart());   
+              dispatch(clearCart());
             }}
           >
             {!showMeConfetti ? 'Pay your order' : 'Confetti stop'}
           </Button>
         </Stack>
       </PaymentDiv>
-    </CartWrapper>
+    </PaymentWrapper>
   )
 }
 
-const CartWrapper = styled.div`
+const PaymentWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  margin-bottom: 40px;
+  background-color: var(--background-primary-color);
 `;
 
 const PaymentDiv = styled.div`
-  width: 300px;
+  width: 500px;
   margin: auto;
   padding: 30px;
   text-align: center;
@@ -71,4 +71,11 @@ const PaymentDiv = styled.div`
     margin: auto;
     padding: 0;
   }
+`;
+
+const PaymentTextSpan = styled.span`
+  color: var(--text-primary-second-color);
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 32px;
 `;

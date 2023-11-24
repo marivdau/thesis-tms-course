@@ -152,11 +152,12 @@ export const AccountForm: React.FC = () => {
 const AccountFormWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 50px;
+  background-color: var(--background-primary-color);
 
   @media screen and (max-width: 1000px) {
-    width: 100%;
+    width: 90%;
     align-items: center;
+    margin: auto;
   }
 `;
 

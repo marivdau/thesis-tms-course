@@ -30,11 +30,13 @@ export const SignUpForm: React.FC = () => {
     <>
       {isCompleted
         ?
-        <SignInSuccess>
-          <Typography align="center" variant="h5">Congratulations {name}!</Typography>
-          <Typography align="center" variant="h5">You are registered now.</Typography>
+        <>
+          <SignInSuccess>
+            <SuccessSpan>Congratulations {name}!</SuccessSpan>
+            <SuccessSpan>You are registered</SuccessSpan>
+          </SignInSuccess>
           <Button component={Link} to={'/sign-in'}>Click here to proceed to sign in page</Button>
-        </SignInSuccess>
+        </>
         :
         <SignInFormWrapper onSubmit={(event) => {
           event?.preventDefault();
@@ -133,6 +135,7 @@ const SignInFormWrapper = styled.form`
   display: flex;
   flex-direction: column;
   width: 500px;
+  background-color: var(--background-primary-color);
   margin: auto;
 
   @media screen and (max-width: 900px) {
@@ -195,4 +198,12 @@ const SignInSuccess = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
+`;
+
+const SuccessSpan = styled.span`
+  font-size: 26px;
+  line-height: 30px;
+  font-weight: 600;
+  text-align: center;
+  color: var(--text-primary-second-color);
 `;

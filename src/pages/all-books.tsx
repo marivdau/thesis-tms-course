@@ -53,6 +53,7 @@ export const AllBooksPage: React.FC = () => {
 
 const MainNewBooksWrapper = styled.div`
   display: flex;
+  background-color: var(--background-primary-color);
   flex-direction: column;
 `;
 

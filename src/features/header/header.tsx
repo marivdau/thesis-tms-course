@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 import { SearchComponent } from '#features/search/search';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
 import { useAppSelector } from '../../hooks';
+import { ThemeModeSwitcher } from '#features/theme-mode-switcher/theme-mode-switcher';
 
 export const Header = () => {
   const { favourites } = useAppSelector(({ favourites }) => favourites);
@@ -55,6 +56,7 @@ export const Header = () => {
         <IconsDiv>
           <TemporaryDrawer />
         </IconsDiv>
+        <ThemeModeSwitcher />
       </HeaderMenuDiv>
     </HeaderWrapper>
   )
@@ -68,6 +70,7 @@ const HeaderWrapper = styled.div`
   align-items: center;
   height: 70px;
   border-bottom: 1px solid var(--text-secondary-color);
+  background-color: var(--background-primary-color);
 
   @media screen and (max-width: 800px) {
     display: flex;
@@ -114,7 +117,7 @@ const HeaderMenuDiv = styled.div`
 `;
 
 const IconsDiv = styled.div`
-  margin-right: 20px;
+  margin-right: 30px;
 
   @media screen and (max-width: 800px) {
     margin: 0 5px;

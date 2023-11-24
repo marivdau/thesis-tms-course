@@ -1,15 +1,15 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import ArrowBack from "@mui/icons-material/ArrowBack";
-import { Tooltip } from '@mui/material';
+import { IconButton, Tooltip } from '@mui/material';
 
 export const BackLink: React.FC = () => (
   <BackLinkWrapper>
-    <Link to="/">
+    <IconButton component={Link} to="/">
       <Tooltip title='Back to main page'>
         <ArrowBack />
       </Tooltip>
-    </Link>
+    </IconButton>
   </BackLinkWrapper>
 );
 
@@ -18,4 +18,5 @@ const BackLinkWrapper = styled.div`
   flex-direction: row;
   align-items: center;
   margin-bottom: 30px;
+  padding-left: 10px;
 `;

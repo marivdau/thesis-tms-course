@@ -124,16 +124,18 @@ export const Cart: React.FC = () => {
 const CartWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  margin-bottom: 40px;
+  background-color: var(--background-primary-color);
 `;
 
-const OrderDiv = styled.div`   
+const OrderDiv = styled.div`
+  display: flex;
+  flex-direction: column;
   width: 300px;
   margin-left: 60%;
   padding: 30px;
   
   @media screen and (max-width: 900px) {
-    width: 100%;
+    width: 90%;
     margin: auto;
     padding: 0;
   }
@@ -186,7 +188,7 @@ const TotalSpan = styled.div`
   font-size: 36px;
   font-weight: 400;
   line-height: 60px;
-  color: var(--text-primary-color);
+  color: var(--text-primary-second-color);
 `;
 
 const ButtonsDiv = styled.div`

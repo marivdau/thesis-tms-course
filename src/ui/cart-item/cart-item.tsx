@@ -48,9 +48,9 @@ export const CartItem: React.FC<PropsCart> = (props: PropsCart) => {
               onClick={() => dispatch(decreaseItemQuantity(props.isbn13))}>
               <Remove />
             </Button>
-            <Typography variant="h6">
+            <QuantitySpan>
               {props.quantity}
-            </Typography>
+            </QuantitySpan>
             <Button
               variant="text"
               onClick={() => dispatch(increaseItemQuantity(props.isbn13))}>
@@ -77,13 +77,14 @@ export const CartItem: React.FC<PropsCart> = (props: PropsCart) => {
 }
 
 const CartWrapper = styled.div`
+  background-color: var(--background-primary-color);
+
   @media screen and (max-width: 900px) {
     margin-bottom: 20px;
   }
 `;
 
 const Cart = styled.div`
-  width: 100%;
   padding: 30px;
   display: flex;
   align-items: center;
@@ -94,6 +95,8 @@ const Cart = styled.div`
     flex-direction: row;
     padding: 0;
     align-items: center;
+    width: 90%;
+    margin: auto;;
   }
 `;
 
@@ -141,6 +144,13 @@ const CartItemQuantity = styled.div`
   align-items: center;
 `;
 
+const QuantitySpan = styled.span`
+  color: var(--text-primary-second-color);
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 20px;
+`;
+
 const InfoLineDiv = styled.div`
   margin-right: 40px;
   display: flex;
@@ -167,6 +177,7 @@ const PriceSpan = styled.span`
   margin-right: 100px;
   display: flex;
   flex-direction: row;
+  color: var(--text-primary-second-color);
   align-items: center;
 
   @media screen and (max-width: 900px) {

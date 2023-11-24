@@ -26,14 +26,14 @@ export const NewPassword: React.FC = () => {
   return (
     <NewPasswordWrapper>
       <TypographyDiv>
-        <Typography variant="h5" sx={{ textTransform: 'uppercase' }}>new password</Typography>
+        <TypographySpan>new password</TypographySpan>
       </TypographyDiv>
       {resetPassword
         ?
         <>
           <ResetPasswordWrapper>
             <EmailTextDiv>
-              <Typography>Your password was successfully reset!</Typography>
+              <EmailTextPharagraph>Your password was successfully reset!</EmailTextPharagraph>
             </EmailTextDiv>
             <ButtonDiv>
               <Button
@@ -113,11 +113,12 @@ const NewPasswordWrapper = styled.form`
   flex-direction: column;
   padding: 100px;
   width: 500px;
+  background-color: var(--background-primary-color);
   margin: auto;
 
   @media screen and (max-width: 900px) {
-    width: 100%;
-    padding: 0;
+    width: 90%;
+    padding: 0 0 100px 0;
   }
 `;
 
@@ -129,6 +130,14 @@ const TypographyDiv = styled.div`
   @media screen and (max-width: 900px) {
     width: 100%;
   }
+`;
+
+const TypographySpan = styled.span`
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 30px;
+  text-transform: uppercase;
+  color: var(--text-primary-color);
 `;
 
 const PasswordInputDiv = styled.div`
@@ -170,4 +179,12 @@ const EmailTextDiv = styled.div`
   @media screen and (max-width: 900px) {
     width: 100%;
   }
+`;
+
+const EmailTextPharagraph = styled.p`
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 20px;
+  color: var(--text-primary-second-color);
+  text-align: center;
 `;

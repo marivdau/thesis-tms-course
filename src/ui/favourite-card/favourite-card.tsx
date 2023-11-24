@@ -55,6 +55,7 @@ const CardWrapper = styled.div`
   align-items: center;
   justify-content: flex-start;
   flex-direction: row;
+  background-color: var(--background-primary-color);
 
   @media screen and (max-width: 900px) {
     padding: 20px 0;
@@ -121,6 +122,7 @@ const PriceRaitingDiv = styled.div`
 const PriceSpan = styled.span`
   font-size: 16px;
   font-weight: 700;
+  color: var(--text-primary-color);
   margin-right: 100px;
 `;
 

@@ -1,8 +1,6 @@
 .App {
-  max-width: 1170px;
-  padding: 0 15px;
-  margin: auto;
-  position: relative;
+  background-color: var(--background-primary-color);
+  height: 100vh;
 
   --text-primary-color: #313037;
   --text-primary-second-color: #5B5A62;
@@ -12,16 +10,22 @@
   --green-color: #CAEFF0;
   --orange-color: #FEE9E2;
   --purple-color: #F4EEFD;
-
+  --background-primary-color: #fffcfc;
+  --background-secondary-color: #ffffff;
+  --link-primary-color: #1976d2;
 
   &.dark {
     --text-primary-color: #AFB2B6;
     --text-primary-second-color: #E7E7E7;
     --text-secondary-color: #F7F7F7;
     --contextual-red-color: #FC857F;
-    --blue-color: #D7E4FD;
-    --green-color: #CAEFF0;
-    --orange-color: #FEE9E2;
-    --purple-color: #F4EEFD;
+    --blue-color: #626874;
+    --green-color: #536161;
+    --orange-color: #635955;
+    --purple-color: #514c59;
+    --background-primary-color: #423b3b;
+    --background-secondary-color: #f7c7c7;
+    --link-primary-color: #b484bc;
+    
   }
 }

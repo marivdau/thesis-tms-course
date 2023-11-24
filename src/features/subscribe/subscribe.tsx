@@ -1,4 +1,4 @@
-import { Button, TextField, Typography } from "@mui/material";
+import { Button, OutlinedInput } from "@mui/material";
 import styled from "styled-components";
 import Send from "@mui/icons-material/Send"
 import { useAppDispatch, useAppSelector } from "../../hooks";
@@ -30,10 +30,11 @@ export const Subscribe = () => {
       </SubscribeTextDiv>
       <SubscribeInputDiv>
         <InputDiv>
-          <TextField
+          <OutlinedInput
             id="outlined-basic"
-            label="Your email"
-            variant="outlined"
+            placeholder="Your email"
+            color="secondary"
+            type="email"
             fullWidth
             sx={{
               display: !isCompletedSubscribtion ? 'block' : 'none',
@@ -81,6 +82,7 @@ const SubscribeText = styled.p`
   text-transform: uppercase;
   font-size: 30px;
   font-weight: 400;
+  color: var(--text-primary-second-color);
   line-height: 45px;
   
   @media screen and (max-width: 700px) {
@@ -96,6 +98,7 @@ const SubscribeSubtitle = styled.p`
   all: unset;
   font-size: 20px;
   font-weight: 200;
+  color: var(--text-primary-second-color);
   line-height: 25px;
   
   @media screen and (max-width: 700px) {

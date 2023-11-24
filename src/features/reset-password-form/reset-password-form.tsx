@@ -1,4 +1,4 @@
-import { Button, TextField, Typography } from "@mui/material";
+import { Button, OutlinedInput, TextField, Typography } from "@mui/material";
 import { useState } from "react";
 import styled from "styled-components"
 import { useAppDispatch } from "../../hooks";
@@ -13,18 +13,15 @@ export const ResetPasswordForm: React.FC = () => {
   return (
     <ResetPasswordFormWrapper>
       <TypographyDiv>
-        <Typography
-          variant="h5"
-          sx={{ textTransform: 'uppercase' }}
-        >
+        <TypographySpan>
           reset password
-        </Typography>
+        </TypographySpan>
       </TypographyDiv>
       {sentEmail
         ?
         <ResetPasswordWrapper>
           <EmailTextDiv>
-            <Typography>You will receive an email on the address <Typography variant="overline">{email}</Typography>  with a link to reset your password!</Typography>
+            <EmailTextPharagraph>You will receive an email on the address <EmailSpan>{email}</EmailSpan>  with a link to reset your password!</EmailTextPharagraph>
           </EmailTextDiv>
           <ButtonDiv>
             <Button
@@ -40,9 +37,9 @@ export const ResetPasswordForm: React.FC = () => {
         :
         <>
           <EmailInputDiv>
-            <TextField
-              label='Your email'
-              variant="outlined"
+            <OutlinedInput
+              type="email"
+              placeholder="Your email"
               fullWidth={true}
               value={email}
               onChange={({ currentTarget }) => setEmail(currentTarget.value)}
@@ -69,6 +66,7 @@ const ResetPasswordFormWrapper = styled.form`
   display: flex;
   flex-direction: column;
   width: 500px;
+  background-color: var(--background-primary-color);
   margin: auto;
 
   @media screen and (max-width: 900px) {
@@ -97,6 +95,21 @@ const EmailTextDiv = styled.div`
   }
 `;
 
+const EmailTextPharagraph = styled.p`
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 20px;
+  color: var(--text-primary-second-color);
+`;
+
+const EmailSpan = styled.span`
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 20px;
+  text-transform: uppercase;
+  color: var(--text-primary-color);
+`;
+
 const TypographyDiv = styled.div`
   margin: auto;
   padding: 20px 0;
@@ -105,6 +118,14 @@ const TypographyDiv = styled.div`
   @media screen and (max-width: 900px) {
     width: 100%;
   }
+`;
+
+const TypographySpan = styled.span`
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 30px;
+  text-transform: uppercase;
+  color: var(--text-primary-color);
 `;
 
 const EmailInputDiv = styled.div`

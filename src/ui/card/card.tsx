@@ -45,6 +45,7 @@ const CardWrapper = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
+  background-color: var(--background-primary-color);
 
   @media screen and (max-width: 900px) {
     width: 100%;
@@ -76,6 +77,7 @@ const CardTitleSpan = styled.span`
   line-height: 20px;
   font-weight: 600;
   text-align: center;
+  color: var(--text-primary-color);
 
   @media screen and (max-width: 900px) {
     width: 100%;
@@ -109,6 +111,7 @@ const CardSubtitle = styled.p`
   font-size: 14px;
   font-weight: 400;
   line-height: 16px;
+  color: var(--text-primary-color);
 
   @media screen and (max-width: 900px) {
     font-size: 24px;
@@ -131,6 +134,7 @@ const PriceSpan = styled.span`
   font-size: 16px;
   line-height: 20px;
   font-weight: 700;
+  color: var(--text-primary-second-color);
   margin-right: 100px;
 
   @media screen and (max-width: 900px) {

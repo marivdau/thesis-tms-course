@@ -29,4 +29,6 @@ export const SimilarBooks = () => {
   )
 }
 
-const SimilarBooksWrapper = styled.div``;
+const SimilarBooksWrapper = styled.div`
+  background-color: var(--background-primary-color);
+`;

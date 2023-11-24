@@ -18,7 +18,12 @@ export const Account: React.FC = () => {
 const AccountPage = styled.div`
   display: flex;
   flex-direction: column;
-  margin-bottom: 40px;
+  background-color: var(--background-primary-color); 
+  padding: 100px;
+
+  @media screen and (max-width: 1000px) {
+    padding: 0 0 40px; 
+  }
 `;
 
 const AccountWrapper = styled.div`

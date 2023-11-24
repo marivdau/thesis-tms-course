@@ -19,9 +19,10 @@ export const SearchComponent: React.FC<Props> = () => {
   return (
     <RelativeContainer>
       <TextField
-        label="Search"
         variant="outlined"
-        fullWidth={true}
+        placeholder="Search"
+        fullWidth
+        color="primary"
         value={searchedText}
         onChange={(event) => {
           setSearchedText(event.currentTarget.value);
@@ -62,8 +63,10 @@ export const SearchComponent: React.FC<Props> = () => {
 const RelativeContainer = styled.div`
   position: relative;
   width: 90%;
+  color: var(--text-primary-color);
 
   @media screen and (max-width: 900px) {
-    width: 100%;
+    width: 90%;
+    margin: auto;
   }
 `;

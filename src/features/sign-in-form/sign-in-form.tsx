@@ -73,6 +73,7 @@ const SignInFormWrapper = styled.form`
   display: flex;
   flex-direction: column;
   width: 500px;
+  background-color: var(--background-primary-color);
   margin: auto;
 
   @media screen and (max-width: 900px) {

@@ -14,6 +14,7 @@ const ResetPasswrodWrapper = styled.div`
   flex-direction: column;
   padding: 100px;
   width: 500px;
+  background-color: var(--background-primary-color);
   margin: auto;
 
   @media screen and (max-width: 900px) {

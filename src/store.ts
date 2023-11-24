@@ -12,6 +12,7 @@ import { authorizationReducer } from '#features/auth/authorization.slice';
 import { signUpFormReducer } from '#features/sign-up-form/sign-up-form.slice';
 import { registrationReducer } from '#features/auth/registration.slice';
 import { forgotPasswordReducer } from '#features/auth/reset-password.slice';
+import { themeModeReducer } from '#features/theme-mode-switcher/theme-mode-switcher.slice';
 
 let sagaMiddleware = createSagaMiddleware();
 const middleware = [sagaMiddleware];
@@ -31,6 +32,7 @@ export const store = configureStore({
     signUpForm: signUpFormReducer,
     registration: registrationReducer,
     forgotPassword: forgotPasswordReducer,
+    themeMde: themeModeReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(middleware),

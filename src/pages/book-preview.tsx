@@ -143,6 +143,7 @@ export const BookPreviewPage: React.FC = () => {
 
 const BooksPreviewWrapper = styled.div`
   display: flex;
+  background-color: var(--background-primary-color);
   flex-direction: column;
 `;
 

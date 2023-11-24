@@ -45,7 +45,7 @@ export const FavouritesPage: React.FC = () => {
 const FavouritesWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  margin-bottom: 40px;
+  background-color: var(--background-primary-color);
 `;
 
 const FavoritesDiv = styled.div`

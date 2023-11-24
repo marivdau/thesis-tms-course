@@ -18,9 +18,9 @@ const ButtonsGroupDiv = styled.div`
   margin: auto;
   padding: 10px;
 
-  @media screen and (max-width: 900px) {    
-    margin: 20px 0;
-    padding: 0;
-    width: 100%;
+  @media screen and (max-width: 900px) {     
+    padding: 0 0 20px 0;
+    width: 90%;
+    margin: auto;
   }
 `;
