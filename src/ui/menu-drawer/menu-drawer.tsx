@@ -24,7 +24,8 @@ export default function TemporaryDrawer() {
     (state) => state.authorization.token
   );
 
-  const name = useAppSelector((state) => state.registration.info.username)
+  const name = useAppSelector((state) => state.registration.info.username);
+  const theme = useAppSelector((state) => state.themeMode.isDarkThemeActive);
 
   const [state, setState] = React.useState({
     right: false,
@@ -50,6 +51,8 @@ export default function TemporaryDrawer() {
       role="presentation"
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
+      bgcolor={theme ? '#626874' : '#fffcfc'}
+      height={'100%'}
     >
       {token
         ?

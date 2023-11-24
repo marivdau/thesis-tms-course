@@ -3,7 +3,7 @@ import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 import styled from 'styled-components';
 import { useAppDispatch } from '../../hooks';
-import { themeModeChangeToDark } from './theme-mode-switcher.slice';
+import { themeModeChangeToDark, themeModeChangeToLight } from './theme-mode-switcher.slice';
 import { IconButton } from '@mui/material';
 
 export const ThemeModeSwitcher: React.FC = () => {
@@ -17,10 +17,19 @@ export const ThemeModeSwitcher: React.FC = () => {
 
   return (
     <ColorThemeButtonDiv>
-      <IconButton onClick={() => { dispatch(themeModeChangeToDark()); setIsDark(!isDark) }} >
-        {isDark ? <Brightness7Icon sx={{color: 'var(--text-primary-second-color)'}} /> : <Brightness4Icon />}
-      </IconButton>
-
+      {
+        isDark
+          ?
+          <IconButton onClick={() => { dispatch(themeModeChangeToLight()); setIsDark(!isDark) }}>
+            <Brightness7Icon
+              sx={{ color: 'var(--text-primary-second-color)' }}
+            />
+          </IconButton>
+          :
+          <IconButton onClick={() => { dispatch(themeModeChangeToDark()); setIsDark(!isDark) }}>
+            <Brightness4Icon />
+          </IconButton>
+      }
     </ColorThemeButtonDiv>
   );
 };

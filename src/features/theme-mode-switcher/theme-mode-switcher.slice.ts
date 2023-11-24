@@ -9,10 +9,13 @@ const themeModeSlice = createSlice({
     themeModeChangeToDark(state) {
       state.isDarkThemeActive = true;
     },
+    themeModeChangeToLight(state) {
+      state.isDarkThemeActive = false;
+    }
   },
 });
 
 export const {
-  actions: { themeModeChangeToDark },
+  actions: { themeModeChangeToDark, themeModeChangeToLight },
   reducer: themeModeReducer,
 } = themeModeSlice;

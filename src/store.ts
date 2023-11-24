@@ -32,7 +32,7 @@ export const store = configureStore({
     signUpForm: signUpFormReducer,
     registration: registrationReducer,
     forgotPassword: forgotPasswordReducer,
-    themeMde: themeModeReducer,
+    themeMode: themeModeReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(middleware),
