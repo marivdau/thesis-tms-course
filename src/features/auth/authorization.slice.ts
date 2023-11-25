@@ -5,7 +5,7 @@ const authorizationSlice = createSlice({
   name: 'authorizationSlice',
   initialState: {
     auth: {} as AuthorizationPayload,
-    token: false
+    token: false,
   },
   reducers: {
     authorization(state, action: { payload: AuthorizationPayload }) {
@@ -16,6 +16,7 @@ const authorizationSlice = createSlice({
     },
     authorizationFailure(state) {
       state.token = false;
+      console.log('fail to auth')
     },
     authorizationLogout(state) {
       state.token = false;

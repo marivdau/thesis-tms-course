@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Link, Navigate } from "react-router-dom";
 import styled from "styled-components"
 import { useAppDispatch, useAppSelector } from "../../hooks";
-import { authorization } from "#features/auth/authorization.slice";
+import { authorization, authorizationFailure } from "#features/auth/authorization.slice";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
@@ -16,15 +16,25 @@ export const SignInForm: React.FC = () => {
 
   const dispatch = useAppDispatch();
 
+  const emailOnSignUp = useAppSelector(state => state.signUpForm.email);
+  const passwordOnSignUp = useAppSelector(state => state.signUpForm.password);
+
   const token = useAppSelector(
     (state) => state.authorization.token
   );
+
+  const validate = (enteredEmail: string, enteredPassword: string) => {
+    emailOnSignUp === enteredEmail && passwordOnSignUp === enteredPassword
+      ? dispatch(authorization({ email, password }))
+      : dispatch(authorizationFailure())
+  };
+
   if (token) {
     return <Navigate to={'/'} />;
   }
 
   return (
-    <SignInFormWrapper onSubmit={(event) => { event.preventDefault(); dispatch(authorization({ email, password })) }}>
+    <SignInFormWrapper onSubmit={(event) => { event.preventDefault(); validate(email, password) }}>
       <EmailInputDiv>
         <OutlinedInput
           required
