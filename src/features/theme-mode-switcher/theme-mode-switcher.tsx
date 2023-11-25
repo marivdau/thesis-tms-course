@@ -49,6 +49,7 @@ const ColorThemeButtonDiv = styled.div`
   align-items: center;
   justify-content: center;
   position: fixed;
-  top: 90%;
+  top: 80%;
   left: 2%;
+  z-index: 10;
 `;

@@ -48,6 +48,7 @@ export const SignInForm: React.FC = () => {
               <IconButton
                 aria-label="toggle password visibility"
                 onClick={handleClickShowPassword}
+                sx={{ color: 'var(--icon-main-color)' }}
                 edge="end"
               >
                 {showPassword ? <VisibilityOff /> : <Visibility />}

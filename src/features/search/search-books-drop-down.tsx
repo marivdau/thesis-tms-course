@@ -69,7 +69,7 @@ const SearchedImage = styled.div`
   margin-right: 20px;
 
   & img {
-    width: 100%;
+    width: 50px;
     height: 100%;
     object-fit: cover;
     object-position: center;

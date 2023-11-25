@@ -86,6 +86,7 @@ export const SignUpForm: React.FC = () => {
                   <IconButton
                     aria-label="toggle password visibility"
                     onClick={handleClickShowPassword}
+                    sx={{ color: 'var(--icon-main-color)' }}
                     edge="end"
                   >
                     {showPassword ? <VisibilityOff /> : <Visibility />}
@@ -109,6 +110,7 @@ export const SignUpForm: React.FC = () => {
                   <IconButton
                     aria-label="toggle password visibility"
                     onClick={handleClickShowConfPassword}
+                    sx={{ color: 'var(--icon-main-color)' }}
                     edge="end"
                   >
                     {showConfPassword ? <VisibilityOff /> : <Visibility />}

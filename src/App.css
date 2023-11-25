@@ -14,6 +14,7 @@
   --background-secondary-color: #ffffff;
   --link-primary-color: #1976d2;
   --header-menu-button-icon-color: #1976d2;
+  --icon-main-color: #A8A8A8;
 
   &.dark {
     --text-primary-color: #AFB2B6;
@@ -27,6 +28,7 @@
     --background-primary-color: #423b3b;
     --background-secondary-color: #f7c7c7;
     --link-primary-color: #b484bc;
-    --header-menu-button-icon-color: #dec2f4;    
+    --header-menu-button-icon-color: #dec2f4;  
+    --icon-main-color: #afacac;
   }
 }

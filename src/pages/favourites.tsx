@@ -36,7 +36,12 @@ export const FavouritesPage: React.FC = () => {
         }
       </FavoritesDiv>
 
-      <Typography variant="h5" sx={{ textTransform: 'uppercase' }}>Popular books</Typography>
+      <Typography
+        variant="h5"
+        sx={{ textTransform: 'uppercase', color: 'var(--text-primary-color)' }}
+      >
+        Popular books
+      </Typography>
       <SimilarBooks />
     </FavouritesWrapper>
   )

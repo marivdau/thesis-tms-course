@@ -25,28 +25,30 @@ export const AccountForm: React.FC = () => {
 
   return (
     <AccountFormWrapper>
-      <Typography variant="h5" sx={{ textTransform: 'uppercase' }}>
+      <TypographySectionSpan >
         Profile
-      </Typography>
+      </TypographySectionSpan>
       <UserInfo>
         <NameInfo>
-          <Typography variant="subtitle1" sx={{ textTransform: 'uppercase' }}>
+          <TypographySpan>
             Name
-          </Typography>
-          <TextField
+          </TypographySpan>
+          <OutlinedInput
             type="text"
             fullWidth={true}
             value={name || ''}
+            sx={{ color: 'var(--text-primary-color)' }}
             onChange={({ currentTarget }) => dispatch(setName(currentTarget.value))}
           />
         </NameInfo>
         <EmailInfo>
-          <Typography variant="subtitle1" sx={{ textTransform: 'uppercase' }}>
+          <TypographySpan>
             Email
-          </Typography>
-          <TextField
+          </TypographySpan>
+          <OutlinedInput
             fullWidth={true}
             type="email"
+            sx={{ color: 'var(--text-primary-color)' }}
             value={email}
             onChange={({ currentTarget }) =>
               dispatch(setEmail(currentTarget.value))
@@ -55,16 +57,17 @@ export const AccountForm: React.FC = () => {
         </EmailInfo>
       </UserInfo>
 
-      <Typography variant="h5" sx={{ textTransform: 'uppercase' }}>
+      <TypographySectionSpan>
         Password
-      </Typography>
+      </TypographySectionSpan>
       <PasswordDiv>
         <PasswordInfo>
-          <Typography variant="subtitle1" sx={{ textTransform: 'uppercase' }}>
+          <TypographySpan>
             Password
-          </Typography>
+          </TypographySpan>
           <OutlinedInput
             fullWidth={true}
+            sx={{ color: 'var(--text-primary-color)' }}
             type={showPassword ? 'text' : 'password'}
             endAdornment={
               <InputAdornment position="end">
@@ -72,6 +75,7 @@ export const AccountForm: React.FC = () => {
                   aria-label="toggle password visibility"
                   onClick={handleClickShowPassword}
                   edge="end"
+                  sx={{ color: 'var(--icon-main-color)' }}
                 >
                   {showPassword ? <VisibilityOff /> : <Visibility />}
                 </IconButton>
@@ -84,18 +88,20 @@ export const AccountForm: React.FC = () => {
       </PasswordDiv>
       <PasswordNewDiv>
         <PasswordInfo>
-          <Typography variant="subtitle1" sx={{ textTransform: 'uppercase' }}>
+          <TypographySpan>
             New password
-          </Typography>
+          </TypographySpan>
           <OutlinedInput
             fullWidth={true}
             type={showNewPassword ? 'text' : 'password'}
+            sx={{ color: 'var(--text-primary-color)' }}
             endAdornment={
               <InputAdornment position="end">
                 <IconButton
                   aria-label="toggle password visibility"
                   onClick={handleClickShowNewPassword}
                   edge="end"
+                  sx={{ color: 'var(--icon-main-color)' }}
                 >
                   {showNewPassword ? <VisibilityOff /> : <Visibility />}
                 </IconButton>
@@ -105,11 +111,12 @@ export const AccountForm: React.FC = () => {
           />
         </PasswordInfo>
         <PasswordInfo>
-          <Typography variant="subtitle1" sx={{ textTransform: 'uppercase' }}>
+          <TypographySpan>
             Confirm new password
-          </Typography>
+          </TypographySpan>
           <OutlinedInput
             fullWidth={true}
+            sx={{ color: 'var(--text-primary-color)' }}
             type={showNewConfPassword ? 'text' : 'password'}
             endAdornment={
               <InputAdornment position="end">
@@ -117,6 +124,7 @@ export const AccountForm: React.FC = () => {
                   aria-label="toggle password visibility"
                   onClick={handleClickShowNewConfPassword}
                   edge="end"
+                  sx={{ color: 'var(--icon-main-color)' }}
                 >
                   {showNewConfPassword ? <VisibilityOff /> : <Visibility />}
                 </IconButton>
@@ -149,7 +157,7 @@ export const AccountForm: React.FC = () => {
   )
 }
 
-const AccountFormWrapper = styled.div`
+const AccountFormWrapper = styled.form`
   display: flex;
   flex-direction: column;
   background-color: var(--background-primary-color);
@@ -159,6 +167,22 @@ const AccountFormWrapper = styled.div`
     align-items: center;
     margin: auto;
   }
+`;
+
+const TypographySectionSpan = styled.span`
+  text-transform: uppercase;
+  color: var(--text-primary-color);
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 30px;
+`;
+
+const TypographySpan = styled.span`
+  text-transform: uppercase;
+  color: var(--text-primary-color);
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 40px;
 `;
 
 const UserInfo = styled.div`
