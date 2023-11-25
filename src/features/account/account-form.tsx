@@ -1,4 +1,4 @@
-import { Button, IconButton, InputAdornment, OutlinedInput, TextField, Typography } from "@mui/material"
+import { Button, IconButton, InputAdornment, OutlinedInput } from "@mui/material"
 import styled from "styled-components"
 import { useAppDispatch, useAppSelector } from "../../hooks"
 import { useState } from "react";
@@ -14,6 +14,9 @@ export const AccountForm: React.FC = () => {
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [showNewConfPassword, setShowNewConfPassword] = useState(false);
 
+  const [enteredNewPassword, setEnteredNewPassword] = useState<string>('');
+  const [enteredConfirmNewPassword, setEnteredConfirmNewPassword] = useState<string>('')
+
   const handleClickShowPassword = () => setShowPassword((show) => !show);
   const handleClickShowNewPassword = () => setShowNewPassword((show) => !show);
   const handleClickShowNewConfPassword = () => setShowNewConfPassword((show) => !show);
@@ -21,11 +24,22 @@ export const AccountForm: React.FC = () => {
   const name = useAppSelector((state) => state.signUpForm.name);
   const email = useAppSelector((state) => state.signUpForm.email);
   const password = useAppSelector((state) => state.signUpForm.password);
+  const passwordAuth = useAppSelector((state) => state.authorization.auth.password);
   const [oldPassword, setOldPassword] = useState('');
 
   return (
-    <AccountFormWrapper>
-      <TypographySectionSpan >
+    <AccountFormWrapper onSubmit={(event) => {
+      event?.preventDefault();
+      dispatch(
+        register({
+          username: name,
+          password,
+          email,
+        })
+      )
+    }
+    }>
+      <TypographySectionSpan>
         Profile
       </TypographySectionSpan>
       <UserInfo>
@@ -83,6 +97,7 @@ export const AccountForm: React.FC = () => {
             }
             value={oldPassword}
             onChange={({ currentTarget }) => setOldPassword(currentTarget.value)}
+            error={Boolean(passwordAuth !== oldPassword)}
           />
         </PasswordInfo>
       </PasswordDiv>
@@ -107,7 +122,11 @@ export const AccountForm: React.FC = () => {
                 </IconButton>
               </InputAdornment>
             }
-            onChange={({ currentTarget }) => dispatch(setPassword(currentTarget.value))}
+            onChange={({ currentTarget }) => {
+              setEnteredNewPassword(currentTarget.value);
+              dispatch(setPassword(currentTarget.value))
+            }}
+            error={Boolean(enteredNewPassword !== enteredConfirmNewPassword)}
           />
         </PasswordInfo>
         <PasswordInfo>
@@ -130,24 +149,20 @@ export const AccountForm: React.FC = () => {
                 </IconButton>
               </InputAdornment>
             }
-            onChange={({ currentTarget }) => dispatch(setConfirmedPassword(currentTarget.value))}
+            onChange={({ currentTarget }) => {
+              setEnteredConfirmNewPassword(currentTarget.value);
+              dispatch(setConfirmedPassword(currentTarget.value))
+            }}
+            error={Boolean(enteredConfirmNewPassword !== enteredNewPassword)}
           />
         </PasswordInfo>
       </PasswordNewDiv>
       <ButtonsDiv>
         <ButtonSaveDiv>
           <Button
+            type="submit"
             variant="contained"
             fullWidth={true}
-            onClick={() =>
-              dispatch(
-                register({
-                  username: name,
-                  password,
-                  email,
-                })
-              )
-            }
           >
             Save changes
           </Button>
