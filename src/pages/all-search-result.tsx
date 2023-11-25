@@ -1,0 +1,80 @@
+import { Card } from "#ui/card/card"
+import { PageTitle } from "#ui/page-title/page-title"
+import { useEffect, useState } from "react";
+import styled from "styled-components";
+import { Pagination, Typography } from "@mui/material";
+import { Subscribe } from "#features/subscribe/subscribe";
+import { BackLink } from "#features/back-link/back-link";
+import { useAppDispatch, useAppSelector } from "../hooks";
+import { searchBooks } from "#features/search/search.slice";
+
+export const SearchResultPage: React.FC = () => {
+  const dispatch = useAppDispatch();
+  const [page, setPage] = useState(1);
+  const searchWord = useAppSelector(state => state.search.searchedBooksKeyword);
+  const { searchedBooks } = useAppSelector(({ search }) => search);
+
+  useEffect(() => {
+    dispatch(searchBooks({ search: searchWord, page: page }));
+  }, [dispatch, searchWord, page]);
+
+  return (
+    <MainNewBooksWrapper>
+      <PageTitle children={searchWord ? `search Result for ${searchWord}` : `search result page`} />
+      <BackLink />
+      <CardsDiv>
+        {searchWord
+          ?
+          searchedBooks?.books?.map(item =>
+            <Card
+              key={item.isbn13}
+              image={item.image}
+              url={item.url}
+              title={item.title}
+              subtitle={item.subtitle}
+              price={item.price}
+              isbn13={item.isbn13}
+            />)
+          :
+          <Typography variant="h4">Let's search something!</Typography>
+        }
+      </CardsDiv>
+      <PaginationDiv>
+        <Pagination
+          size="large"
+          color="secondary"
+          variant="outlined"
+          page={page}
+          onChange={(event, value) => {
+            setPage(value);
+            window.scroll(0, 0);
+          }}
+          count={+searchedBooks.total || 1}
+        />
+      </PaginationDiv>
+      <Subscribe />
+    </MainNewBooksWrapper>
+  )
+}
+
+const MainNewBooksWrapper = styled.div`
+  display: flex;
+  background-color: var(--background-primary-color);
+  flex-direction: column;
+`;
+
+const CardsDiv = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  align-content: center;
+`;
+
+const PaginationDiv = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 0;
+`;
