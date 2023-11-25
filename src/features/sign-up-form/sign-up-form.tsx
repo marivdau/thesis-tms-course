@@ -51,6 +51,7 @@ export const SignUpForm: React.FC = () => {
         }>
           <NameInputDiv>
             <OutlinedInput
+              required
               type="text"
               placeholder="Your name *"
               sx={{ color: 'var(--text-primary-color)' }}
@@ -61,6 +62,7 @@ export const SignUpForm: React.FC = () => {
           </NameInputDiv>
           <EmailInputDiv>
             <OutlinedInput
+              required
               placeholder="Your email *"
               sx={{ color: 'var(--text-primary-color)' }}
               type='email'
@@ -73,6 +75,7 @@ export const SignUpForm: React.FC = () => {
           </EmailInputDiv>
           <PasswordInputDiv>
             <OutlinedInput
+              required
               placeholder="Your password *"
               sx={{ color: 'var(--text-primary-color)' }}
               fullWidth={true}
@@ -80,6 +83,9 @@ export const SignUpForm: React.FC = () => {
               onChange={({ currentTarget }) =>
                 dispatch(setPassword(currentTarget.value))
               }
+
+              error={Boolean(password !== confirmedPassword)}
+
               type={showPassword ? 'text' : 'password'}
               endAdornment={
                 <InputAdornment position="end">
@@ -97,6 +103,7 @@ export const SignUpForm: React.FC = () => {
           </PasswordInputDiv>
           <PasswordInputDiv>
             <OutlinedInput
+              required
               placeholder="Confirm password *"
               fullWidth={true}
               value={confirmedPassword}
@@ -104,6 +111,9 @@ export const SignUpForm: React.FC = () => {
               onChange={({ currentTarget }) =>
                 dispatch(setConfirmedPassword(currentTarget.value))
               }
+
+              error={Boolean(password !== confirmedPassword)}
+
               type={showConfPassword ? 'text' : 'password'}
               endAdornment={
                 <InputAdornment position="end">

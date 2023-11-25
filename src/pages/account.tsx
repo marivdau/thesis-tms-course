@@ -2,8 +2,19 @@ import { AccountForm } from "#features/account/account-form";
 import { BackLink } from "#features/back-link/back-link";
 import { PageTitle } from "#ui/page-title/page-title";
 import styled from "styled-components"
+import { useAppSelector } from "../hooks";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 export const Account: React.FC = () => {
+  const token = useAppSelector(state => state.authorization.token);
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!token) {
+      navigate("/sign-in");
+    }
+  }, [token])
+
   return (
     <AccountPage>
       <PageTitle children="Account" />

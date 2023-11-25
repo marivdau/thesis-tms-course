@@ -27,6 +27,7 @@ export const SignInForm: React.FC = () => {
     <SignInFormWrapper onSubmit={(event) => { event.preventDefault(); dispatch(authorization({ email, password })) }}>
       <EmailInputDiv>
         <OutlinedInput
+          required
           type='email'
           placeholder="Your email *"
           sx={{ color: 'var(--text-primary-color)' }}
@@ -37,6 +38,7 @@ export const SignInForm: React.FC = () => {
       </EmailInputDiv>
       <PasswordInputDiv>
         <OutlinedInput
+          required
           sx={{ color: 'var(--text-primary-color)' }}
           placeholder="Your password *"
           fullWidth={true}
