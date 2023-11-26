@@ -13,7 +13,7 @@ export const Account: React.FC = () => {
     if (!token) {
       navigate("/sign-in");
     }
-  }, [token])
+  }, [token, navigate])
 
   return (
     <AccountPage>
