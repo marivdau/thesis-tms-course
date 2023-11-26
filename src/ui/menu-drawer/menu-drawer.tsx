@@ -25,6 +25,7 @@ export default function TemporaryDrawer() {
   );
 
   const name = useAppSelector((state) => state.registration.info.username);
+  const initials = name?.charAt(0).toUpperCase();
   const theme = useAppSelector((state) => state.themeMode.isDarkThemeActive);
 
   const [state, setState] = React.useState({
@@ -132,7 +133,13 @@ export default function TemporaryDrawer() {
         <React.Fragment key={anchor}>
           <Tooltip title='Account'>
             <Button onClick={toggleDrawer(anchor, true)}>
-              <Person sx={{ color: 'var(--header-menu-button-icon-color)' }} fontSize='large' />
+              {
+                token
+                  ?
+                  <Avatar sx={{ bgcolor: 'var(--header-menu-button-icon-color)' }}>{initials || 'A'}</Avatar>
+                  :
+                  <Person sx={{ color: 'var(--header-menu-button-icon-color)' }} fontSize='large' />
+              }
             </Button>
           </Tooltip>
           <Drawer
