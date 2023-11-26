@@ -106,13 +106,12 @@ export const BookPreviewPage: React.FC = () => {
                   variant="contained"
                   fullWidth={true}
                   color="primary"
-                  disabled={isClicked === true}
                   onClick={() => {
-                    dispatch(addItem(bookPreview));
                     setIsClicked(!isClicked);
+                    dispatch(addItem(bookPreview));                    
                   }}
                 >
-                  Add to cart
+                 {isClicked ? 'Added to cart' : 'Add to cart'}
                 </Button>
               </AddToCardButtonDiv>
             </ButtonsDiv>
