@@ -1,5 +1,5 @@
-import { Button, IconButton, InputAdornment, OutlinedInput } from "@mui/material"
-import { useState } from "react";
+import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, IconButton, InputAdornment, OutlinedInput } from "@mui/material"
+import { Fragment, useState } from "react";
 import { Link, Navigate } from "react-router-dom";
 import styled from "styled-components"
 import { useAppDispatch, useAppSelector } from "../../hooks";
@@ -8,6 +8,16 @@ import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
 export const SignInForm: React.FC = () => {
+  const [open, setOpen] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -76,10 +86,35 @@ export const SignInForm: React.FC = () => {
           type="submit"
           variant="contained"
           fullWidth={true}
+          onClick={!token ? handleClickOpen : handleClose}
         >
           Sign In
         </Button>
       </ButtonDiv>
+
+      <Fragment>
+        <Dialog
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+        >
+          <DialogTitle id="alert-dialog-title">
+            {"Login fail"}
+          </DialogTitle>
+          <DialogContent>
+            <DialogContentText id="alert-dialog-description">
+              Please check you credentials or proceed to sign up
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleClose}>Close</Button>
+            <Button onClick={handleClose} component={Link} to={'/sign-up'} autoFocus>
+              Proceed to sign up
+            </Button>
+          </DialogActions>
+        </Dialog>
+      </Fragment>
     </SignInFormWrapper>
   )
 }
