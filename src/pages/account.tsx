@@ -30,7 +30,7 @@ const AccountPage = styled.div`
   display: flex;
   flex-direction: column;
   background-color: var(--background-primary-color); 
-  padding: 100px;
+  margin: auto;
 
   @media screen and (max-width: 1000px) {
     padding: 0 0 40px; 

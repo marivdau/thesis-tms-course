@@ -14,7 +14,6 @@ export const SignInPage: React.FC = () => {
 const SignInWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 50px 0 200px;
   width: 500px;
   margin: auto;
   background-color: var(--background-primary-color);
