@@ -1,4 +1,4 @@
-import { Button, Divider, Typography } from "@mui/material";
+import { Button, Divider } from "@mui/material";
 import styled from "styled-components";
 import Clear from '@mui/icons-material/Clear';
 import Add from '@mui/icons-material/Add';

@@ -14,7 +14,7 @@ import { ThemeModeSwitcher } from '#features/theme-mode-switcher/theme-mode-swit
 export const Header = () => {
   const { favourites } = useAppSelector(({ favourites }) => favourites);
   const { basket } = useAppSelector(({ order }) => order);
-  const theme = useAppSelector((state) => state.themeMode.isDarkThemeActive)
+  const theme = useAppSelector((state) => state.themeMode.isDarkThemeActive);
 
   const favouritesAmount: number = favourites.length;
   const cartAmount: number = basket.length;

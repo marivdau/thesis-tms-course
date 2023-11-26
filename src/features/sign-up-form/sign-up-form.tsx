@@ -11,6 +11,7 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 export const SignUpForm: React.FC = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfPassword, setShowConfPassword] = useState(false);
+  const [errorInput, setErrorInput] = useState(false);
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
   const handleClickShowConfPassword = () => setShowConfPassword((show) => !show);
@@ -26,6 +27,14 @@ export const SignUpForm: React.FC = () => {
     (state) => state.registration.isCompleted
   );
 
+  const errorPasswordCheck = () => {
+    if (confirmedPassword !== password) {
+      setErrorInput(true);
+    } else {
+      setErrorInput(false);
+    }
+  }
+  
   return (
     <>
       {isCompleted
@@ -40,13 +49,15 @@ export const SignUpForm: React.FC = () => {
         :
         <SignInFormWrapper onSubmit={(event) => {
           event?.preventDefault();
-          dispatch(
-            register({
-              username: name,
-              password,
-              email,
-            })
-          )
+          if (!errorInput) {
+            dispatch(
+              register({
+                username: name,
+                password,
+                email,
+              })
+            )
+          }
         }
         }>
           <NameInputDiv>
@@ -84,7 +95,7 @@ export const SignUpForm: React.FC = () => {
                 dispatch(setPassword(currentTarget.value))
               }
 
-              error={Boolean(password !== confirmedPassword)}
+              error={errorInput}
 
               type={showPassword ? 'text' : 'password'}
               endAdornment={
@@ -112,7 +123,7 @@ export const SignUpForm: React.FC = () => {
                 dispatch(setConfirmedPassword(currentTarget.value))
               }
 
-              error={Boolean(password !== confirmedPassword)}
+              error={errorInput}
 
               type={showConfPassword ? 'text' : 'password'}
               endAdornment={
@@ -128,6 +139,12 @@ export const SignUpForm: React.FC = () => {
                 </InputAdornment>
               }
             />
+            {errorInput
+              ?
+              <ErrorTextSpan>Password doesn't match</ErrorTextSpan>
+              :
+              <></>
+            }
           </PasswordInputDiv>
 
           <ButtonDiv>
@@ -135,6 +152,7 @@ export const SignUpForm: React.FC = () => {
               type="submit"
               variant="contained"
               fullWidth={true}
+              onClick={errorPasswordCheck}
             >
               Sign Up
             </Button>
@@ -221,4 +239,11 @@ const SuccessSpan = styled.span`
   font-weight: 600;
   text-align: center;
   color: var(--text-primary-second-color);
+`;
+
+const ErrorTextSpan = styled.span`
+  font-size: 14px;
+  line-height: 16px;
+  font-weight: 400;
+  color: var(--contextual-red-color);
 `;

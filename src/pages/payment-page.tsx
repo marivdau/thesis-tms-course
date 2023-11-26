@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { PageTitle } from "#ui/page-title/page-title";
-import { Button, Stack, Typography } from "@mui/material";
+import { Button, Stack } from "@mui/material";
 import Confetti from 'react-confetti';
 import { Link } from "react-router-dom";
 import { useState } from "react";
