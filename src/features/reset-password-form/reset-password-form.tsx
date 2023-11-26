@@ -11,7 +11,12 @@ export const ResetPasswordForm: React.FC = () => {
   const dispatch = useAppDispatch();
 
   return (
-    <ResetPasswordFormWrapper>
+    <ResetPasswordFormWrapper
+      onSubmit={(event) => {
+        event?.preventDefault();
+        dispatch(forgotPassword({ email }));
+        setSentEmail(true)
+      }}>
       <TypographyDiv>
         <TypographySpan>
           reset password
@@ -38,6 +43,7 @@ export const ResetPasswordForm: React.FC = () => {
         <>
           <EmailInputDiv>
             <OutlinedInput
+              required
               type="email"
               placeholder="Your email"
               sx={{ color: 'var(--text-primary-color)' }}
@@ -50,10 +56,7 @@ export const ResetPasswordForm: React.FC = () => {
             <Button
               variant="contained"
               fullWidth={true}
-              onClick={() => {
-                dispatch(forgotPassword({ email }));
-                setSentEmail(true)
-              }}
+              type="submit"
             >
               Reset
             </Button>

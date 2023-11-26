@@ -16,6 +16,10 @@ export const NewPassword: React.FC = () => {
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [showNewConfPassword, setShowNewConfPassword] = useState(false);
 
+  const [errorInputNewPass, setErrorInputNewPass] = useState(false);
+  const [enteredNewPassword, setEnteredNewPassword] = useState<string>('');
+  const [enteredConfirmNewPassword, setEnteredConfirmNewPassword] = useState<string>('')
+
   const password = useAppSelector((state) => state.signUpForm.password);
   const name = useAppSelector((state) => state.signUpForm.name);
   const email = useAppSelector((state) => state.signUpForm.email);
@@ -23,8 +27,29 @@ export const NewPassword: React.FC = () => {
   const handleClickShowNewPassword = () => setShowNewPassword((show) => !show);
   const handleClickShowNewConfPassword = () => setShowNewConfPassword((show) => !show);
 
+  const errorNewPasswordCheck = () => {
+    if (enteredNewPassword !== enteredConfirmNewPassword || enteredNewPassword === '' || enteredConfirmNewPassword === '') {
+      setErrorInputNewPass(true);
+      console.log('error')
+    } else {
+      setErrorInputNewPass(false);
+    }
+  }
+
   return (
-    <NewPasswordWrapper>
+    <NewPasswordWrapper onSubmit={(event) => {
+      event?.preventDefault();
+      if (!errorInputNewPass) {
+        setResetPassword(true);
+        dispatch(
+          register({
+            username: name,
+            password,
+            email,
+          })
+        )
+      }
+    }}>
       <TypographyDiv>
         <TypographySpan>new password</TypographySpan>
       </TypographyDiv>
@@ -65,8 +90,18 @@ export const NewPassword: React.FC = () => {
                   </IconButton>
                 </InputAdornment>
               }
-              onChange={({ currentTarget }) => dispatch(setPassword(currentTarget.value))}
+              onChange={({ currentTarget }) => {
+                setEnteredNewPassword(currentTarget.value);
+                dispatch(setPassword(currentTarget.value))
+              }}
+              error={errorInputNewPass}
             />
+            {errorInputNewPass
+              ?
+              <ErrorTextSpan>New password doesn't match</ErrorTextSpan>
+              :
+              <></>
+            }
           </PasswordInputDiv>
           <PasswordInputDiv>
             <OutlinedInput
@@ -84,24 +119,28 @@ export const NewPassword: React.FC = () => {
                   </IconButton>
                 </InputAdornment>
               }
-              onChange={({ currentTarget }) => dispatch(setConfirmedPassword(currentTarget.value))}
+              onChange={({ currentTarget }) => {
+                setEnteredConfirmNewPassword(currentTarget.value);
+                dispatch(setConfirmedPassword(currentTarget.value))
+              }}
+              error={errorInputNewPass}
             />
+            {errorInputNewPass
+              ?
+              <ErrorTextSpan>New password doesn't match</ErrorTextSpan>
+              :
+              <></>
+            }
           </PasswordInputDiv>
 
           <ButtonDiv>
             <Button
               variant="contained"
               fullWidth={true}
-              onClick={() => {
-                setResetPassword(true);
-                dispatch(
-                  register({
-                    username: name,
-                    password,
-                    email,
-                  })
-                )
-              }}>Set new Password</Button>
+              type="submit"
+              onClick={errorNewPasswordCheck}
+            >
+              Set new Password</Button>
           </ButtonDiv>
         </>
       }
@@ -189,4 +228,11 @@ const EmailTextPharagraph = styled.p`
   line-height: 20px;
   color: var(--text-primary-second-color);
   text-align: center;
+`;
+
+const ErrorTextSpan = styled.span`
+  font-size: 14px;
+  line-height: 16px;
+  font-weight: 400;
+  color: var(--contextual-red-color);
 `;
