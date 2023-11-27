@@ -1,5 +1,5 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { BookPreviewResponse } from "./types";
+import { createSlice } from '@reduxjs/toolkit';
+import { BookPreviewResponse } from './types';
 
 const bookPreviewSlice = createSlice({
   name: 'bookPreviewSlice',
@@ -13,7 +13,10 @@ const bookPreviewSlice = createSlice({
     getBookPreview(state, action: { payload: number }) {
       state.isLoading = true;
     },
-    getBookPreviewSuccess(state, action: { payload: { data: BookPreviewResponse } }) {
+    getBookPreviewSuccess(
+      state,
+      action: { payload: { data: BookPreviewResponse } }
+    ) {
       state.isLoading = false;
       const data = action.payload.data;
       state.bookPreview = data;
@@ -29,7 +32,7 @@ const bookPreviewSlice = createSlice({
       }
       state.error = { name: 'Error', message: String(error) };
     },
-  }
+  },
 });
 
 export const {

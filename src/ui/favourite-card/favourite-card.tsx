@@ -1,10 +1,10 @@
-import { Button, Rating } from "@mui/material";
-import styled from "styled-components";
+import { Button, Rating } from '@mui/material';
+import styled from 'styled-components';
 import Favourites from '@mui/icons-material/Favorite';
-import { randomRaiting } from "../../service/random-rating";
-import { Link } from "react-router-dom";
-import { useAppDispatch } from "../../hooks";
-import { unMarkItem } from "#features/bookmark/bookmark.slice";
+import { randomRaiting } from '../../service/random-rating';
+import { Link } from 'react-router-dom';
+import { useAppDispatch } from '../../hooks';
+import { unMarkItem } from '#features/bookmark/bookmark.slice';
 
 type PropsCard = {
   title: string;
@@ -15,7 +15,7 @@ type PropsCard = {
   url: string;
   author: string;
   year: string;
-}
+};
 
 export const FavouriteCard: React.FC<PropsCard> = (props: PropsCard) => {
   const dispatch = useAppDispatch();
@@ -26,17 +26,21 @@ export const FavouriteCard: React.FC<PropsCard> = (props: PropsCard) => {
         <CardImg src={props.image} />
       </CardImageDiv>
       <InfoLineDiv>
-        <Link to={`/preview-book/${props.isbn13}`} >
-          <CardTitle>
-            {props.title}
-          </CardTitle>
+        <Link to={`/preview-book/${props.isbn13}`}>
+          <CardTitle>{props.title}</CardTitle>
         </Link>
         <CardSubtitle>
-          {'by '}{props.author}, {' '} {props.year}
+          {'by '}
+          {props.author}, {props.year}
         </CardSubtitle>
         <PriceRaitingDiv>
           <PriceSpan>{props.price}</PriceSpan>
-          <Rating name="read-only" value={randomRaiting()} precision={0.5} readOnly />
+          <Rating
+            name="read-only"
+            value={randomRaiting()}
+            precision={0.5}
+            readOnly
+          />
         </PriceRaitingDiv>
       </InfoLineDiv>
       <FavIconDiv>
@@ -45,8 +49,8 @@ export const FavouriteCard: React.FC<PropsCard> = (props: PropsCard) => {
         </Button>
       </FavIconDiv>
     </CardWrapper>
-  )
-}
+  );
+};
 
 const CardWrapper = styled.div`
   width: 100%;
@@ -126,6 +130,4 @@ const PriceSpan = styled.span`
   margin-right: 100px;
 `;
 
-const FavIconDiv = styled.div`
-
-`;
+const FavIconDiv = styled.div``;

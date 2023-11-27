@@ -19,5 +19,5 @@ export type BookPreviewResponse = {
   url: string;
   pdf: {
     [key: string]: string;
-  }
+  };
 };

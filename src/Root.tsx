@@ -20,18 +20,18 @@ function Root() {
     <div className="App">
       <Header />
       <Routes>
-        <Route path='/' element={<MainNewBooksPage />} />
-        <Route path='/all' element={<AllBooksPage />} />
-        <Route path='/search-result' element={<SearchResultPage />} />
-        <Route path='/preview-book/:bookIsbn' element={<BookPreviewPage />} />
-        <Route path='/favourites' element={<FavouritesPage />} />
-        <Route path='/cart' element={<CartPage />} />
-        <Route path='/payment' element={<PaymentPage />} />
-        <Route path='/account' element={<AccountPage />} />
-        <Route path='/sign-in' element={<SignInPage />} />
-        <Route path='/sign-up' element={<SignUpPage />} />
-        <Route path='/reset-password' element={<ResetPasswordPage />} />
-        <Route path='/new-password' element={<NewPasswordPage />} />
+        <Route path="/" element={<MainNewBooksPage />} />
+        <Route path="/all" element={<AllBooksPage />} />
+        <Route path="/search-result" element={<SearchResultPage />} />
+        <Route path="/preview-book/:bookIsbn" element={<BookPreviewPage />} />
+        <Route path="/favourites" element={<FavouritesPage />} />
+        <Route path="/cart" element={<CartPage />} />
+        <Route path="/payment" element={<PaymentPage />} />
+        <Route path="/account" element={<AccountPage />} />
+        <Route path="/sign-in" element={<SignInPage />} />
+        <Route path="/sign-up" element={<SignUpPage />} />
+        <Route path="/reset-password" element={<ResetPasswordPage />} />
+        <Route path="/new-password" element={<NewPasswordPage />} />
       </Routes>
       <Footer />
     </div>

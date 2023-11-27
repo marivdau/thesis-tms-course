@@ -1,5 +1,5 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { SearchResponce } from "./types";
+import { createSlice } from '@reduxjs/toolkit';
+import { SearchResponce } from './types';
 
 const searchedBooksSlice = createSlice({
   name: 'searchedBooksSlice',
@@ -12,7 +12,7 @@ const searchedBooksSlice = createSlice({
   },
 
   reducers: {
-    searchBooks(state, action: { payload: { search: string, page: number } }) {
+    searchBooks(state, action: { payload: { search: string; page: number } }) {
       state.searchedBooksLoading = true;
       state.searchedBooksPage = action.payload.page;
       state.searchedBooksKeyword = action.payload.search;
@@ -35,7 +35,11 @@ const searchedBooksSlice = createSlice({
   },
 });
 
-export const { searchBooks, searchBooksSuccess, searchBooksFailure, resetBooks } =
-  searchedBooksSlice.actions;
+export const {
+  searchBooks,
+  searchBooksSuccess,
+  searchBooksFailure,
+  resetBooks,
+} = searchedBooksSlice.actions;
 
 export const searchReducer = searchedBooksSlice.reducer;

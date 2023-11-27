@@ -1,7 +1,7 @@
-import { Rating } from "@mui/material";
-import styled from "styled-components";
+import { Rating } from '@mui/material';
+import styled from 'styled-components';
 import { Link as RouteLink } from 'react-router-dom';
-import { randomRaiting } from "../../service/random-rating";
+import { randomRaiting } from '../../service/random-rating';
 
 type PropsCard = {
   title: string;
@@ -10,34 +10,39 @@ type PropsCard = {
   price: string;
   image: string;
   url: string;
-}
+};
 
 export const Card: React.FC<PropsCard> = (props: PropsCard) => {
   return (
     <CardWrapper>
-      <RouteLink to={`/preview-book/${props.isbn13}`} key={props.isbn13} onClick={() => window.scroll(0, 0)}>
+      <RouteLink
+        to={`/preview-book/${props.isbn13}`}
+        key={props.isbn13}
+        onClick={() => window.scroll(0, 0)}
+      >
         <CardTitleDiv>
           <CardImage>
             <CardImg src={props.image} />
           </CardImage>
-          <CardTitleSpan>
-            {props.title}
-          </CardTitleSpan>
+          <CardTitleSpan>{props.title}</CardTitleSpan>
         </CardTitleDiv>
       </RouteLink>
       <CardSubtitleDiv>
-        <CardSubtitle>
-          {props.subtitle}
-        </CardSubtitle>
+        <CardSubtitle>{props.subtitle}</CardSubtitle>
       </CardSubtitleDiv>
 
       <InfoLine>
         <PriceSpan>{props.price}</PriceSpan>
-        <Rating name="read-only" value={randomRaiting()} precision={0.5} readOnly />
+        <Rating
+          name="read-only"
+          value={randomRaiting()}
+          precision={0.5}
+          readOnly
+        />
       </InfoLine>
     </CardWrapper>
-  )
-}
+  );
+};
 
 const CardWrapper = styled.div`
   max-width: 400px;

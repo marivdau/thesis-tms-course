@@ -3,7 +3,10 @@ import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 import styled from 'styled-components';
 import { useAppDispatch } from '../../hooks';
-import { themeModeChangeToDark, themeModeChangeToLight } from './theme-mode-switcher.slice';
+import {
+  themeModeChangeToDark,
+  themeModeChangeToLight,
+} from './theme-mode-switcher.slice';
 import { IconButton } from '@mui/material';
 
 export const ThemeModeSwitcher: React.FC = () => {
@@ -17,28 +20,30 @@ export const ThemeModeSwitcher: React.FC = () => {
 
   return (
     <ColorThemeButtonDiv>
-      {
-        isDark
-          ?
-          <IconButton
-            onClick={() => { dispatch(themeModeChangeToLight()); setIsDark(!isDark) }}
-            title='Turn on light mode'
-          >
-            <Brightness7Icon
-              sx={{ color: 'var(--text-primary-second-color)' }}
-              fontSize='large'
-            />
-          </IconButton>
-          :
-          <IconButton
-            onClick={() => { dispatch(themeModeChangeToDark()); setIsDark(!isDark) }}
-            title='Turn on dark mode'
-          >
-            <Brightness4Icon
-              fontSize='large'
-            />
-          </IconButton>
-      }
+      {isDark ? (
+        <IconButton
+          onClick={() => {
+            dispatch(themeModeChangeToLight());
+            setIsDark(!isDark);
+          }}
+          title="Turn on light mode"
+        >
+          <Brightness7Icon
+            sx={{ color: 'var(--text-primary-second-color)' }}
+            fontSize="large"
+          />
+        </IconButton>
+      ) : (
+        <IconButton
+          onClick={() => {
+            dispatch(themeModeChangeToDark());
+            setIsDark(!isDark);
+          }}
+          title="Turn on dark mode"
+        >
+          <Brightness4Icon fontSize="large" />
+        </IconButton>
+      )}
     </ColorThemeButtonDiv>
   );
 };

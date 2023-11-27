@@ -1,22 +1,22 @@
-import styled from "styled-components";
-import { useAppSelector } from "../hooks";
-import { PageTitle } from "#ui/page-title/page-title";
-import { SimilarBooks } from "#ui/similar-books/similar-books";
-import { Typography } from "@mui/material";
-import { FavouriteCard } from "#ui/favourite-card/favourite-card";
-import { BackLink } from "#features/back-link/back-link";
-import { Link } from "react-router-dom";
+import styled from 'styled-components';
+import { useAppSelector } from '../hooks';
+import { PageTitle } from '#ui/page-title/page-title';
+import { SimilarBooks } from '#ui/similar-books/similar-books';
+import { Typography } from '@mui/material';
+import { FavouriteCard } from '#ui/favourite-card/favourite-card';
+import { BackLink } from '#features/back-link/back-link';
+import { Link } from 'react-router-dom';
 
 export const FavouritesPage: React.FC = () => {
-  const { favourites } = useAppSelector(({ favourites }) => favourites)
+  const { favourites } = useAppSelector(({ favourites }) => favourites);
 
   return (
     <FavouritesWrapper>
-      <PageTitle children='Favourites' />
+      <PageTitle children="Favourites" />
       <BackLink />
       <FavoritesDiv>
-        {favourites.length > 0 ?
-          favourites?.map((item, index) =>
+        {favourites.length > 0 ? (
+          favourites?.map((item, index) => (
             <FavouriteCard
               key={index}
               image={item.item.image}
@@ -27,20 +27,22 @@ export const FavouritesPage: React.FC = () => {
               isbn13={item.item.isbn13}
               author={item.item.authors}
               year={item.item.year}
-            />) :
+            />
+          ))
+        ) : (
           <NoFavouritesDiv>
-            <Typography variant="h4">There is no favourites.{' '}
-              <Link to={'/all'}>Let's add it!</Link>
+            <Typography variant="h4">
+              There is no favourites. <Link to={'/all'}>Let's add it!</Link>
             </Typography>
           </NoFavouritesDiv>
-        }
+        )}
       </FavoritesDiv>
 
       <PopularBooksSpan>Popular books</PopularBooksSpan>
       <SimilarBooks />
     </FavouritesWrapper>
-  )
-}
+  );
+};
 
 const FavouritesWrapper = styled.div`
   display: flex;

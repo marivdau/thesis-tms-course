@@ -1,12 +1,24 @@
-import { Alert, Button, IconButton, InputAdornment, OutlinedInput, Snackbar } from "@mui/material"
-import styled from "styled-components"
-import { useAppDispatch, useAppSelector } from "../../hooks"
-import { SyntheticEvent, useState } from "react";
+import {
+  Alert,
+  Button,
+  IconButton,
+  InputAdornment,
+  OutlinedInput,
+  Snackbar,
+} from '@mui/material';
+import styled from 'styled-components';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { SyntheticEvent, useState } from 'react';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import { setConfirmedPassword, setEmail, setName, setPassword } from "#features/sign-up-form/sign-up-form.slice";
-import { register } from "#features/auth/registration.slice";
-import React from "react";
+import {
+  setConfirmedPassword,
+  setEmail,
+  setName,
+  setPassword,
+} from '#features/sign-up-form/sign-up-form.slice';
+import { register } from '#features/auth/registration.slice';
+import React from 'react';
 
 export const AccountForm: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -21,26 +33,34 @@ export const AccountForm: React.FC = () => {
   const [showNewConfPassword, setShowNewConfPassword] = useState(false);
 
   const [enteredNewPassword, setEnteredNewPassword] = useState<string>('');
-  const [enteredConfirmNewPassword, setEnteredConfirmNewPassword] = useState<string>('')
+  const [enteredConfirmNewPassword, setEnteredConfirmNewPassword] =
+    useState<string>('');
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
   const handleClickShowNewPassword = () => setShowNewPassword((show) => !show);
-  const handleClickShowNewConfPassword = () => setShowNewConfPassword((show) => !show);
+  const handleClickShowNewConfPassword = () =>
+    setShowNewConfPassword((show) => !show);
 
   const name = useAppSelector((state) => state.signUpForm.name);
   const email = useAppSelector((state) => state.signUpForm.email);
   const password = useAppSelector((state) => state.signUpForm.password);
-  const passwordAuth = useAppSelector((state) => state.authorization.auth.password);
+  const passwordAuth = useAppSelector(
+    (state) => state.authorization.auth.password
+  );
   const [oldPassword, setOldPassword] = useState('');
 
   const errorNewPasswordCheck = () => {
-    if (enteredNewPassword !== enteredConfirmNewPassword || enteredNewPassword === '' || enteredConfirmNewPassword === '') {
+    if (
+      enteredNewPassword !== enteredConfirmNewPassword ||
+      enteredNewPassword === '' ||
+      enteredConfirmNewPassword === ''
+    ) {
       setErrorInputNewPass(true);
-      console.log('error')
+      console.log('error');
     } else {
       setErrorInputNewPass(false);
     }
-  }
+  };
 
   const errorOldPasswordValidCheck = () => {
     if (passwordAuth !== oldPassword) {
@@ -48,7 +68,7 @@ export const AccountForm: React.FC = () => {
     } else {
       setErrorInputOldPassword(false);
     }
-  }
+  };
 
   const handleClick = () => {
     setOpen(true);
@@ -63,41 +83,38 @@ export const AccountForm: React.FC = () => {
   };
 
   return (
-    <AccountFormWrapper onSubmit={(event) => {
-      event?.preventDefault();
-      if (!errorInputNewPass && !errorInputOldPassword) {
-        dispatch(
-          register({
-            username: name,
-            password,
-            email,
-          })
-        );
-        handleClick();
-      }
-    }
-    }>
-      <TypographySectionSpan>
-        Profile
-      </TypographySectionSpan>
+    <AccountFormWrapper
+      onSubmit={(event) => {
+        event?.preventDefault();
+        if (!errorInputNewPass && !errorInputOldPassword) {
+          dispatch(
+            register({
+              username: name,
+              password,
+              email,
+            })
+          );
+          handleClick();
+        }
+      }}
+    >
+      <TypographySectionSpan>Profile</TypographySectionSpan>
       <UserInfo>
         <NameInfo>
-          <TypographySpan>
-            Name
-          </TypographySpan>
+          <TypographySpan>Name</TypographySpan>
           <OutlinedInput
             required
             type="text"
             fullWidth={true}
             value={name || ''}
             sx={{ color: 'var(--text-primary-color)' }}
-            onChange={({ currentTarget }) => dispatch(setName(currentTarget.value))}
+            onChange={({ currentTarget }) =>
+              dispatch(setName(currentTarget.value))
+            }
           />
         </NameInfo>
         <EmailInfo>
-          <TypographySpan>
-            Email
-          </TypographySpan>
+          <TypographySpan>Email</TypographySpan>
           <OutlinedInput
             required
             fullWidth={true}
@@ -111,14 +128,10 @@ export const AccountForm: React.FC = () => {
         </EmailInfo>
       </UserInfo>
 
-      <TypographySectionSpan>
-        Password
-      </TypographySectionSpan>
+      <TypographySectionSpan>Password</TypographySectionSpan>
       <PasswordDiv>
         <PasswordInfo>
-          <TypographySpan>
-            Password
-          </TypographySpan>
+          <TypographySpan>Password</TypographySpan>
           <OutlinedInput
             fullWidth={true}
             sx={{ color: 'var(--text-primary-color)' }}
@@ -136,22 +149,21 @@ export const AccountForm: React.FC = () => {
               </InputAdornment>
             }
             value={oldPassword}
-            onChange={({ currentTarget }) => setOldPassword(currentTarget.value)}
+            onChange={({ currentTarget }) =>
+              setOldPassword(currentTarget.value)
+            }
             error={errorInputOldPassword}
           />
-          {errorInputOldPassword
-            ?
+          {errorInputOldPassword ? (
             <ErrorTextSpan>Password is not correct</ErrorTextSpan>
-            :
+          ) : (
             <></>
-          }
+          )}
         </PasswordInfo>
       </PasswordDiv>
       <PasswordNewDiv>
         <PasswordInfo>
-          <TypographySpan>
-            New password
-          </TypographySpan>
+          <TypographySpan>New password</TypographySpan>
           <OutlinedInput
             fullWidth={true}
             type={showNewPassword ? 'text' : 'password'}
@@ -170,21 +182,18 @@ export const AccountForm: React.FC = () => {
             }
             onChange={({ currentTarget }) => {
               setEnteredNewPassword(currentTarget.value);
-              dispatch(setPassword(currentTarget.value))
+              dispatch(setPassword(currentTarget.value));
             }}
             error={errorInputNewPass}
           />
-          {errorInputNewPass
-            ?
+          {errorInputNewPass ? (
             <ErrorTextSpan>New password doesn't match</ErrorTextSpan>
-            :
+          ) : (
             <></>
-          }
+          )}
         </PasswordInfo>
         <PasswordInfo>
-          <TypographySpan>
-            Confirm new password
-          </TypographySpan>
+          <TypographySpan>Confirm new password</TypographySpan>
           <OutlinedInput
             fullWidth={true}
             sx={{ color: 'var(--text-primary-color)' }}
@@ -203,16 +212,15 @@ export const AccountForm: React.FC = () => {
             }
             onChange={({ currentTarget }) => {
               setEnteredConfirmNewPassword(currentTarget.value);
-              dispatch(setConfirmedPassword(currentTarget.value))
+              dispatch(setConfirmedPassword(currentTarget.value));
             }}
             error={errorInputNewPass}
           />
-          {errorInputNewPass
-            ?
+          {errorInputNewPass ? (
             <ErrorTextSpan>New password doesn't match</ErrorTextSpan>
-            :
+          ) : (
             <></>
-          }
+          )}
         </PasswordInfo>
       </PasswordNewDiv>
       <ButtonsDiv>
@@ -221,7 +229,10 @@ export const AccountForm: React.FC = () => {
             type="submit"
             variant="contained"
             fullWidth={true}
-            onClick={() => { errorNewPasswordCheck(); errorOldPasswordValidCheck(); }}
+            onClick={() => {
+              errorNewPasswordCheck();
+              errorOldPasswordValidCheck();
+            }}
           >
             Save changes
           </Button>
@@ -234,8 +245,8 @@ export const AccountForm: React.FC = () => {
         </Alert>
       </Snackbar>
     </AccountFormWrapper>
-  )
-}
+  );
+};
 
 const AccountFormWrapper = styled.form`
   display: flex;
@@ -272,7 +283,7 @@ const UserInfo = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-bottom: 30px;
-  
+
   @media screen and (max-width: 1000px) {
     margin: auto;
     flex-direction: column;

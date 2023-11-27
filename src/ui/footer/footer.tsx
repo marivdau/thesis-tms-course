@@ -1,18 +1,17 @@
-import styled from "styled-components";
-import Copyright from '@mui/icons-material/Copyright'
+import styled from 'styled-components';
+import Copyright from '@mui/icons-material/Copyright';
 
 export const Footer = () => {
   return (
     <FooterWrapper>
       <DateNameSpan>
         <Copyright />
-        {new Date().getFullYear()}{' '}
-        Bookstore
+        {new Date().getFullYear()} Bookstore
       </DateNameSpan>
       <RightsSpan>All right reserved</RightsSpan>
     </FooterWrapper>
-  )
-}
+  );
+};
 
 const FooterWrapper = styled.div`
   display: flex;
@@ -21,7 +20,7 @@ const FooterWrapper = styled.div`
   align-items: center;
   border-top: 1px solid var(--text-secondary-color);
   background-color: var(--background-primary-color);
-  
+
   @media screen and (max-width: 700px) {
     flex-direction: column;
     line-height: 30px;

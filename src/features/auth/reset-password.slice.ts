@@ -9,7 +9,7 @@ const forgotPasswordSlice = createSlice({
   reducers: {
     forgotPassword(state, action: { payload: ResetPasswordPayload }) {
       state.email = action.payload;
-      console.log(action.payload)
+      console.log(action.payload);
     },
   },
 });

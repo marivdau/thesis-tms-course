@@ -1,12 +1,22 @@
-import { Button, IconButton, InputAdornment, OutlinedInput } from "@mui/material"
-import styled from "styled-components"
-import { useAppDispatch, useAppSelector } from "../../hooks";
-import { setConfirmedPassword, setEmail, setName, setPassword } from "./sign-up-form.slice";
-import { register } from "#features/auth/registration.slice";
-import { Link } from "react-router-dom";
-import { useState } from "react";
-import Visibility from "@mui/icons-material/Visibility";
-import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import {
+  Button,
+  IconButton,
+  InputAdornment,
+  OutlinedInput,
+} from '@mui/material';
+import styled from 'styled-components';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import {
+  setConfirmedPassword,
+  setEmail,
+  setName,
+  setPassword,
+} from './sign-up-form.slice';
+import { register } from '#features/auth/registration.slice';
+import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
 export const SignUpForm: React.FC = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -14,7 +24,8 @@ export const SignUpForm: React.FC = () => {
   const [errorInput, setErrorInput] = useState(false);
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
-  const handleClickShowConfPassword = () => setShowConfPassword((show) => !show);
+  const handleClickShowConfPassword = () =>
+    setShowConfPassword((show) => !show);
 
   const dispatch = useAppDispatch();
   const name = useAppSelector((state) => state.signUpForm.name);
@@ -23,9 +34,7 @@ export const SignUpForm: React.FC = () => {
   const confirmedPassword = useAppSelector(
     (state) => state.signUpForm.confirmedPassword
   );
-  const isCompleted = useAppSelector(
-    (state) => state.registration.isCompleted
-  );
+  const isCompleted = useAppSelector((state) => state.registration.isCompleted);
 
   const errorPasswordCheck = () => {
     if (confirmedPassword !== password) {
@@ -33,33 +42,35 @@ export const SignUpForm: React.FC = () => {
     } else {
       setErrorInput(false);
     }
-  }
-  
+  };
+
   return (
     <>
-      {isCompleted
-        ?
+      {isCompleted ? (
         <>
           <SignInSuccess>
             <SuccessSpan>Congratulations {name}!</SuccessSpan>
             <SuccessSpan>You are registered</SuccessSpan>
           </SignInSuccess>
-          <Button component={Link} to={'/sign-in'}>Click here to proceed to sign in page</Button>
+          <Button component={Link} to={'/sign-in'}>
+            Click here to proceed to sign in page
+          </Button>
         </>
-        :
-        <SignInFormWrapper onSubmit={(event) => {
-          event?.preventDefault();
-          if (!errorInput) {
-            dispatch(
-              register({
-                username: name,
-                password,
-                email,
-              })
-            )
-          }
-        }
-        }>
+      ) : (
+        <SignInFormWrapper
+          onSubmit={(event) => {
+            event?.preventDefault();
+            if (!errorInput) {
+              dispatch(
+                register({
+                  username: name,
+                  password,
+                  email,
+                })
+              );
+            }
+          }}
+        >
           <NameInputDiv>
             <OutlinedInput
               required
@@ -68,7 +79,9 @@ export const SignUpForm: React.FC = () => {
               sx={{ color: 'var(--text-primary-color)' }}
               fullWidth={true}
               value={name}
-              onChange={({ currentTarget }) => dispatch(setName(currentTarget.value))}
+              onChange={({ currentTarget }) =>
+                dispatch(setName(currentTarget.value))
+              }
             />
           </NameInputDiv>
           <EmailInputDiv>
@@ -76,7 +89,7 @@ export const SignUpForm: React.FC = () => {
               required
               placeholder="Your email *"
               sx={{ color: 'var(--text-primary-color)' }}
-              type='email'
+              type="email"
               fullWidth={true}
               value={email}
               onChange={({ currentTarget }) =>
@@ -94,9 +107,7 @@ export const SignUpForm: React.FC = () => {
               onChange={({ currentTarget }) =>
                 dispatch(setPassword(currentTarget.value))
               }
-
               error={errorInput}
-
               type={showPassword ? 'text' : 'password'}
               endAdornment={
                 <InputAdornment position="end">
@@ -122,9 +133,7 @@ export const SignUpForm: React.FC = () => {
               onChange={({ currentTarget }) =>
                 dispatch(setConfirmedPassword(currentTarget.value))
               }
-
               error={errorInput}
-
               type={showConfPassword ? 'text' : 'password'}
               endAdornment={
                 <InputAdornment position="end">
@@ -139,12 +148,11 @@ export const SignUpForm: React.FC = () => {
                 </InputAdornment>
               }
             />
-            {errorInput
-              ?
+            {errorInput ? (
               <ErrorTextSpan>Password doesn't match</ErrorTextSpan>
-              :
+            ) : (
               <></>
-            }
+            )}
           </PasswordInputDiv>
 
           <ButtonDiv>
@@ -158,11 +166,10 @@ export const SignUpForm: React.FC = () => {
             </Button>
           </ButtonDiv>
         </SignInFormWrapper>
-      }
+      )}
     </>
-
-  )
-}
+  );
+};
 
 const SignInFormWrapper = styled.form`
   display: flex;

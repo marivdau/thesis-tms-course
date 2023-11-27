@@ -23,13 +23,11 @@ export const Header = () => {
     <HeaderWrapper>
       <LogoDiv>
         <Link to={'/'}>
-          {
-            theme
-              ?
-              <LogoImg src={GrayLogo} alt="logo-gray" />
-              :
-              <LogoImg src={DefaultLogo} alt="logo-default" />
-          }
+          {theme ? (
+            <LogoImg src={GrayLogo} alt="logo-gray" />
+          ) : (
+            <LogoImg src={DefaultLogo} alt="logo-default" />
+          )}
         </Link>
       </LogoDiv>
       <SearchDiv>
@@ -37,26 +35,35 @@ export const Header = () => {
       </SearchDiv>
       <HeaderMenuDiv>
         <IconsDiv>
-          <Tooltip title='All books'>
+          <Tooltip title="All books">
             <Button component={Link} to="/all">
-              <MenuBookIcon sx={{ color: 'var(--header-menu-button-icon-color)' }} fontSize='large' />
+              <MenuBookIcon
+                sx={{ color: 'var(--header-menu-button-icon-color)' }}
+                fontSize="large"
+              />
             </Button>
           </Tooltip>
         </IconsDiv>
         <IconsDiv>
-          <Tooltip title='Favourites'>
+          <Tooltip title="Favourites">
             <Button component={Link} to="/favourites">
               <Badge badgeContent={favouritesAmount} color="primary">
-                <Favourites sx={{ color: 'var(--header-menu-button-icon-color)' }} fontSize='large' />
+                <Favourites
+                  sx={{ color: 'var(--header-menu-button-icon-color)' }}
+                  fontSize="large"
+                />
               </Badge>
             </Button>
           </Tooltip>
         </IconsDiv>
         <IconsDiv>
-          <Tooltip title='Cart'>
+          <Tooltip title="Cart">
             <Button component={Link} to="/cart">
               <Badge badgeContent={cartAmount} color="primary">
-                <Cart sx={{ color: 'var(--header-menu-button-icon-color)' }} fontSize='large' />
+                <Cart
+                  sx={{ color: 'var(--header-menu-button-icon-color)' }}
+                  fontSize="large"
+                />
               </Badge>
             </Button>
           </Tooltip>
@@ -67,8 +74,8 @@ export const Header = () => {
         <ThemeModeSwitcher />
       </HeaderMenuDiv>
     </HeaderWrapper>
-  )
-}
+  );
+};
 
 const HeaderWrapper = styled.div`
   all: unset;
@@ -86,7 +93,6 @@ const HeaderWrapper = styled.div`
     align-items: center;
     height: 200px;
   }
-
 `;
 
 const LogoDiv = styled.div`

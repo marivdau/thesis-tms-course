@@ -1,13 +1,13 @@
-import styled from "styled-components";
-import { PageTitle } from "#ui/page-title/page-title";
-import { Button, Stack } from "@mui/material";
+import styled from 'styled-components';
+import { PageTitle } from '#ui/page-title/page-title';
+import { Button, Stack } from '@mui/material';
 import Confetti from 'react-confetti';
-import { Link } from "react-router-dom";
-import { useState } from "react";
-import ArrowBack from "@mui/icons-material/ArrowBack";
+import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import ArrowBack from '@mui/icons-material/ArrowBack';
 import { Tooltip } from '@mui/material';
-import { useAppDispatch, useAppSelector } from "../hooks";
-import { clearCart } from "#features/order/order.slice";
+import { useAppDispatch, useAppSelector } from '../hooks';
+import { clearCart } from '#features/order/order.slice';
 
 export const PaymentPage: React.FC = () => {
   const [showMeConfetti, setShowMeConfetti] = useState(false);
@@ -22,23 +22,26 @@ export const PaymentPage: React.FC = () => {
         height={window.innerHeight || 200}
         numberOfPieces={200}
       />
-      <PageTitle children='Payment page' />
+      <PageTitle children="Payment page" />
       <Link to={'/cart'}>
-        <Tooltip title='Back to cart'>
+        <Tooltip title="Back to cart">
           <ArrowBack />
         </Tooltip>
       </Link>
       <PaymentDiv>
         <Stack spacing={6}>
-          {!showMeConfetti
-            ?
+          {!showMeConfetti ? (
             <>
-              <PaymentTextSpan>The total sum to pay is ${totalSumToPay}</PaymentTextSpan>
-              <PaymentTextSpan>Click the button below to pay your order</PaymentTextSpan>
+              <PaymentTextSpan>
+                The total sum to pay is ${totalSumToPay}
+              </PaymentTextSpan>
+              <PaymentTextSpan>
+                Click the button below to pay your order
+              </PaymentTextSpan>
             </>
-            :
+          ) : (
             <PaymentTextSpan>Success!</PaymentTextSpan>
-          }
+          )}
           <Button
             variant="contained"
             onClick={() => {
@@ -51,8 +54,8 @@ export const PaymentPage: React.FC = () => {
         </Stack>
       </PaymentDiv>
     </PaymentWrapper>
-  )
-}
+  );
+};
 
 const PaymentWrapper = styled.div`
   display: flex;

@@ -1,19 +1,19 @@
-import { AccountForm } from "#features/account/account-form";
-import { BackLink } from "#features/back-link/back-link";
-import { PageTitle } from "#ui/page-title/page-title";
-import styled from "styled-components"
-import { useAppSelector } from "../hooks";
-import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { AccountForm } from '#features/account/account-form';
+import { BackLink } from '#features/back-link/back-link';
+import { PageTitle } from '#ui/page-title/page-title';
+import styled from 'styled-components';
+import { useAppSelector } from '../hooks';
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
 export const AccountPage: React.FC = () => {
-  const token = useAppSelector(state => state.authorization.token);
+  const token = useAppSelector((state) => state.authorization.token);
   const navigate = useNavigate();
   useEffect(() => {
     if (!token) {
-      navigate("/sign-in");
+      navigate('/sign-in');
     }
-  }, [token, navigate])
+  }, [token, navigate]);
 
   return (
     <AccountPageWrapper>
@@ -23,17 +23,17 @@ export const AccountPage: React.FC = () => {
         <AccountForm />
       </AccountDiv>
     </AccountPageWrapper>
-  )
-}
+  );
+};
 
 const AccountPageWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  background-color: var(--background-primary-color); 
+  background-color: var(--background-primary-color);
   margin: auto;
 
   @media screen and (max-width: 1000px) {
-    padding: 0 0 40px; 
+    padding: 0 0 40px;
   }
 `;
 

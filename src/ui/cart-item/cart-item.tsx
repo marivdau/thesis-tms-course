@@ -1,14 +1,17 @@
-import { Button, Divider } from "@mui/material";
-import styled from "styled-components";
+import { Button, Divider } from '@mui/material';
+import styled from 'styled-components';
 import Clear from '@mui/icons-material/Clear';
 import Add from '@mui/icons-material/Add';
 import Remove from '@mui/icons-material/Remove';
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 import AttachMoney from '@mui/icons-material/AttachMoney';
-import { useAppDispatch } from "../../hooks";
-import { decreaseItemQuantity, deleteItem, increaseItemQuantity } from "#features/order/order.slice";
-import { removeDollarSignConvertToNumber } from "../../service/remove-dollar-sign";
-
+import { useAppDispatch } from '../../hooks';
+import {
+  decreaseItemQuantity,
+  deleteItem,
+  increaseItemQuantity,
+} from '#features/order/order.slice';
+import { removeDollarSignConvertToNumber } from '../../service/remove-dollar-sign';
 
 export type PropsCart = {
   quantity: number;
@@ -20,7 +23,7 @@ export type PropsCart = {
   price: string;
   image: string;
   url: string;
-}
+};
 
 export const CartItem: React.FC<PropsCart> = (props: PropsCart) => {
   const dispatch = useAppDispatch();
@@ -33,27 +36,26 @@ export const CartItem: React.FC<PropsCart> = (props: PropsCart) => {
         </CartImageDiv>
 
         <InfoLineDiv>
-          <Link to={`/preview-book/${props.isbn13}`} >
-            <CartTitle>
-              {props.title}
-            </CartTitle>
+          <Link to={`/preview-book/${props.isbn13}`}>
+            <CartTitle>{props.title}</CartTitle>
           </Link>
 
           <CartSubtitle>
-            {'by '}{props.authors}, {' '} {props.year}
+            {'by '}
+            {props.authors}, {props.year}
           </CartSubtitle>
           <CartItemQuantity>
             <Button
               variant="text"
-              onClick={() => dispatch(decreaseItemQuantity(props.isbn13))}>
+              onClick={() => dispatch(decreaseItemQuantity(props.isbn13))}
+            >
               <Remove />
             </Button>
-            <QuantitySpan>
-              {props.quantity}
-            </QuantitySpan>
+            <QuantitySpan>{props.quantity}</QuantitySpan>
             <Button
               variant="text"
-              onClick={() => dispatch(increaseItemQuantity(props.isbn13))}>
+              onClick={() => dispatch(increaseItemQuantity(props.isbn13))}
+            >
               <Add />
             </Button>
           </CartItemQuantity>
@@ -62,19 +64,24 @@ export const CartItem: React.FC<PropsCart> = (props: PropsCart) => {
         <PriceRaitingDiv>
           <PriceSpan>
             <AttachMoney fontSize="large" />
-            {(props.quantity * removeDollarSignConvertToNumber(props.price)).toFixed(2)}
+            {(
+              props.quantity * removeDollarSignConvertToNumber(props.price)
+            ).toFixed(2)}
           </PriceSpan>
         </PriceRaitingDiv>
         <FavIconDiv>
-          <Button variant="text" onClick={() => dispatch(deleteItem(props.isbn13))}>
+          <Button
+            variant="text"
+            onClick={() => dispatch(deleteItem(props.isbn13))}
+          >
             <Clear />
           </Button>
         </FavIconDiv>
       </Cart>
       <Divider />
     </CartWrapper>
-  )
-}
+  );
+};
 
 const CartWrapper = styled.div`
   background-color: var(--background-primary-color);
@@ -96,7 +103,7 @@ const Cart = styled.div`
     padding: 0;
     align-items: center;
     width: 90%;
-    margin: auto;;
+    margin: auto;
   }
 `;
 
@@ -126,9 +133,9 @@ const CartTitle = styled.span`
   font-weight: 600;
   color: var(--text-primary-color);
 
-    @media screen and (max-width: 900px) {
-      font-size: 16px;
-      font-weight: 500;
+  @media screen and (max-width: 900px) {
+    font-size: 16px;
+    font-weight: 500;
   }
 `;
 
@@ -157,7 +164,7 @@ const InfoLineDiv = styled.div`
   flex-direction: column;
   justify-content: space-between;
   width: 600px;
-  
+
   @media screen and (max-width: 900px) {
     width: 100%;
     margin-right: 5px;
@@ -191,7 +198,7 @@ const PriceSpan = styled.span`
 const FavIconDiv = styled.div`
   margin-right: 10px;
 
-    @media screen and (max-width: 900px) {
-      margin-right: 0;
+  @media screen and (max-width: 900px) {
+    margin-right: 0;
   }
 `;

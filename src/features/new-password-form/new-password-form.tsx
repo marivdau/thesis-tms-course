@@ -1,12 +1,20 @@
-import { setConfirmedPassword, setPassword } from "#features/sign-up-form/sign-up-form.slice";
-import Visibility from "@mui/icons-material/Visibility";
-import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import { Button, IconButton, InputAdornment, OutlinedInput } from "@mui/material"
-import { useState } from "react";
-import styled from "styled-components";
-import { Link } from "react-router-dom";
-import { register } from "#features/auth/registration.slice";
-import { useAppDispatch, useAppSelector } from "../../hooks";
+import {
+  setConfirmedPassword,
+  setPassword,
+} from '#features/sign-up-form/sign-up-form.slice';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import {
+  Button,
+  IconButton,
+  InputAdornment,
+  OutlinedInput,
+} from '@mui/material';
+import { useState } from 'react';
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+import { register } from '#features/auth/registration.slice';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 
 export const NewPasswordForm: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -18,47 +26,56 @@ export const NewPasswordForm: React.FC = () => {
 
   const [errorInputNewPass, setErrorInputNewPass] = useState(false);
   const [enteredNewPassword, setEnteredNewPassword] = useState<string>('');
-  const [enteredConfirmNewPassword, setEnteredConfirmNewPassword] = useState<string>('')
+  const [enteredConfirmNewPassword, setEnteredConfirmNewPassword] =
+    useState<string>('');
 
   const password = useAppSelector((state) => state.signUpForm.password);
   const name = useAppSelector((state) => state.signUpForm.name);
   const email = useAppSelector((state) => state.signUpForm.email);
 
   const handleClickShowNewPassword = () => setShowNewPassword((show) => !show);
-  const handleClickShowNewConfPassword = () => setShowNewConfPassword((show) => !show);
+  const handleClickShowNewConfPassword = () =>
+    setShowNewConfPassword((show) => !show);
 
   const errorNewPasswordCheck = () => {
-    if (enteredNewPassword !== enteredConfirmNewPassword || enteredNewPassword === '' || enteredConfirmNewPassword === '') {
+    if (
+      enteredNewPassword !== enteredConfirmNewPassword ||
+      enteredNewPassword === '' ||
+      enteredConfirmNewPassword === ''
+    ) {
       setErrorInputNewPass(true);
-      console.log('error')
+      console.log('error');
     } else {
       setErrorInputNewPass(false);
     }
-  }
+  };
 
   return (
-    <NewPassForm onSubmit={(event) => {
-      event?.preventDefault();
-      if (!errorInputNewPass) {
-        setResetPassword(true);
-        dispatch(
-          register({
-            username: name,
-            password,
-            email,
-          })
-        )
-      }
-    }}>
+    <NewPassForm
+      onSubmit={(event) => {
+        event?.preventDefault();
+        if (!errorInputNewPass) {
+          setResetPassword(true);
+          dispatch(
+            register({
+              username: name,
+              password,
+              email,
+            })
+          );
+        }
+      }}
+    >
       <TypographyDiv>
         <TypographySpan>new password</TypographySpan>
       </TypographyDiv>
-      {resetPassword
-        ?
+      {resetPassword ? (
         <>
           <ResetPasswordWrapper>
             <EmailTextDiv>
-              <EmailTextPharagraph>Your password was successfully reset!</EmailTextPharagraph>
+              <EmailTextPharagraph>
+                Your password was successfully reset!
+              </EmailTextPharagraph>
             </EmailTextDiv>
             <ButtonDiv>
               <Button
@@ -72,7 +89,7 @@ export const NewPasswordForm: React.FC = () => {
             </ButtonDiv>
           </ResetPasswordWrapper>
         </>
-        :
+      ) : (
         <>
           <PasswordInputDiv>
             <OutlinedInput
@@ -92,16 +109,15 @@ export const NewPasswordForm: React.FC = () => {
               }
               onChange={({ currentTarget }) => {
                 setEnteredNewPassword(currentTarget.value);
-                dispatch(setPassword(currentTarget.value))
+                dispatch(setPassword(currentTarget.value));
               }}
               error={errorInputNewPass}
             />
-            {errorInputNewPass
-              ?
+            {errorInputNewPass ? (
               <ErrorTextSpan>New password doesn't match</ErrorTextSpan>
-              :
+            ) : (
               <></>
-            }
+            )}
           </PasswordInputDiv>
           <PasswordInputDiv>
             <OutlinedInput
@@ -121,16 +137,15 @@ export const NewPasswordForm: React.FC = () => {
               }
               onChange={({ currentTarget }) => {
                 setEnteredConfirmNewPassword(currentTarget.value);
-                dispatch(setConfirmedPassword(currentTarget.value))
+                dispatch(setConfirmedPassword(currentTarget.value));
               }}
               error={errorInputNewPass}
             />
-            {errorInputNewPass
-              ?
+            {errorInputNewPass ? (
               <ErrorTextSpan>New password doesn't match</ErrorTextSpan>
-              :
+            ) : (
               <></>
-            }
+            )}
           </PasswordInputDiv>
 
           <ButtonDiv>
@@ -140,13 +155,14 @@ export const NewPasswordForm: React.FC = () => {
               type="submit"
               onClick={errorNewPasswordCheck}
             >
-              Set new Password</Button>
+              Set new Password
+            </Button>
           </ButtonDiv>
         </>
-      }
+      )}
     </NewPassForm>
-  )
-}
+  );
+};
 
 const NewPassForm = styled.form``;
 

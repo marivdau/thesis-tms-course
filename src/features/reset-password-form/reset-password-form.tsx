@@ -1,16 +1,16 @@
-import { Button, OutlinedInput, Typography } from "@mui/material";
-import { useState } from "react";
-import styled from "styled-components"
-import { useAppDispatch, useAppSelector } from "../../hooks";
-import { forgotPassword } from "#features/auth/reset-password.slice";
-import { Link } from "react-router-dom";
+import { Button, OutlinedInput, Typography } from '@mui/material';
+import { useState } from 'react';
+import styled from 'styled-components';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { forgotPassword } from '#features/auth/reset-password.slice';
+import { Link } from 'react-router-dom';
 
 export const ResetPasswordForm: React.FC = () => {
   const [email, setEmail] = useState('');
   const [sentEmail, setSentEmail] = useState(false);
   const [errorInput, setErrorInput] = useState(false);
 
-  const registeredEmail = useAppSelector(state => state.signUpForm.email);
+  const registeredEmail = useAppSelector((state) => state.signUpForm.email);
   const dispatch = useAppDispatch();
 
   const errorEmailCheck = () => {
@@ -19,7 +19,7 @@ export const ResetPasswordForm: React.FC = () => {
     } else {
       setErrorInput(false);
     }
-  }
+  };
 
   return (
     <ResetPasswordFormWrapper
@@ -29,17 +29,18 @@ export const ResetPasswordForm: React.FC = () => {
           dispatch(forgotPassword({ email }));
           setSentEmail(true);
         }
-      }}>
+      }}
+    >
       <TypographyDiv>
-        <TypographySpan>
-          reset password
-        </TypographySpan>
+        <TypographySpan>reset password</TypographySpan>
       </TypographyDiv>
-      {sentEmail
-        ?
+      {sentEmail ? (
         <ResetPasswordWrapper>
           <EmailTextDiv>
-            <EmailTextPharagraph>You will receive an email on the address <EmailSpan>{email}</EmailSpan>  with a link to reset your password!</EmailTextPharagraph>
+            <EmailTextPharagraph>
+              You will receive an email on the address{' '}
+              <EmailSpan>{email}</EmailSpan> with a link to reset your password!
+            </EmailTextPharagraph>
           </EmailTextDiv>
           <ButtonDiv>
             <Button
@@ -52,7 +53,7 @@ export const ResetPasswordForm: React.FC = () => {
             </Button>
           </ButtonDiv>
         </ResetPasswordWrapper>
-        :
+      ) : (
         <>
           <EmailInputDiv>
             <OutlinedInput
@@ -65,15 +66,17 @@ export const ResetPasswordForm: React.FC = () => {
               onChange={({ currentTarget }) => setEmail(currentTarget.value)}
               error={errorInput}
             />
-            {errorInput
-              ?
+            {errorInput ? (
               <>
                 <ErrorTextSpan>Not valid email</ErrorTextSpan>
-                <Typography>Check your email or proceed to <Link to={'/sign-up'}>Sign up</Link></Typography>
+                <Typography>
+                  Check your email or proceed to{' '}
+                  <Link to={'/sign-up'}>Sign up</Link>
+                </Typography>
               </>
-              :
+            ) : (
               <></>
-            }
+            )}
           </EmailInputDiv>
           <ButtonDiv>
             <Button
@@ -85,10 +88,11 @@ export const ResetPasswordForm: React.FC = () => {
               Reset
             </Button>
           </ButtonDiv>
-        </>}
+        </>
+      )}
     </ResetPasswordFormWrapper>
-  )
-}
+  );
+};
 
 const ResetPasswordFormWrapper = styled.form`
   display: flex;

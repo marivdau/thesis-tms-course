@@ -1,17 +1,17 @@
-import { getBookPreview } from "#features/book-preview/book-preview.slice";
-import { useEffect, useState } from "react";
-import styled from "styled-components";
+import { getBookPreview } from '#features/book-preview/book-preview.slice';
+import { useEffect, useState } from 'react';
+import styled from 'styled-components';
 import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
-import { Button, Rating } from "@mui/material";
-import { useNavigate, useParams } from "react-router-dom";
-import { addItem } from "#features/order/order.slice";
+import { Button, Rating } from '@mui/material';
+import { useNavigate, useParams } from 'react-router-dom';
+import { addItem } from '#features/order/order.slice';
 import Bookmark from '@mui/icons-material/Bookmark';
-import { markItem } from "#features/bookmark/bookmark.slice";
-import { useAppDispatch, useAppSelector } from "../../hooks";
+import { markItem } from '#features/bookmark/bookmark.slice';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 
 export const BookPreview: React.FC = () => {
   const [isClicked, setIsClicked] = useState(false);
@@ -32,13 +32,11 @@ export const BookPreview: React.FC = () => {
     setValue(newValue);
   };
 
-  const token = useAppSelector(
-    (state) => state.authorization.token
-  );
+  const token = useAppSelector((state) => state.authorization.token);
   const navigate = useNavigate();
   const navigateToLogIn = () => {
-    navigate("/sign-in");
-  }
+    navigate('/sign-in');
+  };
 
   return (
     <>
@@ -50,7 +48,7 @@ export const BookPreview: React.FC = () => {
               onClick={() => {
                 if (token) {
                   dispatch(markItem(bookPreview));
-                  setIsMarked(!isMarked)
+                  setIsMarked(!isMarked);
                 } else {
                   navigateToLogIn();
                 }
@@ -64,7 +62,12 @@ export const BookPreview: React.FC = () => {
         <BookDetailsDiv>
           <PriceRatingDiv>
             {bookPreview.price}
-            <Rating name="read-only" value={Number(bookPreview.rating)} precision={0.5} readOnly />
+            <Rating
+              name="read-only"
+              value={Number(bookPreview.rating)}
+              precision={0.5}
+              readOnly
+            />
           </PriceRatingDiv>
           <BookInfoSpanDiv>
             <BookInfoSpans>
@@ -113,19 +116,37 @@ export const BookPreview: React.FC = () => {
         <TabContext value={value}>
           <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
             <TabList onChange={handleChange} centered>
-              <Tab label="Desription" value="1" sx={{ color: 'var(--text-primary-color)' }} />
-              <Tab label="Author" value="2" sx={{ color: 'var(--text-primary-color)' }} />
-              <Tab label="Subtitle" value="3" sx={{ color: 'var(--text-primary-color)' }} />
+              <Tab
+                label="Desription"
+                value="1"
+                sx={{ color: 'var(--text-primary-color)' }}
+              />
+              <Tab
+                label="Author"
+                value="2"
+                sx={{ color: 'var(--text-primary-color)' }}
+              />
+              <Tab
+                label="Subtitle"
+                value="3"
+                sx={{ color: 'var(--text-primary-color)' }}
+              />
             </TabList>
           </Box>
-          <TabPanel value="1" sx={{ color: 'var(--text-primary-color)' }}>{bookPreview.desc}</TabPanel>
-          <TabPanel value="2" sx={{ color: 'var(--text-primary-color)' }}>{bookPreview.authors}</TabPanel>
-          <TabPanel value="3" sx={{ color: 'var(--text-primary-color)' }}>{bookPreview.subtitle}</TabPanel>
+          <TabPanel value="1" sx={{ color: 'var(--text-primary-color)' }}>
+            {bookPreview.desc}
+          </TabPanel>
+          <TabPanel value="2" sx={{ color: 'var(--text-primary-color)' }}>
+            {bookPreview.authors}
+          </TabPanel>
+          <TabPanel value="3" sx={{ color: 'var(--text-primary-color)' }}>
+            {bookPreview.subtitle}
+          </TabPanel>
         </TabContext>
       </BookInfoDivSecondLine>
     </>
-  )
-}
+  );
+};
 
 const BookInfoDivFirstLine = styled.div`
   display: flex;

@@ -1,13 +1,13 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 type SubscribeArray = {
-  email: string,
-}
+  email: string;
+};
 
 type State = {
   subscribeList: SubscribeArray[];
   isComplete: boolean;
-}
+};
 
 const subscribeSlice = createSlice({
   name: 'subscribeSlice',
@@ -20,8 +20,9 @@ const subscribeSlice = createSlice({
     subscribeToNewsLetters(state, action) {
       state.subscribeList.push({
         email: action.payload,
-      })
+      });
       state.isComplete = true;
+      console.log('subscribtion success')
     },
   },
 });

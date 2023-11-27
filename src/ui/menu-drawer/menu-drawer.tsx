@@ -20,9 +20,7 @@ type Anchor = 'right';
 export default function TemporaryDrawer() {
   const dispatch = useAppDispatch();
 
-  const token = useAppSelector(
-    (state) => state.authorization.token
-  );
+  const token = useAppSelector((state) => state.authorization.token);
 
   const name = useAppSelector((state) => state.registration.info.username);
   const initials = name?.charAt(0).toUpperCase();
@@ -34,17 +32,17 @@ export default function TemporaryDrawer() {
 
   const toggleDrawer =
     (anchor: Anchor, open: boolean) =>
-      (event: React.KeyboardEvent | React.MouseEvent) => {
-        if (
-          event.type === 'keydown' &&
-          ((event as React.KeyboardEvent).key === 'Tab' ||
-            (event as React.KeyboardEvent).key === 'Shift')
-        ) {
-          return;
-        }
+    (event: React.KeyboardEvent | React.MouseEvent) => {
+      if (
+        event.type === 'keydown' &&
+        ((event as React.KeyboardEvent).key === 'Tab' ||
+          (event as React.KeyboardEvent).key === 'Shift')
+      ) {
+        return;
+      }
 
-        setState({ ...state, [anchor]: open });
-      };
+      setState({ ...state, [anchor]: open });
+    };
 
   const list = (anchor: Anchor) => (
     <Box
@@ -55,75 +53,98 @@ export default function TemporaryDrawer() {
       bgcolor={theme ? '#626874' : '#fffcfc'}
       height={'100%'}
     >
-      {token
-        ?
+      {token ? (
         <UserDiv>
           <AvatarDiv>
-            <Avatar alt="avatar" src={avatarDefault} sx={{ width: 60, height: 60 }} />
+            <Avatar
+              alt="avatar"
+              src={avatarDefault}
+              sx={{ width: 60, height: 60 }}
+            />
           </AvatarDiv>
           <NameDiv>
-            <Typography variant='h5'>Hi, {name || 'Anonomys'}!</Typography>
+            <Typography variant="h5">Hi, {name || 'Anonomys'}!</Typography>
           </NameDiv>
         </UserDiv>
-        :
+      ) : (
         <></>
-      }
+      )}
       <ListDiv>
         <List>
-          <ListItem key='favourites'>
-            <ListItemButton sx={{ textAlign: 'center' }} component={Link} to="/favourites">
-              <ListItemText primary='favourites' sx={{ textTransform: 'uppercase' }} />
+          <ListItem key="favourites">
+            <ListItemButton
+              sx={{ textAlign: 'center' }}
+              component={Link}
+              to="/favourites"
+            >
+              <ListItemText
+                primary="favourites"
+                sx={{ textTransform: 'uppercase' }}
+              />
             </ListItemButton>
           </ListItem>
-          <ListItem key='cart'>
-            <ListItemButton sx={{ textAlign: 'center' }} component={Link} to="/cart">
-              <ListItemText primary='Cart' sx={{ textTransform: 'uppercase' }} />
+          <ListItem key="cart">
+            <ListItemButton
+              sx={{ textAlign: 'center' }}
+              component={Link}
+              to="/cart"
+            >
+              <ListItemText
+                primary="Cart"
+                sx={{ textTransform: 'uppercase' }}
+              />
             </ListItemButton>
           </ListItem>
-          {token
-            ?
-            <ListItem key='account'>
-              <ListItemButton sx={{ textAlign: 'center' }} component={Link} to="/account">
-                <ListItemText primary='account' sx={{ textTransform: 'uppercase' }} />
+          {token ? (
+            <ListItem key="account">
+              <ListItemButton
+                sx={{ textAlign: 'center' }}
+                component={Link}
+                to="/account"
+              >
+                <ListItemText
+                  primary="account"
+                  sx={{ textTransform: 'uppercase' }}
+                />
               </ListItemButton>
             </ListItem>
-            :
+          ) : (
             <></>
-          }
+          )}
         </List>
         <Divider />
       </ListDiv>
-      {token
-        ?
+      {token ? (
         <ButtonDiv>
           <Button
             onKeyDown={(event) => {
               if (event.key === 'Enter') {
-                dispatch(authorizationLogout())
+                dispatch(authorizationLogout());
               }
             }}
             variant="contained"
             color="primary"
             fullWidth={true}
             component={Link}
-            to='/sign-in'
+            to="/sign-in"
             onClick={() => dispatch(authorizationLogout())}
           >
             Log out
           </Button>
         </ButtonDiv>
-        :
+      ) : (
         <ButtonDiv>
           <Button
             variant="contained"
             color="primary"
             fullWidth={true}
             component={Link}
-            to='/sign-in'>
+            to="/sign-in"
+          >
             Sign In
           </Button>
         </ButtonDiv>
-      }
+      )}
     </Box>
   );
 
@@ -131,15 +152,20 @@ export default function TemporaryDrawer() {
     <div>
       {(['right'] as const).map((anchor) => (
         <React.Fragment key={anchor}>
-          <Tooltip title='Account'>
+          <Tooltip title="Account">
             <Button onClick={toggleDrawer(anchor, true)}>
-              {
-                token
-                  ?
-                  <Avatar sx={{ bgcolor: 'var(--header-menu-button-icon-color)' }}>{initials || 'A'}</Avatar>
-                  :
-                  <Person sx={{ color: 'var(--header-menu-button-icon-color)' }} fontSize='large' />
-              }
+              {token ? (
+                <Avatar
+                  sx={{ bgcolor: 'var(--header-menu-button-icon-color)' }}
+                >
+                  {initials || 'A'}
+                </Avatar>
+              ) : (
+                <Person
+                  sx={{ color: 'var(--header-menu-button-icon-color)' }}
+                  fontSize="large"
+                />
+              )}
             </Button>
           </Tooltip>
           <Drawer

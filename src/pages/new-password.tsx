@@ -1,13 +1,13 @@
-import { NewPasswordForm } from "#features/new-password-form/new-password-form";
-import styled from "styled-components"
+import { NewPasswordForm } from '#features/new-password-form/new-password-form';
+import styled from 'styled-components';
 
 export const NewPasswordPage: React.FC = () => {
   return (
     <NewPasswordWrapper>
       <NewPasswordForm />
     </NewPasswordWrapper>
-  )
-}
+  );
+};
 
 const NewPasswordWrapper = styled.div`
   display: flex;
