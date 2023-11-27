@@ -9,7 +9,7 @@ import { Tooltip } from '@mui/material';
 import { useAppDispatch, useAppSelector } from "../hooks";
 import { clearCart } from "#features/order/order.slice";
 
-export const Payment: React.FC = () => {
+export const PaymentPage: React.FC = () => {
   const [showMeConfetti, setShowMeConfetti] = useState(false);
   const dispatch = useAppDispatch();
   const totalSumToPay: string = useAppSelector((state) => state.order.totalSum);

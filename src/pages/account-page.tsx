@@ -6,7 +6,7 @@ import { useAppSelector } from "../hooks";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
-export const Account: React.FC = () => {
+export const AccountPage: React.FC = () => {
   const token = useAppSelector(state => state.authorization.token);
   const navigate = useNavigate();
   useEffect(() => {
@@ -16,17 +16,17 @@ export const Account: React.FC = () => {
   }, [token, navigate])
 
   return (
-    <AccountPage>
+    <AccountPageWrapper>
       <PageTitle children="Account" />
       <BackLink />
-      <AccountWrapper>
+      <AccountDiv>
         <AccountForm />
-      </AccountWrapper>
-    </AccountPage>
+      </AccountDiv>
+    </AccountPageWrapper>
   )
 }
 
-const AccountPage = styled.div`
+const AccountPageWrapper = styled.div`
   display: flex;
   flex-direction: column;
   background-color: var(--background-primary-color); 
@@ -37,7 +37,7 @@ const AccountPage = styled.div`
   }
 `;
 
-const AccountWrapper = styled.div`
+const AccountDiv = styled.div`
   display: flex;
   flex-direction: column;
 

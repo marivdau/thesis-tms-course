@@ -36,12 +36,7 @@ export const FavouritesPage: React.FC = () => {
         }
       </FavoritesDiv>
 
-      <Typography
-        variant="h5"
-        sx={{ textTransform: 'uppercase', color: 'var(--text-primary-color)' }}
-      >
-        Popular books
-      </Typography>
+      <PopularBooksSpan>Popular books</PopularBooksSpan>
       <SimilarBooks />
     </FavouritesWrapper>
   )
@@ -60,4 +55,13 @@ const FavoritesDiv = styled.div`
 const NoFavouritesDiv = styled.div`
   margin: 30px;
   color: var(--text-primary-second-color);
+`;
+
+const PopularBooksSpan = styled.span`
+  text-transform: uppercase;
+  color: var(--text-primary-color);
+  margin-left: 10px;
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 32px;
 `;

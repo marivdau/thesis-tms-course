@@ -11,6 +11,7 @@ export const SimilarBooks = () => {
   useEffect(() => {
     dispatch(getNewBooks());
   }, [dispatch]);
+  
   return (
     <SimilarBooksWrapper>
       <ScrollingCarousel>

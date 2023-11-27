@@ -1,15 +1,13 @@
 import styled from "styled-components";
-import { PageTitle } from "#ui/page-title/page-title";
 import { CartItem } from "#ui/cart-item/cart-item";
 import { Button, Typography } from "@mui/material";
 import AttachMoney from '@mui/icons-material/AttachMoney';
 import { clearCart, getTotalSum } from "#features/order/order.slice";
-import { useAppDispatch, useAppSelector } from "../hooks";
-import { removeDollarSignConvertToNumber } from "../service/remove-dollar-sign";
-import { BackLink } from "#features/back-link/back-link";
 import { Link, useNavigate } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../../hooks";
+import { removeDollarSignConvertToNumber } from "../../service/remove-dollar-sign";
 
-export const Cart: React.FC = () => {
+export const Order: React.FC = () => {
   const dispatch = useAppDispatch();
   const { basket } = useAppSelector(({ order }) => order);
 
@@ -33,9 +31,7 @@ export const Cart: React.FC = () => {
   }
 
   return (
-    <CartWrapper>
-      <PageTitle children='Your cart' />
-      <BackLink />
+    <>
       {basket.length > 0 ?
         basket?.map(({ item, quantity }, index: number) =>
           <CartItem
@@ -117,15 +113,9 @@ export const Cart: React.FC = () => {
           </ButtonDiv>
         </ButtonsDiv>
       </OrderDiv>
-    </CartWrapper>
+    </>
   )
 }
-
-const CartWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  background-color: var(--background-primary-color);
-`;
 
 const OrderDiv = styled.div`
   display: flex;
