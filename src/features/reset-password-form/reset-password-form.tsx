@@ -1,21 +1,34 @@
-import { Button, OutlinedInput } from "@mui/material";
+import { Button, OutlinedInput, Typography } from "@mui/material";
 import { useState } from "react";
 import styled from "styled-components"
-import { useAppDispatch } from "../../hooks";
+import { useAppDispatch, useAppSelector } from "../../hooks";
 import { forgotPassword } from "#features/auth/reset-password.slice";
 import { Link } from "react-router-dom";
 
 export const ResetPasswordForm: React.FC = () => {
   const [email, setEmail] = useState('');
   const [sentEmail, setSentEmail] = useState(false);
+  const [errorInput, setErrorInput] = useState(false);
+
+  const registeredEmail = useAppSelector(state => state.signUpForm.email);
   const dispatch = useAppDispatch();
+
+  const errorEmailCheck = () => {
+    if (email !== registeredEmail) {
+      setErrorInput(true);
+    } else {
+      setErrorInput(false);
+    }
+  }
 
   return (
     <ResetPasswordFormWrapper
       onSubmit={(event) => {
         event?.preventDefault();
-        dispatch(forgotPassword({ email }));
-        setSentEmail(true)
+        if (email === registeredEmail) {
+          dispatch(forgotPassword({ email }));
+          setSentEmail(true);
+        }
       }}>
       <TypographyDiv>
         <TypographySpan>
@@ -50,13 +63,24 @@ export const ResetPasswordForm: React.FC = () => {
               fullWidth={true}
               value={email}
               onChange={({ currentTarget }) => setEmail(currentTarget.value)}
+              error={errorInput}
             />
+            {errorInput
+              ?
+              <>
+                <ErrorTextSpan>Not valid email</ErrorTextSpan>
+                <Typography>Check your email or proceed to <Link to={'/sign-up'}>Sign up</Link></Typography>
+              </>
+              :
+              <></>
+            }
           </EmailInputDiv>
           <ButtonDiv>
             <Button
               variant="contained"
               fullWidth={true}
               type="submit"
+              onClick={errorEmailCheck}
             >
               Reset
             </Button>
@@ -74,7 +98,7 @@ const ResetPasswordFormWrapper = styled.form`
   margin: auto;
 
   @media screen and (max-width: 900px) {
-    width: 100%;
+    width: 90%;
   }
 `;
 
@@ -150,4 +174,11 @@ const ButtonDiv = styled.div`
   @media screen and (max-width: 900px) {
     width: 100%;
   }
+`;
+
+const ErrorTextSpan = styled.span`
+  font-size: 14px;
+  line-height: 16px;
+  font-weight: 400;
+  color: var(--contextual-red-color);
 `;

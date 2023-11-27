@@ -100,7 +100,7 @@ export const SignInForm: React.FC = () => {
           aria-describedby="alert-dialog-description"
         >
           <DialogTitle id="alert-dialog-title">
-            {"Login fail"}
+            {"Fail to sign in"}
           </DialogTitle>
           <DialogContent>
             <DialogContentText id="alert-dialog-description">
