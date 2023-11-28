@@ -54,10 +54,10 @@ export const FavouriteCard: React.FC<PropsCard> = (props: PropsCard) => {
 
 const CardWrapper = styled.div`
   width: 100%;
-  padding: 30px;
+  padding: 30px 0;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   flex-direction: row;
   background-color: var(--background-primary-color);
 
