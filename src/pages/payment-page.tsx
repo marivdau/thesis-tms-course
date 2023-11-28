@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { PageTitle } from '#ui/page-title/page-title';
-import { Button, Stack } from '@mui/material';
+import { Button, IconButton, Stack } from '@mui/material';
 import Confetti from 'react-confetti';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
@@ -23,11 +23,13 @@ export const PaymentPage: React.FC = () => {
         numberOfPieces={200}
       />
       <PageTitle children="Payment page" />
-      <Link to={'/cart'}>
-        <Tooltip title="Back to cart">
-          <ArrowBack />
-        </Tooltip>
-      </Link>
+      <BackLinkDiv>
+        <IconButton component={Link} to={'/cart'}>
+          <Tooltip title="Back to cart">
+            <ArrowBack />
+          </Tooltip>
+        </IconButton>
+      </BackLinkDiv>
       <PaymentDiv>
         <Stack spacing={6}>
           {!showMeConfetti ? (
@@ -81,4 +83,12 @@ const PaymentTextSpan = styled.span`
   font-size: 24px;
   font-weight: 600;
   line-height: 32px;
+`;
+
+const BackLinkDiv = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 30px;
+  padding-left: 10px;
 `;

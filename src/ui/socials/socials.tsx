@@ -3,7 +3,7 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import styled from 'styled-components';
 
-export const Socials = () => {
+export const Socials: React.FC = () => {
   return (
     <SocialsWrapper>
       <SocialLinkDiv>

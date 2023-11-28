@@ -11,7 +11,7 @@ import MenuBookIcon from '@mui/icons-material/MenuBook';
 import { useAppSelector } from '../../hooks';
 import { ThemeModeSwitcher } from '#features/theme-mode-switcher/theme-mode-switcher';
 
-export const Header = () => {
+export const Header: React.FC = () => {
   const { favourites } = useAppSelector(({ favourites }) => favourites);
   const { basket } = useAppSelector(({ order }) => order);
   const theme = useAppSelector((state) => state.themeMode.isDarkThemeActive);

@@ -2,7 +2,7 @@ import { Button, ButtonGroup } from '@mui/material';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-export const ButtonGroupSignInUp = () => {
+export const ButtonGroupSignInUp: React.FC = () => {
   return (
     <ButtonsGroupDiv>
       <ButtonGroup fullWidth={true}>
