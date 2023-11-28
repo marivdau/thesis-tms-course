@@ -1,11 +1,24 @@
-import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, IconButton, InputAdornment, OutlinedInput } from "@mui/material"
-import { Fragment, useState } from "react";
-import { Link, Navigate } from "react-router-dom";
-import styled from "styled-components"
-import { useAppDispatch, useAppSelector } from "../../hooks";
-import { authorization, authorizationFailure } from "#features/auth/authorization.slice";
-import Visibility from "@mui/icons-material/Visibility";
-import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  IconButton,
+  InputAdornment,
+  OutlinedInput,
+} from '@mui/material';
+import { Fragment, useState } from 'react';
+import { Link, Navigate } from 'react-router-dom';
+import styled from 'styled-components';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import {
+  authorization,
+  authorizationFailure,
+} from '#features/auth/authorization.slice';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
 export const SignInForm: React.FC = () => {
   const [open, setOpen] = useState(false);
@@ -26,17 +39,15 @@ export const SignInForm: React.FC = () => {
 
   const dispatch = useAppDispatch();
 
-  const emailOnSignUp = useAppSelector(state => state.signUpForm.email);
-  const passwordOnSignUp = useAppSelector(state => state.signUpForm.password);
+  const emailOnSignUp = useAppSelector((state) => state.signUpForm.email);
+  const passwordOnSignUp = useAppSelector((state) => state.signUpForm.password);
 
-  const token = useAppSelector(
-    (state) => state.authorization.token
-  );
+  const token = useAppSelector((state) => state.authorization.token);
 
   const validate = (enteredEmail: string, enteredPassword: string) => {
     emailOnSignUp === enteredEmail && passwordOnSignUp === enteredPassword
       ? dispatch(authorization({ email, password }))
-      : dispatch(authorizationFailure())
+      : dispatch(authorizationFailure());
   };
 
   if (token) {
@@ -44,11 +55,16 @@ export const SignInForm: React.FC = () => {
   }
 
   return (
-    <SignInFormWrapper onSubmit={(event) => { event.preventDefault(); validate(email, password) }}>
+    <SignInFormWrapper
+      onSubmit={(event) => {
+        event.preventDefault();
+        validate(email, password);
+      }}
+    >
       <EmailInputDiv>
         <OutlinedInput
           required
-          type='email'
+          type="email"
           placeholder="Your email *"
           sx={{ color: 'var(--text-primary-color)' }}
           fullWidth={true}
@@ -99,9 +115,7 @@ export const SignInForm: React.FC = () => {
           aria-labelledby="alert-dialog-title"
           aria-describedby="alert-dialog-description"
         >
-          <DialogTitle id="alert-dialog-title">
-            {"Login fail"}
-          </DialogTitle>
+          <DialogTitle id="alert-dialog-title">{'Fail to sign in'}</DialogTitle>
           <DialogContent>
             <DialogContentText id="alert-dialog-description">
               Please check you credentials or proceed to sign up
@@ -109,15 +123,20 @@ export const SignInForm: React.FC = () => {
           </DialogContent>
           <DialogActions>
             <Button onClick={handleClose}>Close</Button>
-            <Button onClick={handleClose} component={Link} to={'/sign-up'} autoFocus>
+            <Button
+              onClick={handleClose}
+              component={Link}
+              to={'/sign-up'}
+              autoFocus
+            >
               Proceed to sign up
             </Button>
           </DialogActions>
         </Dialog>
       </Fragment>
     </SignInFormWrapper>
-  )
-}
+  );
+};
 
 const SignInFormWrapper = styled.form`
   display: flex;

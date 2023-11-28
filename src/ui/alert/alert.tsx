@@ -3,7 +3,7 @@ import { forwardRef } from 'react';
 
 export const Alert = forwardRef<HTMLDivElement, AlertProps>(function Alert(
   props,
-  ref,
+  ref
 ) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });

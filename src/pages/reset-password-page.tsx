@@ -1,13 +1,13 @@
-import { ResetPasswordForm } from "#features/reset-password-form/reset-password-form";
-import styled from "styled-components"
+import { ResetPasswordForm } from '#features/reset-password-form/reset-password-form';
+import styled from 'styled-components';
 
-export const ResetPasswordMainPage: React.FC = () => {
+export const ResetPasswordPage: React.FC = () => {
   return (
     <ResetPasswrodWrapper>
       <ResetPasswordForm />
     </ResetPasswrodWrapper>
-  )
-}
+  );
+};
 
 const ResetPasswrodWrapper = styled.div`
   display: flex;

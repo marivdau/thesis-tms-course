@@ -1,43 +1,42 @@
-import styled from "styled-components";
-import { PageTitle } from "#ui/page-title/page-title";
-import { CartItem } from "#ui/cart-item/cart-item";
-import { Button, Typography } from "@mui/material";
+import styled from 'styled-components';
+import { CartItem } from '#ui/cart-item/cart-item';
+import { Button, Typography } from '@mui/material';
 import AttachMoney from '@mui/icons-material/AttachMoney';
-import { clearCart, getTotalSum } from "#features/order/order.slice";
-import { useAppDispatch, useAppSelector } from "../hooks";
-import { removeDollarSignConvertToNumber } from "../service/remove-dollar-sign";
-import { BackLink } from "#features/back-link/back-link";
-import { Link, useNavigate } from "react-router-dom";
+import { clearCart, getTotalSum } from '#features/order/order.slice';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { removeDollarSignConvertToNumber } from '../../service/remove-dollar-sign';
 
-export const Cart: React.FC = () => {
+export const Order: React.FC = () => {
   const dispatch = useAppDispatch();
   const { basket } = useAppSelector(({ order }) => order);
 
-  const bookSumAmount: any = basket.reduce(
-    (sum: number, basketItem) => (
-      sum + removeDollarSignConvertToNumber(basketItem.item.price) * basketItem.quantity
-    ), 0).toFixed(2);
+  const bookSumAmount: any = basket
+    .reduce(
+      (sum: number, basketItem) =>
+        sum +
+        removeDollarSignConvertToNumber(basketItem.item.price) *
+          basketItem.quantity,
+      0
+    )
+    .toFixed(2);
   const vatAmount: any = (bookSumAmount * 0.23).toFixed(2);
   const totalSum: any = (+bookSumAmount + +vatAmount).toFixed(2);
 
-  const token = useAppSelector(
-    (state) => state.authorization.token
-  );
+  const token = useAppSelector((state) => state.authorization.token);
 
   const navigate = useNavigate();
   const navigateToLogIn = () => {
-    navigate("/sign-in");
-  }
+    navigate('/sign-in');
+  };
   const navigateToPaymentPage = () => {
-    navigate("/payment");
-  }
+    navigate('/payment');
+  };
 
   return (
-    <CartWrapper>
-      <PageTitle children='Your cart' />
-      <BackLink />
-      {basket.length > 0 ?
-        basket?.map(({ item, quantity }, index: number) =>
+    <>
+      {basket.length > 0 ? (
+        basket?.map(({ item, quantity }, index: number) => (
           <CartItem
             key={index}
             quantity={quantity}
@@ -50,37 +49,33 @@ export const Cart: React.FC = () => {
             isbn13={item.isbn13}
             subtitle={item.subtitle}
           />
-        ) :
+        ))
+      ) : (
         <NothingInTheCartDiv>
-          <Typography variant="h4">There is nothing in your cart.{' '}
+          <Typography variant="h4">
+            There is nothing in your cart.{' '}
             <Link to={'/all'}>Let's buy something!</Link>
           </Typography>
         </NothingInTheCartDiv>
-      }
+      )}
       <OrderDiv>
         <OrderDetailesDiv>
           <SumTotalDiv>
-            <SpanOrder>
-              Sum total
-            </SpanOrder>
+            <SpanOrder>Sum total</SpanOrder>
             <SpanOrder>
               <AttachMoney />
               {bookSumAmount}
             </SpanOrder>
           </SumTotalDiv>
           <VatDiv>
-            <SpanOrder>
-              VAT
-            </SpanOrder>
+            <SpanOrder>VAT</SpanOrder>
             <SpanOrder>
               <AttachMoney />
               {vatAmount}
             </SpanOrder>
           </VatDiv>
           <TotalDiv>
-            <TotalSpan>
-              Total:
-            </TotalSpan>
+            <TotalSpan>Total:</TotalSpan>
             <TotalSpan>
               <AttachMoney fontSize="large" />
               {totalSum}
@@ -117,15 +112,9 @@ export const Cart: React.FC = () => {
           </ButtonDiv>
         </ButtonsDiv>
       </OrderDiv>
-    </CartWrapper>
-  )
-}
-
-const CartWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  background-color: var(--background-primary-color);
-`;
+    </>
+  );
+};
 
 const OrderDiv = styled.div`
   display: flex;
@@ -133,7 +122,7 @@ const OrderDiv = styled.div`
   width: 300px;
   margin-left: 60%;
   padding: 30px;
-  
+
   @media screen and (max-width: 900px) {
     width: 90%;
     margin: auto;
@@ -144,7 +133,7 @@ const OrderDiv = styled.div`
 const OrderDetailesDiv = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-between; 
+  justify-content: space-between;
   align-items: stretch;
 `;
 
@@ -169,7 +158,7 @@ const VatDiv = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin-bottom: 20px;  
+  margin-bottom: 20px;
 `;
 
 const TotalDiv = styled.div`

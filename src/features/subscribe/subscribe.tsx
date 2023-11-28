@@ -1,67 +1,73 @@
-import { Button, OutlinedInput } from "@mui/material";
-import styled from "styled-components";
-import Send from "@mui/icons-material/Send"
-import { useAppDispatch, useAppSelector } from "../../hooks";
-import { subscribeToNewsLetters } from "./subscribe.slice";
-import { useState } from "react";
+import { Button, OutlinedInput } from '@mui/material';
+import styled from 'styled-components';
+import Send from '@mui/icons-material/Send';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { subscribeToNewsLetters } from './subscribe.slice';
+import { useState } from 'react';
 
 export const Subscribe = () => {
   const dispatch = useAppDispatch();
   const [email, setEmail] = useState('');
-  const isCompletedSubscribtion = useAppSelector((state) => state.subscribtion.isComplete)
+
+  const isCompletedSubscribtion = useAppSelector(
+    (state) => state.subscribtion.isComplete
+  );
 
   return (
-    <SubscribeWrapper>
+    <SubscribeForm
+      onSubmit={(event) => {
+        event.preventDefault();
+        dispatch(subscribeToNewsLetters(email));
+      }}
+    >
       <SubscribeTextDiv>
         <SubscribeText>
           {!isCompletedSubscribtion
-            ?
-            'Subscribe to Newsletter'
-            :
-            'Congrats! You are subscribed now!'}
+            ? 'Subscribe to Newsletter'
+            : 'Congrats! You are subscribed now!'}
         </SubscribeText>
         <SubscribeSubtitle>
           {!isCompletedSubscribtion
-            ?
-            'Be the first to know about new IT books, upcoming releases, exclusive offers and more.'
-            :
-            'Check your email for the futher information'}
+            ? 'Be the first to know about new IT books, upcoming releases, exclusive offers and more.'
+            : 'Check your email for the futher information'}
         </SubscribeSubtitle>
       </SubscribeTextDiv>
       <SubscribeInputDiv>
         <InputDiv>
           <OutlinedInput
-            id="outlined-basic"
+            required
+            type="email"
             placeholder="Your email"
             color="secondary"
-            type="email"
             fullWidth
+            value={email}
             sx={{
               display: !isCompletedSubscribtion ? 'block' : 'none',
-              color: 'var(--text-primary-color)'
+              color: 'var(--text-primary-color)',
             }}
-            onChange={({ currentTarget }) => setEmail(currentTarget.value)} />
+            onChange={({ currentTarget }) => setEmail(currentTarget.value)}
+          />
         </InputDiv>
-
-        <Button
-          variant="contained"
-          color="secondary"
-          endIcon={<Send />}
-          sx={{
-            display: !isCompletedSubscribtion ? 'flex' : 'none',
-          }}
-          onClick={() => {
-            dispatch(subscribeToNewsLetters({ email }));
-          }}
-        >
-          Subscribe
-        </Button>
+        <ButtonDiv>
+          <Button
+            type="submit"
+            variant="contained"
+            color="secondary"
+            endIcon={<Send />}
+            sx={{
+              display: !isCompletedSubscribtion ? 'flex' : 'none',
+              height: '56px',
+            }}
+          >
+            Subscribe
+          </Button>
+        </ButtonDiv>
       </SubscribeInputDiv>
-    </SubscribeWrapper>
-  )
-}
+    </SubscribeForm>
+  );
+};
 
-const SubscribeWrapper = styled.div`
+const SubscribeForm = styled.form`
   all: unset;
   padding: 30px 50px;
   margin-bottom: 20px;
@@ -85,7 +91,7 @@ const SubscribeText = styled.p`
   font-weight: 400;
   color: var(--text-primary-second-color);
   line-height: 45px;
-  
+
   @media screen and (max-width: 700px) {
     font-size: 25px;
     font-weight: 400;
@@ -101,7 +107,7 @@ const SubscribeSubtitle = styled.p`
   font-weight: 200;
   color: var(--text-primary-second-color);
   line-height: 25px;
-  
+
   @media screen and (max-width: 700px) {
     font-size: 16px;
     font-weight: 400;
@@ -115,7 +121,7 @@ const SubscribeInputDiv = styled.div`
   display: flex;
   flex-direction: row;
   width: 100%;
-  
+
   @media screen and (max-width: 700px) {
     flex-direction: column;
   }
@@ -126,5 +132,11 @@ const InputDiv = styled.div`
 
   @media screen and (max-width: 700px) {
     margin-bottom: 20px;
+  }
+`;
+
+const ButtonDiv = styled.div`
+  @media screen and (max-width: 700px) {
+    margin: auto;
   }
 `;

@@ -1,6 +1,6 @@
-import { SignUpForm } from "#features/sign-up-form/sign-up-form"
-import { ButtonGroupSignInUp } from "#ui/button-group-sign/button-group-sign"
-import styled from "styled-components"
+import { SignUpForm } from '#features/sign-up-form/sign-up-form';
+import { ButtonGroupSignInUp } from '#ui/button-group-sign/button-group-sign';
+import styled from 'styled-components';
 
 export const SignUpPage: React.FC = () => {
   return (
@@ -8,8 +8,8 @@ export const SignUpPage: React.FC = () => {
       <ButtonGroupSignInUp />
       <SignUpForm />
     </SignInWrapper>
-  )
-}
+  );
+};
 
 const SignInWrapper = styled.div`
   display: flex;

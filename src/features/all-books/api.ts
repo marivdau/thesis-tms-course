@@ -1,6 +1,6 @@
-import { allBooksRequest } from "../../api/api";
-import { baseUrl } from "../../api/constants";
-import { AllBooksResponse } from "./types";
+import { allBooksRequest } from '../../api/api';
+import { baseUrl } from '../../api/constants';
+import { AllBooksResponse } from './types';
 
 export const api = {
   getAllBooks: (payload: number): Promise<AllBooksResponse> => {

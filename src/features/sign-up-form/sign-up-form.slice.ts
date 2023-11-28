@@ -6,7 +6,7 @@ type State = {
   password: string;
   confirmedPassword: string;
   newPassword: string;
-  confirmedNewPassword: string,
+  confirmedNewPassword: string;
 };
 const signUpFormSlice = createSlice({
   name: 'signUpForm',
@@ -28,13 +28,16 @@ const signUpFormSlice = createSlice({
     setPassword(state, action: { payload: State['password'] }) {
       state.password = action.payload;
     },
-    setConfirmedPassword(state, action: { payload: State['confirmedPassword'] }) {
+    setConfirmedPassword(
+      state,
+      action: { payload: State['confirmedPassword'] }
+    ) {
       state.confirmedPassword = action.payload;
     },
   },
 });
 
 export const {
-  actions: { setName, setEmail, setPassword, setConfirmedPassword, },
+  actions: { setName, setEmail, setPassword, setConfirmedPassword },
   reducer: signUpFormReducer,
 } = signUpFormSlice;

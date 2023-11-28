@@ -32,10 +32,9 @@ export const SearchBooksDropDown: React.FC<DropDownProps> = ({
               </RouteLink>
             </ListItemButton>
           </ListItem>
-        ))
-      }
+        ))}
 
-      {books?.length > 0 &&
+      {books?.length > 0 && (
         <Button
           fullWidth
           component={Link}
@@ -43,9 +42,12 @@ export const SearchBooksDropDown: React.FC<DropDownProps> = ({
           onClick={() => setDropdown(!dropdown)}
         >
           View all results
-        </Button>}
+        </Button>
+      )}
 
-      {!books?.length && keyword && <ListItem>Sorry, there is no books match your request</ListItem>}
+      {!books?.length && keyword && (
+        <ListItem>Sorry, there is no books match your request</ListItem>
+      )}
     </DropDownWrapper>
   );
 };

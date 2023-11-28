@@ -11,12 +11,17 @@ const authorizationSlice = createSlice({
     authorization(state, action: { payload: AuthorizationPayload }) {
       state.auth.email = action.payload.email;
       state.auth.password = action.payload.password;
-      console.log('auth pair: ', action.payload.email, ' / ', action.payload.password);
+      console.log(
+        'auth pair: ',
+        action.payload.email,
+        ' / ',
+        action.payload.password
+      );
       state.token = true;
     },
     authorizationFailure(state) {
       state.token = false;
-      console.log('fail to auth')
+      console.log('fail to auth');
     },
     authorizationLogout(state) {
       state.token = false;
@@ -25,6 +30,6 @@ const authorizationSlice = createSlice({
 });
 
 export const {
-  actions: { authorization, authorizationFailure, authorizationLogout, },
+  actions: { authorization, authorizationFailure, authorizationLogout },
   reducer: authorizationReducer,
 } = authorizationSlice;

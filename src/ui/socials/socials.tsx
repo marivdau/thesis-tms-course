@@ -1,13 +1,13 @@
-import { Link } from "@mui/material";
+import { Link } from '@mui/material';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import TwitterIcon from '@mui/icons-material/Twitter';
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Socials = () => {
   return (
     <SocialsWrapper>
       <SocialLinkDiv>
-        <Link href='https://www.facebook.com'>
+        <Link href="https://www.facebook.com">
           <FacebookIcon />
         </Link>
       </SocialLinkDiv>
@@ -16,11 +16,10 @@ export const Socials = () => {
           <TwitterIcon />
         </Link>
       </SocialLinkDiv>
-      <SocialLinkDiv>
-      </SocialLinkDiv>
+      <SocialLinkDiv></SocialLinkDiv>
     </SocialsWrapper>
-  )
-}
+  );
+};
 
 const SocialsWrapper = styled.div`
   display: flex;

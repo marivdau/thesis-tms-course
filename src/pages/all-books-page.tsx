@@ -1,18 +1,18 @@
-import { Card } from "#ui/card/card"
-import { PageTitle } from "#ui/page-title/page-title"
-import { useEffect, useState } from "react";
-import { useAppDispatch, useAppSelector } from "../hooks";
-import styled from "styled-components";
-import { Pagination } from "@mui/material";
-import { Subscribe } from "#features/subscribe/subscribe";
-import { getAllBooks } from "#features/all-books/all-books.slice";
-import { BackLink } from "#features/back-link/back-link";
+import { Card } from '#ui/card/card';
+import { PageTitle } from '#ui/page-title/page-title';
+import { useEffect, useState } from 'react';
+import { useAppDispatch, useAppSelector } from '../hooks';
+import styled from 'styled-components';
+import { Pagination } from '@mui/material';
+import { Subscribe } from '#features/subscribe/subscribe';
+import { getAllBooks } from '#features/all-books/all-books.slice';
+import { BackLink } from '#features/back-link/back-link';
 
 export const AllBooksPage: React.FC = () => {
   const dispatch = useAppDispatch();
   const [page, setPage] = useState(1);
 
-  const { allBooks } = useAppSelector(({ allBooks }) => allBooks)
+  const { allBooks } = useAppSelector(({ allBooks }) => allBooks);
   useEffect(() => {
     dispatch(getAllBooks(page));
   }, [dispatch, page]);
@@ -22,7 +22,7 @@ export const AllBooksPage: React.FC = () => {
       <PageTitle children="all books" />
       <BackLink />
       <CardsDiv>
-        {allBooks.books?.map(item =>
+        {allBooks.books?.map((item) => (
           <Card
             key={item.isbn13}
             image={item.image}
@@ -31,7 +31,8 @@ export const AllBooksPage: React.FC = () => {
             subtitle={item.subtitle}
             price={item.price}
             isbn13={item.isbn13}
-          />)}
+          />
+        ))}
       </CardsDiv>
       <PaginationDiv>
         <Pagination
@@ -39,17 +40,17 @@ export const AllBooksPage: React.FC = () => {
           color="secondary"
           variant="outlined"
           page={page}
-          onChange={(event, value) => { 
-            setPage(value); 
+          onChange={(event, value) => {
+            setPage(value);
             window.scroll(0, 0);
           }}
-          count={+allBooks.total || 1}        
+          count={+allBooks.total || 1}
         />
       </PaginationDiv>
       <Subscribe />
     </MainNewBooksWrapper>
-  )
-}
+  );
+};
 
 const MainNewBooksWrapper = styled.div`
   display: flex;

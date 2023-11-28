@@ -1,6 +1,10 @@
 import { call, put, takeLatest } from 'typed-redux-saga';
-import { getNewBooks, getNewBooksFailure, getNewBooksSuccess } from "./new-books.slice";
-import { api } from "./api";
+import {
+  getNewBooks,
+  getNewBooksFailure,
+  getNewBooksSuccess,
+} from './new-books.slice';
+import { api } from './api';
 
 export function* newBooksSaga() {
   yield takeLatest(getNewBooks, function* activateHandler({ payload }) {

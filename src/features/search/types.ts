@@ -9,7 +9,7 @@ export type SearchResponce = {
     price: string;
     image: string;
     url: string;
-  }>
+  }>;
 };
 
 export interface Book {
@@ -21,4 +21,4 @@ export interface Book {
   url: string;
 }
 
-export type Books = Book[]
+export type Books = Book[];

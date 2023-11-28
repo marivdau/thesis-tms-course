@@ -1,17 +1,19 @@
-import { Card } from "#ui/card/card"
-import { PageTitle } from "#ui/page-title/page-title"
-import { useEffect, useState } from "react";
-import styled from "styled-components";
-import { Pagination, Typography } from "@mui/material";
-import { Subscribe } from "#features/subscribe/subscribe";
-import { BackLink } from "#features/back-link/back-link";
-import { useAppDispatch, useAppSelector } from "../hooks";
-import { searchBooks } from "#features/search/search.slice";
+import { Card } from '#ui/card/card';
+import { PageTitle } from '#ui/page-title/page-title';
+import { useEffect, useState } from 'react';
+import styled from 'styled-components';
+import { Pagination, Typography } from '@mui/material';
+import { Subscribe } from '#features/subscribe/subscribe';
+import { BackLink } from '#features/back-link/back-link';
+import { useAppDispatch, useAppSelector } from '../hooks';
+import { searchBooks } from '#features/search/search.slice';
 
 export const SearchResultPage: React.FC = () => {
   const dispatch = useAppDispatch();
   const [page, setPage] = useState(1);
-  const searchWord = useAppSelector(state => state.search.searchedBooksKeyword);
+  const searchWord = useAppSelector(
+    (state) => state.search.searchedBooksKeyword
+  );
   const { searchedBooks } = useAppSelector(({ search }) => search);
 
   useEffect(() => {
@@ -20,12 +22,15 @@ export const SearchResultPage: React.FC = () => {
 
   return (
     <MainNewBooksWrapper>
-      <PageTitle children={searchWord ? `search Result for ${searchWord}` : `search result page`} />
+      <PageTitle
+        children={
+          searchWord ? `search Result for ${searchWord}` : `search result page`
+        }
+      />
       <BackLink />
       <CardsDiv>
-        {searchWord
-          ?
-          searchedBooks?.books?.map(item =>
+        {searchWord ? (
+          searchedBooks?.books?.map((item) => (
             <Card
               key={item.isbn13}
               image={item.image}
@@ -34,10 +39,11 @@ export const SearchResultPage: React.FC = () => {
               subtitle={item.subtitle}
               price={item.price}
               isbn13={item.isbn13}
-            />)
-          :
+            />
+          ))
+        ) : (
           <Typography variant="h4">Let's search something!</Typography>
-        }
+        )}
       </CardsDiv>
       <PaginationDiv>
         <Pagination
@@ -54,8 +60,8 @@ export const SearchResultPage: React.FC = () => {
       </PaginationDiv>
       <Subscribe />
     </MainNewBooksWrapper>
-  )
-}
+  );
+};
 
 const MainNewBooksWrapper = styled.div`
   display: flex;

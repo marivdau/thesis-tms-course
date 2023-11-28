@@ -1,6 +1,10 @@
 import { call, put, takeLatest } from 'typed-redux-saga';
-import { getBookPreview, getBookPreviewFailure, getBookPreviewSuccess } from "./book-preview.slice";
-import { api } from "./api";
+import {
+  getBookPreview,
+  getBookPreviewFailure,
+  getBookPreviewSuccess,
+} from './book-preview.slice';
+import { api } from './api';
 
 export function* bookPreviewSaga() {
   yield takeLatest(getBookPreview, function* activateHandler({ payload }) {

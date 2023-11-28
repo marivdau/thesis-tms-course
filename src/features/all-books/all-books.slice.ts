@@ -1,5 +1,5 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { AllBooksResponse } from "./types";
+import { createSlice } from '@reduxjs/toolkit';
+import { AllBooksResponse } from './types';
 
 const allBooksSlice = createSlice({
   name: 'allBooksSlice',
@@ -29,7 +29,7 @@ const allBooksSlice = createSlice({
       }
       state.error = { name: 'Error', message: String(error) };
     },
-  }
+  },
 });
 
 export const {

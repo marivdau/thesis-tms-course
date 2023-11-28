@@ -1,13 +1,13 @@
-import { PropsCart } from "#ui/cart-item/cart-item";
-import { createSlice } from "@reduxjs/toolkit";
+import { PropsCart } from '#ui/cart-item/cart-item';
+import { createSlice } from '@reduxjs/toolkit';
 
 export type BookmarkItem = {
-  item: PropsCart,
-}
+  item: PropsCart;
+};
 
 type State = {
-  favourites: BookmarkItem[],
-}
+  favourites: BookmarkItem[];
+};
 
 const favouritesSlice = createSlice({
   name: 'favouritesSlice',
@@ -19,10 +19,12 @@ const favouritesSlice = createSlice({
     markItem(state, action) {
       state.favourites.push({
         item: action.payload,
-      })
+      });
     },
     unMarkItem(state, action) {
-      const index = state.favourites.findIndex(item => item.item.isbn13 === action.payload);
+      const index = state.favourites.findIndex(
+        (item) => item.item.isbn13 === action.payload
+      );
       state.favourites.splice(index, 1);
     },
   },

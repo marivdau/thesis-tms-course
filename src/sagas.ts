@@ -5,10 +5,5 @@ import { searchSaga } from '#features/search/search.sagas';
 import { all } from 'redux-saga/effects';
 
 export function* rootSaga() {
-  yield all([
-    newBooksSaga(),
-    bookPreviewSaga(),
-    searchSaga(),
-    allBooksSaga(),
-  ]);
+  yield all([newBooksSaga(), bookPreviewSaga(), searchSaga(), allBooksSaga()]);
 }

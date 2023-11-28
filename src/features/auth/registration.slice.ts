@@ -13,7 +13,14 @@ const registrationSlice = createSlice({
       state.info.email = action.payload.email;
       state.info.password = action.payload.password;
       state.info.username = action.payload.username;
-      console.log('register info: ', action.payload.email, ' / ', action.payload.password, ' / ', action.payload.username)
+      console.log(
+        'register info: ',
+        action.payload.email,
+        ' / ',
+        action.payload.password,
+        ' / ',
+        action.payload.username
+      );
     },
     registerFailure(state) {
       state.isCompleted = false;

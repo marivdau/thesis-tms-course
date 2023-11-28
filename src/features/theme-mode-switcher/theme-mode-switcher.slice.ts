@@ -11,7 +11,7 @@ const themeModeSlice = createSlice({
     },
     themeModeChangeToLight(state) {
       state.isDarkThemeActive = false;
-    }
+    },
   },
 });
 
