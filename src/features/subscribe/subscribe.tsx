@@ -5,7 +5,7 @@ import { useAppDispatch, useAppSelector } from '../../hooks';
 import { subscribeToNewsLetters } from './subscribe.slice';
 import { useState } from 'react';
 
-export const Subscribe = () => {
+export const Subscribe: React.FC = () => {
   const dispatch = useAppDispatch();
   const [email, setEmail] = useState('');
 

@@ -5,7 +5,7 @@ import { getNewBooks } from '#features/new-books/new-books.slice';
 import { Card } from '#ui/card/card';
 import { ScrollingCarousel } from '@trendyol-js/react-carousel';
 
-export const SimilarBooks = () => {
+export const SimilarBooks: React.FC = () => {
   const dispatch = useAppDispatch();
   const { newBooks } = useAppSelector(({ newBooks }) => newBooks);
   useEffect(() => {

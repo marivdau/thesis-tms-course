@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import Copyright from '@mui/icons-material/Copyright';
 
-export const Footer = () => {
+export const Footer: React.FC = () => {
   return (
     <FooterWrapper>
       <DateNameSpan>
