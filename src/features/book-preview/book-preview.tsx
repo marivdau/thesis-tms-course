@@ -8,9 +8,9 @@ import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 import { Button, Rating } from '@mui/material';
 import { useNavigate, useParams } from 'react-router-dom';
-import { addItem } from '#features/order/order.slice';
+import { addItem, deleteItem } from '#features/order/order.slice';
 import Bookmark from '@mui/icons-material/Bookmark';
-import { markItem } from '#features/bookmark/bookmark.slice';
+import { markItem, unMarkItem } from '#features/bookmark/bookmark.slice';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 
 export const BookPreview: React.FC = () => {
@@ -47,8 +47,12 @@ export const BookPreview: React.FC = () => {
               variant={isMarked ? 'contained' : 'text'}
               onClick={() => {
                 if (token) {
-                  dispatch(markItem(bookPreview));
                   setIsMarked(!isMarked);
+                  if (!isMarked) {
+                    dispatch(markItem(bookPreview));
+                  } else {
+                    dispatch(unMarkItem(bookPreview));
+                  }
                 } else {
                   navigateToLogIn();
                 }
@@ -103,7 +107,11 @@ export const BookPreview: React.FC = () => {
                 color="primary"
                 onClick={() => {
                   setIsClicked(!isClicked);
-                  dispatch(addItem(bookPreview));
+                  if (!isClicked) {
+                    dispatch(addItem(bookPreview));
+                  } else {
+                    dispatch(deleteItem(bookPreview));
+                  }
                 }}
               >
                 {isClicked ? 'Added to cart' : 'Add to cart'}

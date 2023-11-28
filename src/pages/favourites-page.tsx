@@ -38,8 +38,11 @@ export const FavouritesPage: React.FC = () => {
         )}
       </FavoritesDiv>
 
-      <PopularBooksSpan>Popular books</PopularBooksSpan>
-      <SimilarBooks />
+      <PopularBooksDiv>
+        <PopularBooksSpan>Popular books</PopularBooksSpan>
+        <SimilarBooks />
+      </PopularBooksDiv>
+
     </FavouritesWrapper>
   );
 };
@@ -51,7 +54,7 @@ const FavouritesWrapper = styled.div`
 `;
 
 const FavoritesDiv = styled.div`
-  margin-bottom: 30px;
+  margin: 30px;
 `;
 
 const NoFavouritesDiv = styled.div`
@@ -59,10 +62,13 @@ const NoFavouritesDiv = styled.div`
   color: var(--text-primary-second-color);
 `;
 
+const PopularBooksDiv = styled.div`
+  margin: 0 10px;
+`;
+
 const PopularBooksSpan = styled.span`
   text-transform: uppercase;
   color: var(--text-primary-color);
-  margin-left: 10px;
   font-size: 28px;
   font-weight: 600;
   line-height: 32px;
